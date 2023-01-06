@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-Path arrowTipPath(Offset p1, Offset p2, double headSize) {
+Path arrowHeadPath(Offset p1, Offset p2, double headSize) {
   final dX = p2.dx - p1.dx;
   final dY = p2.dy - p1.dy;
   final angle = atan2(dY, dX);

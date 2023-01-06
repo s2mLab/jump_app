@@ -6,19 +6,19 @@ class Arrows extends StatelessWidget {
   const Arrows({
     required this.start,
     required this.end,
-    required this.tipSize,
+    required this.headSize,
     this.color,
     super.key,
   });
 
   final Offset start;
   final Offset end;
-  final double tipSize;
+  final double headSize;
   final Color? color;
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(painter: _ArrowsPainting(start, end, tipSize, color));
+    return CustomPaint(painter: _ArrowsPainting(start, end, headSize, color));
   }
 }
 
@@ -38,7 +38,7 @@ class _ArrowsPainting extends CustomPainter {
       ..strokeWidth = 3;
 
     canvas.drawLine(start, end, painter);
-    canvas.drawPath(arrowTipPath(start, end, headSize), painter);
+    canvas.drawPath(arrowHeadPath(start, end, headSize), painter);
   }
 
   @override

@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   path_drawing: ^1.0.1
   syncfusion_flutter_sliders: ^20.4.42
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:

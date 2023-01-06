@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
+import '/providers/locale_text.dart';
 import '/screens/jump_screen.dart';
 
 void main() async {
@@ -18,6 +20,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(title: 'Jump app', home: JumpScreen());
+    return MultiProvider(providers: [
+      ChangeNotifierProvider(create: (ctx) => LocaleText(language: 'fr')),
+    ], child: const MaterialApp(title: 'Jump app', home: JumpScreen()));
   }
 }
