@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import '/providers/locale_text.dart';
+import 'package:jump_app/widgets/flight_apex.dart';
 
+import '/providers/locale_text.dart';
 import 'airborne_trajectory.dart';
 import 'center_of_mass.dart';
 import 'double_heads_arrow.dart';
 import 'ground_reaction_force.dart';
 import 'line.dart';
+import 'pushoff_slider.dart';
 
 class SkaterImage extends StatefulWidget {
   const SkaterImage({
@@ -20,9 +22,6 @@ class SkaterImage extends StatefulWidget {
 }
 
 class _SkaterImageState extends State<SkaterImage> {
-  double _t0Height = 0.100;
-  double _tfHeight = 0.115;
-
   @override
   Widget build(BuildContext context) {
     final texts = LocaleText.of(context);
@@ -33,10 +32,11 @@ class _SkaterImageState extends State<SkaterImage> {
     final floor = 0.12 * w;
     final jumpHeigh = 0.100 * w;
 
-    final comStart = Offset(0.265 * w, -floor - _t0Height * w);
-    final comSliderPosition = Offset(0.175 * w, floor);
+    final comStart = Offset(0.265 * w, -floor - 0.100 * w);
+    final comSliderStartPosition = Offset(comStart.dx - 0.11 * w, floor);
+    final comFinal = Offset(0.791 * w, -floor - 0.115 * w);
+    final comSliderFinalPosition = Offset(comFinal.dx - 0.11 * w, floor);
     final comSliderHeight = 0.20 * w;
-    final comFinal = Offset(0.791 * w, -floor - _tfHeight * w);
     final comMid = Offset(
         (comStart.dx + comFinal.dx) / 2, (comStart.dy + comFinal.dy) / 2);
     final comSize = 0.011 * w;
@@ -45,11 +45,13 @@ class _SkaterImageState extends State<SkaterImage> {
     final grfSliderPosition = Offset(0.210 * w, floor + 0.180 * w);
     final grfSliderHeight = 0.200 * w;
 
-    final pushOff = 0.05 * w;
+    final pushoff = 0.05 * w;
+    final pushoffSliderPosition = Offset(pushoff - 0.017 * w, 0);
+    final pushoffSliderWidth = 0.25 * w;
     final land = 0.95 * w;
 
     final arrowsHeadSize = 0.023 * w;
-    final arrowsBelow = -floor + 0.07 * w;
+    final arrowsBelow = -floor + 0.03 * w;
 
     return Container(
       decoration: BoxDecoration(border: Border.all(color: Colors.black)),
@@ -65,18 +67,13 @@ class _SkaterImageState extends State<SkaterImage> {
               child: Image.asset('assets/images/key_frames_axel.png')),
           CenterOfMass(
             comStart,
+            type: CenterOfMassType.start,
             radius: comSize,
             floor: floor,
             withPicker: true,
-            pickerPosition: comSliderPosition,
+            pickerPosition: comSliderStartPosition,
             pickerHeight: comSliderHeight,
             textSize: arrowsHeadSize,
-          ),
-          CenterOfMass(
-            comFinal,
-            radius: comSize,
-            floor: floor,
-            withPicker: false,
           ),
           GroundReactionForce(
             arrowHead: grfArrow,
@@ -85,36 +82,53 @@ class _SkaterImageState extends State<SkaterImage> {
             sliderHeight: grfSliderHeight,
             floor: floor,
           ),
+          CenterOfMass(
+            comFinal,
+            type: CenterOfMassType.end,
+            radius: comSize,
+            floor: floor,
+            withPicker: true,
+            pickerPosition: comSliderFinalPosition,
+            pickerHeight: comSliderHeight,
+            textSize: arrowsHeadSize,
+          ),
           AirboneTrajectory(start: comStart, end: comFinal, height: jumpHeigh),
-          DoubleHeadsArrow(
-            start: Offset(comMid.dx, -floor),
-            end: Offset(comMid.dx, comMid.dy - jumpHeigh),
-            headSize: arrowsHeadSize,
-            color: const Color.fromARGB(255, 31, 120, 165),
+          FlightApex(
+            apex: Offset(comMid.dx, comMid.dy - jumpHeigh),
+            floor: floor,
+            arrowsHeadSize: arrowsHeadSize,
           ),
           Line(
               start: Offset(0, -floor), end: Offset(w, -floor), strokeWidth: 1),
           DoubleHeadsArrow(
             title: texts.pushoffPhase,
-            fontSize: arrowsHeadSize,
-            start: Offset(pushOff, arrowsBelow),
+            fontSize: arrowsHeadSize * 3 / 4,
+            start: Offset(pushoff, arrowsBelow),
             end: Offset(comStart.dx, arrowsBelow),
             headSize: arrowsHeadSize,
             color: const Color.fromARGB(255, 128, 8, 162),
           ),
           DoubleHeadsArrow(
             title: texts.aerialPhase,
+            fontSize: arrowsHeadSize * 3 / 4,
             start: Offset(comStart.dx, arrowsBelow),
             end: Offset(comFinal.dx, arrowsBelow),
             headSize: arrowsHeadSize,
             color: const Color.fromARGB(255, 31, 120, 165),
           ),
           DoubleHeadsArrow(
-            title: texts.aerialPhase,
+            title: texts.landing,
+            fontSize: arrowsHeadSize * 3 / 4,
             start: Offset(comFinal.dx, arrowsBelow),
             end: Offset(land, arrowsBelow),
             headSize: arrowsHeadSize,
             color: const Color.fromARGB(255, 8, 0, 239),
+          ),
+          PushofSlider(
+            color: const Color.fromARGB(255, 128, 8, 162),
+            position: pushoffSliderPosition,
+            textSize: arrowsHeadSize,
+            width: pushoffSliderWidth,
           ),
         ],
       ),

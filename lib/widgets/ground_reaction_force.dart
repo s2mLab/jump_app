@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '/providers/parameters.dart';
 import 'arrow.dart';
 import 'text_with_index.dart';
 import 'value_picker.dart';
@@ -20,8 +21,15 @@ class GroundReactionForce extends StatelessWidget {
   final double sliderHeight;
   final double floor;
 
+  void _updateGrf(BuildContext context, double value) {
+    final data = Parameters.of(context);
+    data.groundReactionForce = value;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final data = Parameters.of(context);
+
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
@@ -50,13 +58,14 @@ class GroundReactionForce extends StatelessWidget {
           ValuePicker(
             min: 700,
             max: 5000,
-            initial: 3000,
+            initial: data.groundReactionForce,
             position: sliderPosition,
             height: sliderHeight,
             color: Colors.red,
             textSize: arrowHeadSize,
             unit: 'N',
             precision: 0,
+            onValueChanged: (value) => _updateGrf(context, value),
           ),
         ],
       ),

@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+
+import '/providers/parameters.dart';
+import 'text_with_index.dart';
 import 'value_picker.dart';
+
+enum CenterOfMassType {
+  any,
+  start,
+  end,
+}
 
 class CenterOfMass extends StatelessWidget {
   const CenterOfMass(
     this.position, {
+    required this.type,
     super.key,
     required this.radius,
     this.floor = 0,
@@ -13,6 +23,7 @@ class CenterOfMass extends StatelessWidget {
     this.textSize,
   });
 
+  final CenterOfMassType type;
   final Offset position;
   final double radius;
   final double floor;
@@ -21,6 +32,17 @@ class CenterOfMass extends StatelessWidget {
   final double? pickerHeight;
   final double? textSize;
 
+  void _updateHeight(BuildContext context, double value) {
+    final data = Parameters.of(context);
+    if (type == CenterOfMassType.start) {
+      data.initialHeigh = value;
+    } else if (type == CenterOfMassType.end) {
+      data.finalHeigh = value;
+    } else {
+      throw 'Wrong update height type';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     if (withPicker) {
@@ -28,9 +50,18 @@ class CenterOfMass extends StatelessWidget {
         throw '[pickerPosition], [pickerHeight] and [textSize] must be provided '
             'if [withPicker] is set to true';
       }
+
+      if (type == CenterOfMassType.any) {
+        throw '[withPicker] necessitate a [type]';
+      }
+    }
+    if (type != CenterOfMassType.any && textSize == null) {
+      throw '[textSize] must be provided if [title] is not null';
     }
 
+    final data = Parameters.of(context);
     final deviceSize = MediaQuery.of(context).size;
+
     return SizedBox(
       width: deviceSize.width,
       height: deviceSize.height,
@@ -41,13 +72,33 @@ class CenterOfMass extends StatelessWidget {
             ValuePicker(
               min: 1,
               max: 1.5,
-              initial: 1.15,
+              initial: type == CenterOfMassType.start
+                  ? data.initialHeight
+                  : data.finalHeight,
               position: pickerPosition!,
               height: pickerHeight!,
               color: const Color(0xff63aa65),
               textSize: textSize!,
               unit: 'm',
               precision: 2,
+              onValueChanged: type != CenterOfMassType.any
+                  ? (value) => _updateHeight(context, value)
+                  : null,
+            ),
+          if (type != CenterOfMassType.any)
+            Positioned(
+              left: position.dx - deviceSize.width * 0.04,
+              bottom: -(position.dy - floor) / 2,
+              child: TextWithIndex(
+                'H',
+                type == CenterOfMassType.start ? '0' : 'F',
+                textAlign: TextAlign.end,
+                textStyle: TextStyle(
+                  color: const Color(0xff63aa65),
+                  fontWeight: FontWeight.bold,
+                  fontSize: textSize!,
+                ),
+              ),
             ),
           CustomPaint(painter: _CenterOfMassPainting(position, radius, floor)),
         ],

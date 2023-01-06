@@ -21,4 +21,5 @@ class LocaleText with ChangeNotifier {
       {'en': 'Pushoff phase', 'fr': 'Phase de propulsion'}[language]!;
   String get aerialPhase =>
       {'en': 'Aerial phase', 'fr': 'Phase aérienne'}[language]!;
+  String get landing => {'en': 'Landing', 'fr': 'Atterrissage'}[language]!;
 }
