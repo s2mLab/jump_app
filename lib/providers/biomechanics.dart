@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -42,11 +44,13 @@ class Biomechanics with ChangeNotifier {
 
   double get initialVerticalVelocity => impulse / bodyMass;
 
-  double get apexTime => initialVerticalVelocity / -g;
+  double get ascendingTime => initialVerticalVelocity / -g;
+  double get descendingTime => sqrt((apex - _finalHeight) / (-0.5 * g));
+  double get flightTime => ascendingTime + descendingTime;
 
   double get apex {
     return _initialHeight +
-        0.5 * g * apexTime * apexTime +
-        initialVerticalVelocity * apexTime;
+        0.5 * g * ascendingTime * ascendingTime +
+        initialVerticalVelocity * ascendingTime;
   }
 }

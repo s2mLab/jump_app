@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:jump_app/widgets/flight_apex.dart';
 
 import '/providers/locale_text.dart';
+import 'aerial_phase.dart';
 import 'airborne_trajectory.dart';
 import 'center_of_mass.dart';
 import 'double_heads_arrow.dart';
+import 'flight_apex.dart';
 import 'ground_reaction_force.dart';
 import 'line.dart';
 import 'pushoff_slider.dart';
@@ -33,20 +34,20 @@ class _SkaterImageState extends State<SkaterImage> {
     final jumpHeigh = 0.100 * w;
 
     final comStart = Offset(0.265 * w, -floor - 0.100 * w);
-    final comSliderStartPosition = Offset(comStart.dx - 0.14 * w, floor);
+    final comSliderStartPosition = Offset(comStart.dx - 0.11 * w, floor);
     final comFinal = Offset(0.791 * w, -floor - 0.115 * w);
-    final comSliderFinalPosition = Offset(comFinal.dx - 0.14 * w, floor);
+    final comSliderFinalPosition = Offset(comFinal.dx - 0.11 * w, floor);
     final comSliderHeight = 0.15 * w;
     final comMid = Offset(
         (comStart.dx + comFinal.dx) / 2, (comStart.dy + comFinal.dy) / 2);
     final comSize = 0.011 * w;
 
     final grfArrow = Offset(0.280 * w, -floor - 0.270 * w);
-    final grfSliderPosition = Offset(0.165 * w, floor + 0.180 * w);
+    final grfSliderPosition = Offset(0.22 * w, floor + 0.180 * w);
     final grfSliderHeight = 0.200 * w;
 
     final pushoff = 0.05 * w;
-    final pushoffSliderPosition = Offset(pushoff - 0.017 * w, 0);
+    final pushoffSliderPosition = Offset(0.017 * w, 0.02 * w);
     final pushoffSliderWidth = 0.25 * w;
     final land = 0.95 * w;
 
@@ -108,14 +109,11 @@ class _SkaterImageState extends State<SkaterImage> {
             headSize: arrowsHeadSize,
             color: const Color.fromARGB(255, 128, 8, 162),
           ),
-          DoubleHeadsArrow(
-            title: texts.aerialPhase,
-            fontSize: arrowsHeadSize * 3 / 4,
-            start: Offset(comStart.dx, arrowsBelow),
-            end: Offset(comFinal.dx, arrowsBelow),
-            headSize: arrowsHeadSize,
-            color: const Color.fromARGB(255, 31, 120, 165),
-          ),
+          AerialPhase(
+              arrowsHeadSize: arrowsHeadSize,
+              comStart: comStart,
+              arrowsBelow: arrowsBelow,
+              comFinal: comFinal),
           DoubleHeadsArrow(
             title: texts.landing,
             fontSize: arrowsHeadSize * 3 / 4,
