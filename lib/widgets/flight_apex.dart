@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/providers/parameters.dart';
+import '../providers/biomechanics.dart';
 import 'double_heads_arrow.dart';
 import 'text_with_index.dart';
 
@@ -19,7 +19,7 @@ class FlightApex extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    final data = Parameters.of(context, listen: true);
+    final biomechanics = Biomechanics.of(context, listen: true);
     const color = Color.fromARGB(255, 31, 120, 165);
 
     return Stack(
@@ -40,7 +40,7 @@ class FlightApex extends StatelessWidget {
                       fontSize: arrowsHeadSize,
                     )),
                 Text(
-                  ' = ${data.apex.toStringAsFixed(2)} m',
+                  ' = ${biomechanics.apex.toStringAsFixed(2)} m',
                   style: TextStyle(
                     color: color,
                     fontWeight: FontWeight.bold,

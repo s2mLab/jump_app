@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/providers/parameters.dart';
+import '../providers/biomechanics.dart';
 import 'value_picker.dart';
 
 class PushofSlider extends StatelessWidget {
@@ -18,18 +18,18 @@ class PushofSlider extends StatelessWidget {
   final double width;
 
   void _updatePushoffTime(BuildContext context, double value) {
-    final data = Parameters.of(context);
-    data.pushoffTime = value;
+    final biomechanics = Biomechanics.of(context);
+    biomechanics.pushoffTime = value;
   }
 
   @override
   Widget build(BuildContext context) {
-    final data = Parameters.of(context);
+    final biomechanics = Biomechanics.of(context);
 
     return ValuePicker.horizontal(
       min: 150,
       max: 450,
-      initial: data.pushoffTime,
+      initial: biomechanics.pushoffTime,
       position: position,
       width: width,
       color: color,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Parameters with ChangeNotifier {
-  static Parameters of(BuildContext context, {bool listen = false}) =>
-      Provider.of<Parameters>(context, listen: listen);
+class Biomechanics with ChangeNotifier {
+  static Biomechanics of(BuildContext context, {bool listen = false}) =>
+      Provider.of<Biomechanics>(context, listen: listen);
 
   double get bodyMass => 70;
   double get g => -9.81;

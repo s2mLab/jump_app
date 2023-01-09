@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import 'providers/parameters.dart';
+import 'providers/biomechanics.dart';
 import '/providers/locale_text.dart';
 import '/screens/jump_screen.dart';
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (ctx) => LocaleText(language: 'fr')),
-      ChangeNotifierProvider(create: (ctx) => Parameters()),
+      ChangeNotifierProvider(create: (ctx) => Biomechanics()),
     ], child: const MaterialApp(title: 'Jump app', home: JumpScreen()));
   }
 }

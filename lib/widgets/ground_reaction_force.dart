@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/providers/parameters.dart';
+import '../providers/biomechanics.dart';
 import 'arrow.dart';
 import 'text_with_index.dart';
 import 'value_picker.dart';
@@ -22,13 +22,13 @@ class GroundReactionForce extends StatelessWidget {
   final double floor;
 
   void _updateGrf(BuildContext context, double value) {
-    final data = Parameters.of(context);
-    data.groundReactionForce = value;
+    final biomechanics = Biomechanics.of(context);
+    biomechanics.groundReactionForce = value;
   }
 
   @override
   Widget build(BuildContext context) {
-    final data = Parameters.of(context);
+    final biomechanics = Biomechanics.of(context);
 
     return SizedBox(
       width: MediaQuery.of(context).size.width,
@@ -58,7 +58,7 @@ class GroundReactionForce extends StatelessWidget {
           ValuePicker.vertical(
             min: 1000,
             max: 5000,
-            initial: data.groundReactionForce,
+            initial: biomechanics.groundReactionForce,
             position: sliderPosition,
             height: sliderHeight,
             color: Colors.red,

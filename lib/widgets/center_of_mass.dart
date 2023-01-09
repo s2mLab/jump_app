@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/providers/parameters.dart';
+import '../providers/biomechanics.dart';
 import 'text_with_index.dart';
 import 'value_picker.dart';
 
@@ -33,11 +33,11 @@ class CenterOfMass extends StatelessWidget {
   final double? textSize;
 
   void _updateHeight(BuildContext context, double value) {
-    final data = Parameters.of(context);
+    final biomechanics = Biomechanics.of(context);
     if (type == CenterOfMassType.start) {
-      data.initialHeigh = value;
+      biomechanics.initialHeigh = value;
     } else if (type == CenterOfMassType.end) {
-      data.finalHeigh = value;
+      biomechanics.finalHeigh = value;
     } else {
       throw 'Wrong update height type';
     }
@@ -59,7 +59,7 @@ class CenterOfMass extends StatelessWidget {
       throw '[textSize] must be provided if [title] is not null';
     }
 
-    final data = Parameters.of(context);
+    final biomechanics = Biomechanics.of(context);
     final deviceSize = MediaQuery.of(context).size;
 
     return SizedBox(
@@ -73,8 +73,8 @@ class CenterOfMass extends StatelessWidget {
               min: 1,
               max: 1.5,
               initial: type == CenterOfMassType.start
-                  ? data.initialHeight
-                  : data.finalHeight,
+                  ? biomechanics.initialHeight
+                  : biomechanics.finalHeight,
               position: pickerPosition!,
               height: pickerHeight!,
               color: const Color(0xff63aa65),
