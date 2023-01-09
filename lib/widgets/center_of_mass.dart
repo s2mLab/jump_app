@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../providers/biomechanics.dart';
+import '/providers/biomechanics.dart';
+import '/providers/locale_text.dart';
 import 'text_with_index.dart';
 import 'value_picker.dart';
 
@@ -61,6 +62,7 @@ class CenterOfMass extends StatelessWidget {
 
     final biomechanics = Biomechanics.of(context);
     final deviceSize = MediaQuery.of(context).size;
+    final texts = LocaleText.of(context);
 
     return SizedBox(
       width: deviceSize.width,
@@ -89,16 +91,20 @@ class CenterOfMass extends StatelessWidget {
             Positioned(
               left: position.dx - deviceSize.width * 0.04,
               bottom: -(position.dy - floor) / 2,
-              child: TextWithIndex(
-                'H',
-                type == CenterOfMassType.start ? '0' : 'F',
-                textAlign: TextAlign.end,
-                textStyle: TextStyle(
-                  color: const Color(0xff63aa65),
-                  fontWeight: FontWeight.bold,
-                  fontSize: textSize!,
-                ),
-              ),
+              child: Tooltip(
+                  message: type == CenterOfMassType.start
+                      ? texts.h0Tooltip
+                      : texts.hfTooltip,
+                  child: TextWithIndex(
+                    'H',
+                    type == CenterOfMassType.start ? '0' : 'F',
+                    textAlign: TextAlign.end,
+                    textStyle: TextStyle(
+                      color: const Color(0xff63aa65),
+                      fontWeight: FontWeight.bold,
+                      fontSize: textSize!,
+                    ),
+                  )),
             ),
           CustomPaint(painter: _CenterOfMassPainting(position, radius, floor)),
         ],

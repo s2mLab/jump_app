@@ -47,7 +47,7 @@ class _SkaterImageState extends State<SkaterImage> {
         Offset(comFinal.dx - 0.1 * w, comFinal.dy - 0.1 * w);
 
     final grfArrow = Offset(0.280 * w, -floor - 0.270 * w);
-    final grfSliderPosition = Offset(0.22 * w, floor + 0.180 * w);
+    final grfSliderPosition = Offset(0.20 * w, floor + 0.180 * w);
     final grfSliderHeight = 0.200 * w;
 
     final pushoff = 0.05 * w;

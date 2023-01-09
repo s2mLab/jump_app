@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../providers/biomechanics.dart';
+import '/providers/biomechanics.dart';
+import '/providers/locale_text.dart';
 import 'arrow.dart';
 import 'text_with_index.dart';
 import 'value_picker.dart';
@@ -29,6 +30,7 @@ class GroundReactionForce extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final biomechanics = Biomechanics.of(context);
+    final texts = LocaleText.of(context);
 
     return SizedBox(
       width: MediaQuery.of(context).size.width,
@@ -45,13 +47,16 @@ class GroundReactionForce extends StatelessWidget {
           Positioned(
             left: arrowHead.dx + arrowHeadSize / 2,
             bottom: -arrowHead.dy - 2 * arrowHeadSize,
-            child: TextWithIndex(
-              'F',
-              'max',
-              textStyle: TextStyle(
-                color: Colors.red,
-                fontWeight: FontWeight.bold,
-                fontSize: arrowHeadSize,
+            child: Tooltip(
+              message: texts.fmaxTooltip,
+              child: TextWithIndex(
+                'F',
+                'max',
+                textStyle: TextStyle(
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
+                  fontSize: arrowHeadSize,
+                ),
               ),
             ),
           ),

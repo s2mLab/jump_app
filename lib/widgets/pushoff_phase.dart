@@ -26,6 +26,8 @@ class PushoffPhase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const color = Color.fromARGB(255, 128, 8, 162);
+
     return Stack(
       alignment: Alignment.bottomLeft,
       children: [
@@ -36,12 +38,21 @@ class PushoffPhase extends StatelessWidget {
           width: pushoffSliderWidth,
         ),
         DoubleHeadsArrow(
-          title: texts.pushoffPhase,
-          fontSize: arrowsHeadSize * 3 / 4,
           start: Offset(pushoff, arrowsBelow),
           end: Offset(comStart.dx, arrowsBelow),
           headSize: arrowsHeadSize,
-          color: const Color.fromARGB(255, 128, 8, 162),
+          color: color,
+          child: Tooltip(
+            message: texts.pushoffPhaseTooltip,
+            child: Text(
+              texts.pushoffPhase,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: color,
+                  fontSize: arrowsHeadSize * 3 / 4),
+            ),
+          ),
         ),
       ],
     );

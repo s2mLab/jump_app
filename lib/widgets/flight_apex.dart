@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../providers/biomechanics.dart';
+import '/providers/biomechanics.dart';
+import '/providers/locale_text.dart';
 import 'double_heads_arrow.dart';
 import 'text_with_index.dart';
 
@@ -20,6 +21,7 @@ class FlightApex extends StatelessWidget {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     final biomechanics = Biomechanics.of(context, listen: true);
+    final texts = LocaleText.of(context);
     const color = Color.fromARGB(255, 31, 120, 165);
 
     return Stack(
@@ -31,23 +33,26 @@ class FlightApex extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(color: color.withAlpha(30)),
             padding: const EdgeInsets.all(2),
-            child: Row(
-              children: [
-                TextWithIndex('H', 'max',
-                    textStyle: TextStyle(
+            child: Tooltip(
+              message: texts.computedMaximalHeight,
+              child: Row(
+                children: [
+                  TextWithIndex('H', 'max',
+                      textStyle: TextStyle(
+                        color: color,
+                        fontWeight: FontWeight.bold,
+                        fontSize: arrowsHeadSize,
+                      )),
+                  Text(
+                    ' = ${biomechanics.apex.toStringAsFixed(2)} m',
+                    style: TextStyle(
                       color: color,
                       fontWeight: FontWeight.bold,
                       fontSize: arrowsHeadSize,
-                    )),
-                Text(
-                  ' = ${biomechanics.apex.toStringAsFixed(2)} m',
-                  style: TextStyle(
-                    color: color,
-                    fontWeight: FontWeight.bold,
-                    fontSize: arrowsHeadSize,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

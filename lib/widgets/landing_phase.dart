@@ -21,13 +21,23 @@ class LandingPhase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const color = Color.fromARGB(255, 8, 0, 239);
     return DoubleHeadsArrow(
-      title: texts.landing,
-      fontSize: arrowsHeadSize * 3 / 4,
       start: Offset(comFinal.dx, arrowsBelow),
       end: Offset(land, arrowsBelow),
       headSize: arrowsHeadSize,
-      color: const Color.fromARGB(255, 8, 0, 239),
+      color: color,
+      child: Tooltip(
+        message: texts.landingPhaseTooltip,
+        child: Text(
+          texts.landing,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: color,
+              fontSize: arrowsHeadSize * 3 / 4),
+        ),
+      ),
     );
   }
 }
