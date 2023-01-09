@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import '/providers/locale_text.dart';
 import 'aerial_phase.dart';
 import 'airborne_trajectory.dart';
+import 'background_image.dart';
 import 'center_of_mass.dart';
-import 'double_heads_arrow.dart';
 import 'flight_apex.dart';
+import 'floor.dart';
 import 'ground_reaction_force.dart';
-import 'line.dart';
-import 'pushoff_slider.dart';
+import 'landing_phase.dart';
+import 'pushoff_phase.dart';
 
 class SkaterImage extends StatefulWidget {
   const SkaterImage({
@@ -61,11 +62,15 @@ class _SkaterImageState extends State<SkaterImage> {
       child: Stack(
         alignment: Alignment.bottomLeft,
         children: [
-          Positioned(
-              left: 0,
-              right: 0,
-              bottom: floor,
-              child: Image.asset('assets/images/key_frames_axel.png')),
+          BackgoundImage(
+              floor: floor, imagePath: 'assets/images/key_frames_axel.png'),
+          GroundReactionForce(
+            arrowHead: grfArrow,
+            arrowHeadSize: arrowsHeadSize,
+            sliderPosition: grfSliderPosition,
+            sliderHeight: grfSliderHeight,
+            floor: floor,
+          ),
           CenterOfMass(
             comStart,
             type: CenterOfMassType.start,
@@ -75,13 +80,6 @@ class _SkaterImageState extends State<SkaterImage> {
             pickerPosition: comSliderStartPosition,
             pickerHeight: comSliderHeight,
             textSize: arrowsHeadSize,
-          ),
-          GroundReactionForce(
-            arrowHead: grfArrow,
-            arrowHeadSize: arrowsHeadSize,
-            sliderPosition: grfSliderPosition,
-            sliderHeight: grfSliderHeight,
-            floor: floor,
           ),
           CenterOfMass(
             comFinal,
@@ -99,35 +97,28 @@ class _SkaterImageState extends State<SkaterImage> {
             floor: floor,
             arrowsHeadSize: arrowsHeadSize,
           ),
-          Line(
-              start: Offset(0, -floor), end: Offset(w, -floor), strokeWidth: 1),
-          DoubleHeadsArrow(
-            title: texts.pushoffPhase,
-            fontSize: arrowsHeadSize * 3 / 4,
-            start: Offset(pushoff, arrowsBelow),
-            end: Offset(comStart.dx, arrowsBelow),
-            headSize: arrowsHeadSize,
-            color: const Color.fromARGB(255, 128, 8, 162),
+          Floor(floor: floor),
+          PushoffPhase(
+            texts: texts,
+            arrowsHeadSize: arrowsHeadSize,
+            pushoff: pushoff,
+            arrowsBelow: arrowsBelow,
+            comStart: comStart,
+            pushoffSliderPosition: pushoffSliderPosition,
+            pushoffSliderWidth: pushoffSliderWidth,
           ),
           AerialPhase(
+            arrowsHeadSize: arrowsHeadSize,
+            comStart: comStart,
+            arrowsBelow: arrowsBelow,
+            comFinal: comFinal,
+          ),
+          LandingPhase(
+              texts: texts,
               arrowsHeadSize: arrowsHeadSize,
-              comStart: comStart,
+              comFinal: comFinal,
               arrowsBelow: arrowsBelow,
-              comFinal: comFinal),
-          DoubleHeadsArrow(
-            title: texts.landing,
-            fontSize: arrowsHeadSize * 3 / 4,
-            start: Offset(comFinal.dx, arrowsBelow),
-            end: Offset(land, arrowsBelow),
-            headSize: arrowsHeadSize,
-            color: const Color.fromARGB(255, 8, 0, 239),
-          ),
-          PushofSlider(
-            color: const Color.fromARGB(255, 128, 8, 162),
-            position: pushoffSliderPosition,
-            textSize: arrowsHeadSize,
-            width: pushoffSliderWidth,
-          ),
+              land: land),
         ],
       ),
     );

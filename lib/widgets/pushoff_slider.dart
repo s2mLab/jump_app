@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../providers/biomechanics.dart';
 import 'value_picker.dart';
 
-class PushofSlider extends StatelessWidget {
-  const PushofSlider({
+class PushoffSlider extends StatelessWidget {
+  const PushoffSlider({
     super.key,
     required this.color,
     required this.position,
