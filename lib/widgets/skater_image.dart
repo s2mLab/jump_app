@@ -8,6 +8,7 @@ import 'center_of_mass.dart';
 import 'flight_apex.dart';
 import 'floor.dart';
 import 'ground_reaction_force.dart';
+import 'header.dart';
 import 'landing_phase.dart';
 import 'pushoff_phase.dart';
 import 'total_rotation.dart';
@@ -65,6 +66,7 @@ class _SkaterImageState extends State<SkaterImage> {
       child: Stack(
         alignment: Alignment.bottomLeft,
         children: [
+          const Header(),
           BackgoundImage(
               floor: floor, imagePath: 'assets/images/key_frames_axel.png'),
           GroundReactionForce(

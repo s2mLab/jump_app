@@ -61,4 +61,17 @@ class LocaleText with ChangeNotifier {
         'en': 'Duration of the pushoff phase',
         'fr': 'Durée de la phase de propulsion',
       }[language]!;
+
+  String get easy => {
+        'en': 'Easy',
+        'fr': 'Facile',
+      }[language]!;
+  String get medium => {
+        'en': 'Medium',
+        'fr': 'Moyen',
+      }[language]!;
+  String get hard => {
+        'en': 'Hard',
+        'fr': 'Difficile',
+      }[language]!;
 }
