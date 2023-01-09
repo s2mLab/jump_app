@@ -69,7 +69,7 @@ class CenterOfMass extends StatelessWidget {
         alignment: Alignment.bottomLeft,
         children: [
           if (withPicker)
-            ValuePicker(
+            ValuePicker.vertical(
               min: 1,
               max: 1.5,
               initial: type == CenterOfMassType.start

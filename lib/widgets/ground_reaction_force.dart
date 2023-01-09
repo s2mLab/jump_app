@@ -55,8 +55,8 @@ class GroundReactionForce extends StatelessWidget {
               ),
             ),
           ),
-          ValuePicker(
-            min: 700,
+          ValuePicker.vertical(
+            min: 1000,
             max: 5000,
             initial: data.groundReactionForce,
             position: sliderPosition,

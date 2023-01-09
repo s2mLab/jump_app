@@ -26,7 +26,7 @@ class PushofSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = Parameters.of(context);
 
-    return ValuePicker(
+    return ValuePicker.horizontal(
       min: 150,
       max: 450,
       initial: data.pushoffTime,

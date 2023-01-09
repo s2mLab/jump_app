@@ -2,7 +2,7 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:flutter/material.dart';
 
 class ValuePicker extends StatefulWidget {
-  const ValuePicker({
+  const ValuePicker.horizontal({
     super.key,
     required this.min,
     required this.max,
@@ -15,8 +15,24 @@ class ValuePicker extends StatefulWidget {
     required this.precision,
     this.color = Colors.black,
     this.onValueChanged,
-  });
+  }) : isHorizontal = true;
 
+  const ValuePicker.vertical({
+    super.key,
+    required this.min,
+    required this.max,
+    required this.initial,
+    required this.position,
+    this.height,
+    this.width,
+    required this.textSize,
+    required this.unit,
+    required this.precision,
+    this.color = Colors.black,
+    this.onValueChanged,
+  }) : isHorizontal = false;
+
+  final bool isHorizontal;
   final double min;
   final double max;
   final double initial;
@@ -57,43 +73,55 @@ class _ValuePickerState extends State<ValuePicker> {
     return Positioned(
       left: widget.position.dx,
       bottom: widget.position.dy,
-      child: Stack(
-        children: [
-          Positioned(
-            left: 0,
-            right: 0,
-            child: Text(
-              '${_currentValue.toStringAsFixed(widget.precision)} ${widget.unit}',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: widget.color,
-                  fontWeight: FontWeight.bold,
-                  fontSize: widget.textSize),
+      child: widget.isHorizontal
+          ? Column(
+              children: [
+                _buildText(),
+                _buildSlider(),
+              ],
+            )
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildText(),
+                _buildSlider(),
+              ],
             ),
-          ),
-          SizedBox(
-            height: widget.height,
-            width: widget.width,
-            child: widget.height != null
-                ? SfSlider.vertical(
-                    min: widget.min,
-                    max: widget.max,
-                    activeColor: widget.color,
-                    inactiveColor: widget.color.withAlpha(50),
-                    value: _currentValue,
-                    onChanged: _onChanged,
-                  )
-                : SfSlider(
-                    min: widget.min,
-                    max: widget.max,
-                    activeColor: widget.color,
-                    inactiveColor: widget.color.withAlpha(50),
-                    value: _currentValue,
-                    onChanged: _onChanged,
-                  ),
-          ),
-        ],
-      ),
+    );
+  }
+
+  SizedBox _buildSlider() {
+    return SizedBox(
+      height: widget.height,
+      width: widget.width,
+      child: widget.height != null
+          ? SfSlider.vertical(
+              min: widget.min,
+              max: widget.max,
+              activeColor: widget.color,
+              inactiveColor: widget.color.withAlpha(50),
+              value: _currentValue,
+              onChanged: _onChanged,
+            )
+          : SfSlider(
+              min: widget.min,
+              max: widget.max,
+              activeColor: widget.color,
+              inactiveColor: widget.color.withAlpha(50),
+              value: _currentValue,
+              onChanged: _onChanged,
+            ),
+    );
+  }
+
+  Text _buildText() {
+    return Text(
+      '${_currentValue.toStringAsFixed(widget.precision)} ${widget.unit}',
+      textAlign: TextAlign.center,
+      style: TextStyle(
+          color: widget.color,
+          fontWeight: FontWeight.bold,
+          fontSize: widget.textSize),
     );
   }
 }

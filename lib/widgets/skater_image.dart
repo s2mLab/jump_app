@@ -33,16 +33,16 @@ class _SkaterImageState extends State<SkaterImage> {
     final jumpHeigh = 0.100 * w;
 
     final comStart = Offset(0.265 * w, -floor - 0.100 * w);
-    final comSliderStartPosition = Offset(comStart.dx - 0.11 * w, floor);
+    final comSliderStartPosition = Offset(comStart.dx - 0.14 * w, floor);
     final comFinal = Offset(0.791 * w, -floor - 0.115 * w);
-    final comSliderFinalPosition = Offset(comFinal.dx - 0.11 * w, floor);
-    final comSliderHeight = 0.20 * w;
+    final comSliderFinalPosition = Offset(comFinal.dx - 0.14 * w, floor);
+    final comSliderHeight = 0.15 * w;
     final comMid = Offset(
         (comStart.dx + comFinal.dx) / 2, (comStart.dy + comFinal.dy) / 2);
     final comSize = 0.011 * w;
 
     final grfArrow = Offset(0.280 * w, -floor - 0.270 * w);
-    final grfSliderPosition = Offset(0.210 * w, floor + 0.180 * w);
+    final grfSliderPosition = Offset(0.165 * w, floor + 0.180 * w);
     final grfSliderHeight = 0.200 * w;
 
     final pushoff = 0.05 * w;
