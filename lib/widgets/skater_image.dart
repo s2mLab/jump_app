@@ -10,6 +10,7 @@ import 'floor.dart';
 import 'ground_reaction_force.dart';
 import 'landing_phase.dart';
 import 'pushoff_phase.dart';
+import 'total_rotation.dart';
 
 class SkaterImage extends StatefulWidget {
   const SkaterImage({
@@ -42,6 +43,8 @@ class _SkaterImageState extends State<SkaterImage> {
     final comMid = Offset(
         (comStart.dx + comFinal.dx) / 2, (comStart.dy + comFinal.dy) / 2);
     final comSize = 0.011 * w;
+    final rotationPosition =
+        Offset(comFinal.dx - 0.1 * w, comFinal.dy - 0.1 * w);
 
     final grfArrow = Offset(0.280 * w, -floor - 0.270 * w);
     final grfSliderPosition = Offset(0.22 * w, floor + 0.180 * w);
@@ -96,6 +99,10 @@ class _SkaterImageState extends State<SkaterImage> {
             apex: Offset(comMid.dx, comMid.dy - jumpHeigh),
             floor: floor,
             arrowsHeadSize: arrowsHeadSize,
+          ),
+          TotalRotation(
+            position: rotationPosition,
+            fontSize: arrowsHeadSize,
           ),
           Floor(floor: floor),
           PushoffPhase(

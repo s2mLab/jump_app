@@ -19,7 +19,7 @@ class PushoffSlider extends StatelessWidget {
 
   void _updatePushoffTime(BuildContext context, double value) {
     final biomechanics = Biomechanics.of(context);
-    biomechanics.pushoffTime = value;
+    biomechanics.pushoffTime = value / 1000;
   }
 
   @override
@@ -29,7 +29,7 @@ class PushoffSlider extends StatelessWidget {
     return ValuePicker.horizontal(
       min: 150,
       max: 450,
-      initial: biomechanics.pushoffTime,
+      initial: biomechanics.pushoffTime * 1000,
       position: position,
       width: width,
       color: color,
