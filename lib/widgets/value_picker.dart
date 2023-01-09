@@ -1,4 +1,5 @@
 import 'package:syncfusion_flutter_sliders/sliders.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:flutter/material.dart';
 
 class ValuePicker extends StatefulWidget {
@@ -69,48 +70,93 @@ class _ValuePickerState extends State<ValuePicker> {
         (widget.width != null && widget.height != null)) {
       throw '[width] or [height] must be provided';
     }
+    final deviceSize = MediaQuery.of(context).size;
 
     return Positioned(
-      left: widget.position.dx,
-      bottom: widget.position.dy,
-      child: widget.isHorizontal
-          ? Column(
-              children: [
-                _buildText(),
-                _buildSlider(),
-              ],
-            )
-          : Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildText(),
-                _buildSlider(),
-              ],
-            ),
-    );
+        left: 0,
+        bottom: 0,
+        child: SizedBox(
+          height: deviceSize.height,
+          width: deviceSize.width,
+          child: Stack(
+            alignment: Alignment.bottomLeft,
+            children: widget.isHorizontal
+                ? [
+                    Positioned(
+                        left: widget.position.dx,
+                        right: deviceSize.width -
+                            widget.width! -
+                            widget.position.dx,
+                        bottom: widget.position.dy,
+                        top: deviceSize.height -
+                            widget.position.dy -
+                            widget.textSize * 2.3,
+                        child: _buildText()),
+                    Positioned(
+                        left: widget.position.dx,
+                        right: deviceSize.width -
+                            widget.width! -
+                            widget.position.dx,
+                        bottom: widget.position.dy,
+                        top: deviceSize.height -
+                            widget.position.dy -
+                            deviceSize.width * 0.010,
+                        child: _buildSlider()),
+                  ]
+                : [
+                    Positioned(
+                      left: widget.position.dx,
+                      bottom: widget.position.dy,
+                      top: deviceSize.height -
+                          widget.height! -
+                          widget.position.dy,
+                      child: _buildText(),
+                    ),
+                    Positioned(
+                      left: widget.position.dx,
+                      bottom: widget.position.dy,
+                      top: deviceSize.height -
+                          widget.height! -
+                          widget.position.dy +
+                          widget.textSize,
+                      child: _buildSlider(),
+                    ),
+                  ],
+          ),
+        ));
   }
 
   SizedBox _buildSlider() {
+    final deviceSize = MediaQuery.of(context).size;
+
     return SizedBox(
       height: widget.height,
       width: widget.width,
-      child: widget.height != null
-          ? SfSlider.vertical(
-              min: widget.min,
-              max: widget.max,
-              activeColor: widget.color,
-              inactiveColor: widget.color.withAlpha(50),
-              value: _currentValue,
-              onChanged: _onChanged,
-            )
-          : SfSlider(
-              min: widget.min,
-              max: widget.max,
-              activeColor: widget.color,
-              inactiveColor: widget.color.withAlpha(50),
-              value: _currentValue,
-              onChanged: _onChanged,
-            ),
+      child: SfSliderTheme(
+        data: SfSliderThemeData(
+          thumbRadius: deviceSize.width * 0.015,
+          overlayRadius: deviceSize.width * 0.025,
+          activeTrackHeight: deviceSize.width * 0.010,
+          inactiveTrackHeight: deviceSize.width * 0.008,
+        ),
+        child: widget.height != null
+            ? SfSlider.vertical(
+                min: widget.min,
+                max: widget.max,
+                activeColor: widget.color,
+                inactiveColor: widget.color.withAlpha(50),
+                value: _currentValue,
+                onChanged: _onChanged,
+              )
+            : SfSlider(
+                min: widget.min,
+                max: widget.max,
+                activeColor: widget.color,
+                inactiveColor: widget.color.withAlpha(50),
+                value: _currentValue,
+                onChanged: _onChanged,
+              ),
+      ),
     );
   }
 
