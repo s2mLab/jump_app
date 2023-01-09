@@ -32,7 +32,7 @@ class _SkaterImageState extends State<SkaterImage> {
     final w = widget.width ?? MediaQuery.of(context).size.width;
 
     // Precompute some widget positions on the screen
-    final floor = 0.12 * w;
+    final floor = 0.13 * w;
     final jumpHeigh = 0.100 * w;
 
     final comStart = Offset(0.265 * w, -floor - 0.100 * w);
@@ -61,7 +61,7 @@ class _SkaterImageState extends State<SkaterImage> {
     return Container(
       decoration: BoxDecoration(border: Border.all(color: Colors.black)),
       width: w,
-      height: 0.5 * w,
+      height: 0.55 * w,
       child: Stack(
         alignment: Alignment.bottomLeft,
         children: [
