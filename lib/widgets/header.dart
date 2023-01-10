@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '/providers/app_parameters.dart';
 
@@ -87,12 +89,26 @@ class _ChoseType extends StatelessWidget {
           'Translation',
           style: TextStyle(fontSize: deviseSize.width * 0.02),
         ),
-        Switch(
-          value: appParameters.type == AppType.rotation,
-          onChanged: (value) => _changeType(context),
-          thumbColor: const MaterialStatePropertyAll(Colors.orange),
-          trackColor: MaterialStateProperty.resolveWith((states) =>
-              states.contains(MaterialState.selected) ? Colors.amber : null),
+        SizedBox(
+          width: deviseSize.width * 0.07,
+          child: SfSliderTheme(
+            data: SfSliderThemeData(
+              activeTrackColor: Colors.black,
+              inactiveTrackColor: Colors.black,
+              inactiveTrackHeight: deviseSize.width * 0.023,
+              activeTrackHeight: deviseSize.width * 0.023,
+              thumbColor: Colors.white,
+              thumbRadius: deviseSize.width * 0.008,
+              overlayRadius: 0,
+            ),
+            child: SfSlider(
+              value: appParameters.type == AppType.rotation ? 1 : 0,
+              min: 0 - deviseSize.width * 0.0005,
+              max: 1 + deviseSize.width * 0.0005,
+              onChanged: (value) => {},
+              onChangeStart: (value) => _changeType(context),
+            ),
+          ),
         ),
         Text(
           'Rotation',

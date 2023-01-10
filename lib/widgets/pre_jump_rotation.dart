@@ -46,7 +46,7 @@ class PreJumpRotation extends StatelessWidget {
   Widget build(BuildContext context) {
     final texts = LocaleText.of(context);
     final biomechanics = Biomechanics.of(context);
-    const color = Colors.amber;
+    const color = Colors.brown;
 
     return Stack(
       alignment: Alignment.bottomLeft,
