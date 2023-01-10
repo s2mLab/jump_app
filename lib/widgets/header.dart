@@ -49,20 +49,20 @@ class _ChoseLevel extends StatelessWidget {
 
     return SizedBox(
       width: deviseSize.width * 0.08,
-      child: Column(
-        children: [
-          GestureDetector(
-            child: Icon(
+      child: GestureDetector(
+        child: Column(
+          children: [
+            Icon(
               Icons.stacked_line_chart_sharp,
               size: deviseSize.width * 0.05,
             ),
-            onTap: () => _changeLevel(context),
-          ),
-          Text(
-            appParameters.level.asText(context),
-            style: TextStyle(fontSize: deviseSize.width * 0.02),
-          ),
-        ],
+            Text(
+              appParameters.level.asText(context),
+              style: TextStyle(fontSize: deviseSize.width * 0.02),
+            ),
+          ],
+        ),
+        onTap: () => _changeLevel(context),
       ),
     );
   }
