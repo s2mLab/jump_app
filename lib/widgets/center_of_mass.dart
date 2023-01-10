@@ -63,6 +63,8 @@ class CenterOfMass extends StatelessWidget {
     final biomechanics = Biomechanics.of(context);
     final deviceSize = MediaQuery.of(context).size;
     final texts = LocaleText.of(context);
+    final tooltip =
+        type == CenterOfMassType.start ? texts.h0Tooltip : texts.hfTooltip;
 
     return SizedBox(
       width: deviceSize.width,
@@ -80,21 +82,20 @@ class CenterOfMass extends StatelessWidget {
               position: pickerPosition!,
               height: pickerHeight!,
               color: const Color(0xff63aa65),
-              textSize: textSize!,
+              fontSize: textSize!,
               unit: 'm',
               precision: 2,
               onValueChanged: type != CenterOfMassType.any
                   ? (value) => _updateHeight(context, value)
                   : null,
+              tooltip: tooltip,
             ),
           if (type != CenterOfMassType.any)
             Positioned(
               left: position.dx - deviceSize.width * 0.04,
               bottom: -(position.dy - floor) / 2,
               child: Tooltip(
-                  message: type == CenterOfMassType.start
-                      ? texts.h0Tooltip
-                      : texts.hfTooltip,
+                  message: tooltip,
                   child: TextWithIndex(
                     'H',
                     type == CenterOfMassType.start ? '0' : 'F',

@@ -38,7 +38,7 @@ class _SkaterImageState extends State<SkaterImage> {
     final w = widget.width ?? MediaQuery.of(context).size.width;
 
     // Precompute some widget positions on the screen
-    final floor = 0.13 * w;
+    final floor = 0.11 * w;
     final jumpHeigh = 0.100 * w;
 
     final comStart = Offset(0.265 * w, -floor - 0.100 * w);
@@ -52,10 +52,12 @@ class _SkaterImageState extends State<SkaterImage> {
     final rotationPosition =
         Offset(comFinal.dx - 0.1 * w, comFinal.dy - 0.1 * w);
 
-    final initialRotationSliderPosition = Offset(0.17 * w, 0.15 * w);
+    final initialRotationSliderPosition = Offset(0.17 * w, 0.15 * w + floor);
     final initialRotationSliderSize = 0.20 * w;
-    final initialVelocitySliderPosition = Offset(0.17 * w, 0.22 * w);
+    final initialVelocitySliderPosition = Offset(0.17 * w, 0.2 * w + floor);
     final initialVelocitySliderSize = 0.20 * w;
+    final inertiaSliderPosition = Offset(0.3 * w, 0.30 * w + floor);
+    final inertiaSliderSize = 0.10 * w;
 
     final grfArrow = Offset(0.280 * w, -floor - 0.270 * w);
     final grfSliderPosition = Offset(0.20 * w, floor + 0.180 * w);
@@ -136,20 +138,23 @@ class _SkaterImageState extends State<SkaterImage> {
             arrowsBelow: arrowsBelow,
             comFinal: comFinal,
           ),
-          LandingPhase(
-              texts: texts,
-              arrowsHeadSize: arrowsHeadSize,
-              comFinal: comFinal,
-              arrowsBelow: arrowsBelow,
-              land: land),
-          PreJumpRotation(
-            initialRotationSliderPosition: initialRotationSliderPosition,
-            initialRotationSliderSize: initialRotationSliderSize,
-            initialVelocitySliderPosition: initialVelocitySliderPosition,
-            initialVelocitySliderSize: initialVelocitySliderSize,
-            floor: floor,
-            fontSize: arrowsHeadSize,
-          ),
+          if (!isTranslation && !isRotation)
+            LandingPhase(
+                texts: texts,
+                arrowsHeadSize: arrowsHeadSize,
+                comFinal: comFinal,
+                arrowsBelow: arrowsBelow,
+                land: land),
+          if (isRotation)
+            PreJumpRotation(
+              initialRotationSliderPosition: initialRotationSliderPosition,
+              initialRotationSliderSize: initialRotationSliderSize,
+              initialVelocitySliderPosition: initialVelocitySliderPosition,
+              initialVelocitySliderSize: initialVelocitySliderSize,
+              inertiaSliderPosition: inertiaSliderPosition,
+              inertiaSliderSize: inertiaSliderSize,
+              fontSize: arrowsHeadSize,
+            ),
         ],
       ),
     );

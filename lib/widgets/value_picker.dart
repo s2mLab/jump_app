@@ -2,43 +2,66 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:flutter/material.dart';
 
+enum _Direction { horizontal, vertical, diagonal }
+
 class ValuePicker extends StatefulWidget {
   const ValuePicker.horizontal({
     super.key,
+    this.title,
     required this.min,
     required this.max,
     required this.initial,
     required this.position,
     this.height,
     this.width,
-    required this.textSize,
+    required this.fontSize,
     required this.unit,
     required this.precision,
     this.color = Colors.black,
     this.onValueChanged,
-  }) : isHorizontal = true;
+    this.tooltip,
+  }) : _direction = _Direction.horizontal;
 
   const ValuePicker.vertical({
     super.key,
+    this.title,
     required this.min,
     required this.max,
     required this.initial,
     required this.position,
     this.height,
     this.width,
-    required this.textSize,
+    required this.fontSize,
     required this.unit,
     required this.precision,
     this.color = Colors.black,
     this.onValueChanged,
-  }) : isHorizontal = false;
+    this.tooltip,
+  }) : _direction = _Direction.vertical;
 
-  final bool isHorizontal;
+  const ValuePicker.diagonal({
+    super.key,
+    this.title,
+    required this.min,
+    required this.max,
+    required this.initial,
+    required this.position,
+    this.height,
+    this.width,
+    required this.fontSize,
+    required this.unit,
+    required this.precision,
+    this.color = Colors.black,
+    this.onValueChanged,
+    this.tooltip,
+  }) : _direction = _Direction.diagonal;
+
+  final _Direction _direction;
   final double min;
   final double max;
   final double initial;
 
-  final double textSize;
+  final double fontSize;
   final Offset position;
   final double? height;
   final double? width;
@@ -46,6 +69,8 @@ class ValuePicker extends StatefulWidget {
 
   final int precision;
   final String unit;
+  final String? title;
+  final String? tooltip;
 
   final Function(double)? onValueChanged;
 
@@ -71,6 +96,21 @@ class _ValuePickerState extends State<ValuePicker> {
     }
     final deviceSize = MediaQuery.of(context).size;
 
+    late final List<Widget> children;
+    switch (widget._direction) {
+      case (_Direction.horizontal):
+        children = _buildHorizontal(deviceSize);
+        break;
+
+      case (_Direction.vertical):
+        children = _buildVertical(deviceSize);
+        break;
+
+      case (_Direction.diagonal):
+        children = _buildDiagonal(deviceSize);
+        break;
+    }
+
     return Positioned(
         left: 0,
         bottom: 0,
@@ -79,50 +119,65 @@ class _ValuePickerState extends State<ValuePicker> {
           width: deviceSize.width,
           child: Stack(
             alignment: Alignment.bottomLeft,
-            children: widget.isHorizontal
-                ? [
-                    Positioned(
-                        left: widget.position.dx,
-                        right: deviceSize.width -
-                            widget.width! -
-                            widget.position.dx,
-                        bottom: widget.position.dy,
-                        top: deviceSize.height -
-                            widget.position.dy -
-                            widget.textSize * 2.3,
-                        child: _buildText()),
-                    Positioned(
-                        left: widget.position.dx,
-                        right: deviceSize.width -
-                            widget.width! -
-                            widget.position.dx,
-                        bottom: widget.position.dy,
-                        top: deviceSize.height -
-                            widget.position.dy -
-                            deviceSize.width * 0.010,
-                        child: _buildSlider()),
-                  ]
-                : [
-                    Positioned(
-                      left: widget.position.dx,
-                      bottom: widget.position.dy,
-                      top: deviceSize.height -
-                          widget.height! -
-                          widget.position.dy,
-                      child: _buildText(),
-                    ),
-                    Positioned(
-                      left: widget.position.dx,
-                      bottom: widget.position.dy,
-                      top: deviceSize.height -
-                          widget.height! -
-                          widget.position.dy +
-                          widget.textSize,
-                      child: _buildSlider(),
-                    ),
-                  ],
+            children: children,
           ),
         ));
+  }
+
+  List<Widget> _buildHorizontal(Size deviceSize) {
+    return [
+      Positioned(
+          left: widget.position.dx,
+          right: deviceSize.width - widget.width! - widget.position.dx,
+          bottom: widget.position.dy,
+          top: deviceSize.height - widget.position.dy - widget.fontSize * 2.3,
+          child: _buildText()),
+      Positioned(
+          left: widget.position.dx,
+          right: deviceSize.width - widget.width! - widget.position.dx,
+          bottom: widget.position.dy,
+          top:
+              deviceSize.height - widget.position.dy - deviceSize.width * 0.010,
+          child: _buildSlider()),
+    ];
+  }
+
+  List<Widget> _buildVertical(Size deviceSize) {
+    return [
+      Positioned(
+        left: widget.position.dx,
+        bottom: widget.position.dy + widget.height! - widget.fontSize * 2,
+        top: deviceSize.height - widget.height! - widget.position.dy,
+        child: _buildText(),
+      ),
+      Positioned(
+        left: widget.position.dx,
+        bottom: widget.position.dy,
+        top: deviceSize.height -
+            widget.height! -
+            widget.position.dy +
+            widget.fontSize,
+        child: _buildSlider(),
+      ),
+    ];
+  }
+
+  List<Widget> _buildDiagonal(Size deviceSize) {
+    final length = widget.width ?? widget.height!;
+    return [
+      Positioned(
+        right: deviceSize.width - widget.position.dx,
+        bottom: widget.position.dy + widget.fontSize,
+        top: deviceSize.height - length / 2 - widget.position.dy,
+        child: _buildText(),
+      ),
+      Positioned(
+        left: widget.position.dx,
+        bottom: widget.position.dy,
+        top: deviceSize.height - length - widget.position.dy + widget.fontSize,
+        child: Transform.rotate(angle: -45, child: _buildSlider()),
+      ),
+    ];
   }
 
   SizedBox _buildSlider() {
@@ -159,14 +214,17 @@ class _ValuePickerState extends State<ValuePicker> {
     );
   }
 
-  Text _buildText() {
-    return Text(
-      '${_currentValue.toStringAsFixed(widget.precision)} ${widget.unit}',
-      textAlign: TextAlign.center,
-      style: TextStyle(
-          color: widget.color,
-          fontWeight: FontWeight.bold,
-          fontSize: widget.textSize),
+  Widget _buildText() {
+    return Tooltip(
+      message: widget.tooltip ?? '',
+      child: Text(
+        '${widget.title != null ? '${widget.title} = ' : ''}${_currentValue.toStringAsFixed(widget.precision)} ${widget.unit}',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            color: widget.color,
+            fontWeight: FontWeight.bold,
+            fontSize: widget.fontSize),
+      ),
     );
   }
 }

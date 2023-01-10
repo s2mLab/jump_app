@@ -66,16 +66,13 @@ class AerialPhase extends StatelessWidget {
           end: Offset(comFinal.dx, arrowsBelow),
           headSize: arrowsHeadSize,
           color: color,
-          child: Tooltip(
-            message: texts.aerialPhaseTooltip,
-            child: Text(
-              texts.aerialPhase,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: color,
-                  fontSize: arrowsHeadSize * 3 / 4),
-            ),
+          child: Text(
+            texts.aerialPhase,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: color,
+                fontSize: arrowsHeadSize * 3 / 4),
           ),
         )
       ],

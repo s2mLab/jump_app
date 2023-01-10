@@ -27,16 +27,13 @@ class LandingPhase extends StatelessWidget {
       end: Offset(land, arrowsBelow),
       headSize: arrowsHeadSize,
       color: color,
-      child: Tooltip(
-        message: texts.landingPhaseTooltip,
-        child: Text(
-          texts.landing,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: color,
-              fontSize: arrowsHeadSize * 3 / 4),
-        ),
+      child: Text(
+        texts.landing,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: color,
+            fontSize: arrowsHeadSize * 3 / 4),
       ),
     );
   }

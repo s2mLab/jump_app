@@ -27,11 +27,16 @@ class LocaleText with ChangeNotifier {
   String get preRotation =>
       {'en': 'Prerotation', 'fr': 'Prérotation'}[language]!;
   String get angularVelocity =>
-      {'en': 'Ang. velocity', 'fr': 'Vitesse ang.'}[language]!;
+      {'en': 'Ang. velocity', 'fr': 'Vit. ang.'}[language]!;
+  String get inertia => {'en': 'Inertia', 'fr': 'Inertie'}[language]!;
 
   String get aerialPhaseTooltip => {
         'en': 'Duration of the aerial phase',
         'fr': 'Durée de la phase aérienne',
+      }[language]!;
+  String get angularVelocityTooltip => {
+        'en': 'Initial angular velocity',
+        'fr': 'Vitesse de rotation initial',
       }[language]!;
   String get computedAerialPhaseTooltip => {
         'en': 'Computed duration of the aerial phase',
@@ -49,6 +54,14 @@ class LocaleText with ChangeNotifier {
         'en': 'Maximal force exerted during the pushoff phase',
         'fr': 'Force maximale exercée lors de la phase de propulsion',
       }[language]!;
+  String get inertiaTooltip => {
+        'en': 'Initial moment of inertia',
+        'fr': 'Moment d\'inertie initial',
+      }[language]!;
+  String get initialRotationTooltip => {
+        'en': 'Initial body rotation',
+        'fr': 'Rotation initial du corps',
+      }[language]!;
   String get h0Tooltip => {
         'en': 'Height of the center of mass when flight phase starts',
         'fr': 'Hauteur du centre de masse au début de la phase aérienne',
@@ -61,7 +74,7 @@ class LocaleText with ChangeNotifier {
         'en': 'Duration of the landing phase',
         'fr': 'Durée de la phase d\'atterissage',
       }[language]!;
-  String get pushoffPhaseTooltip => {
+  String get pushoffPhaseLengthTooltip => {
         'en': 'Duration of the pushoff phase',
         'fr': 'Durée de la phase de propulsion',
       }[language]!;

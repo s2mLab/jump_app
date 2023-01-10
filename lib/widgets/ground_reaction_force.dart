@@ -31,6 +31,7 @@ class GroundReactionForce extends StatelessWidget {
   Widget build(BuildContext context) {
     final biomechanics = Biomechanics.of(context);
     final texts = LocaleText.of(context);
+    final tooltip = texts.fmaxTooltip;
 
     return SizedBox(
       width: MediaQuery.of(context).size.width,
@@ -48,7 +49,7 @@ class GroundReactionForce extends StatelessWidget {
             left: arrowHead.dx + arrowHeadSize / 2,
             bottom: -arrowHead.dy - 2 * arrowHeadSize,
             child: Tooltip(
-              message: texts.fmaxTooltip,
+              message: tooltip,
               child: TextWithIndex(
                 'F',
                 'max',
@@ -67,10 +68,11 @@ class GroundReactionForce extends StatelessWidget {
             position: sliderPosition,
             height: sliderHeight,
             color: Colors.red,
-            textSize: arrowHeadSize,
+            fontSize: arrowHeadSize,
             unit: 'N',
             precision: 0,
             onValueChanged: (value) => _updateGrf(context, value),
+            tooltip: tooltip,
           ),
         ],
       ),
