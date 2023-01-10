@@ -7,6 +7,7 @@ import 'airborne_trajectory.dart';
 import 'background_image.dart';
 import 'center_of_mass.dart';
 import 'flight_apex.dart';
+import 'flight_inertia.dart';
 import 'floor.dart';
 import 'ground_reaction_force.dart';
 import 'header.dart';
@@ -58,6 +59,12 @@ class _SkaterImageState extends State<SkaterImage> {
     final initialVelocitySliderSize = 0.20 * w;
     final inertiaSliderPosition = Offset(0.3 * w, 0.30 * w + floor);
     final inertiaSliderSize = 0.10 * w;
+
+    final minimumInertiaSliderPosition = Offset(0.7 * w, 0.30 * w + floor);
+    final minimumInertiaSliderSize = 0.10 * w;
+    final timeToMinimumInertiaSliderPosition =
+        Offset(0.29 * w, 0.04 * w + floor);
+    final timeToMinimumInertiaSliderSize = 0.200 * w;
 
     final grfArrow = Offset(0.280 * w, -floor - 0.270 * w);
     final grfSliderPosition = Offset(0.20 * w, floor + 0.180 * w);
@@ -121,6 +128,14 @@ class _SkaterImageState extends State<SkaterImage> {
             position: rotationPosition,
             fontSize: arrowsHeadSize,
           ),
+          if (isRotation)
+            FlightInertia(
+              inertiaSliderPosition: minimumInertiaSliderPosition,
+              inertiaSliderSize: minimumInertiaSliderSize,
+              timeToInertiaSliderPosition: timeToMinimumInertiaSliderPosition,
+              timeToInertiaSliderSize: timeToMinimumInertiaSliderSize,
+              fontSize: arrowsHeadSize,
+            ),
           Floor(floor: floor),
           if (isTranslation)
             PushoffPhase(

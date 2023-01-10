@@ -56,7 +56,7 @@ class PreJumpRotation extends StatelessWidget {
           unit: 'kgm^2',
           color: color,
           width: inertiaSliderSize,
-          initial: 2.1,
+          initial: biomechanics.initialInertia,
           min: 1,
           max: 4,
           position: inertiaSliderPosition,

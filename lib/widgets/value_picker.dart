@@ -94,6 +94,7 @@ class _ValuePickerState extends State<ValuePicker> {
         (widget.width != null && widget.height != null)) {
       throw '[width] or [height] must be provided';
     }
+
     final deviceSize = MediaQuery.of(context).size;
 
     late final List<Widget> children;

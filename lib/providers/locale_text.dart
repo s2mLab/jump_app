@@ -29,6 +29,9 @@ class LocaleText with ChangeNotifier {
   String get angularVelocity =>
       {'en': 'Ang. velocity', 'fr': 'Vit. ang.'}[language]!;
   String get inertia => {'en': 'Inertia', 'fr': 'Inertie'}[language]!;
+  String get minimumInertia =>
+      {'en': 'Min. inertia', 'fr': 'Inertie min.'}[language]!;
+  String get timeToMinimumInertia => {'en': 'Tmin', 'fr': 'Tmin'}[language]!;
 
   String get aerialPhaseTooltip => {
         'en': 'Duration of the aerial phase',
@@ -74,9 +77,17 @@ class LocaleText with ChangeNotifier {
         'en': 'Duration of the landing phase',
         'fr': 'Durée de la phase d\'atterissage',
       }[language]!;
+  String get minimumInertiaTooltip => {
+        'en': 'Minimum moment of inertia',
+        'fr': 'Moment d\'inertie minimum',
+      }[language]!;
   String get pushoffPhaseLengthTooltip => {
         'en': 'Duration of the pushoff phase',
         'fr': 'Durée de la phase de propulsion',
+      }[language]!;
+  String get timeToMinimumInertiaTooltip => {
+        'en': 'Time to get to minimum moment of inertia',
+        'fr': 'Temps pour atteindre le moment d\'inertie minimum',
       }[language]!;
 
   String get easy => {
