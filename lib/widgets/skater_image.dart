@@ -11,7 +11,7 @@ import 'floor.dart';
 import 'ground_reaction_force.dart';
 import 'header.dart';
 import 'landing_phase.dart';
-import 'pre_rotation.dart';
+import 'pre_jump_rotation.dart';
 import 'pushoff_phase.dart';
 import 'total_rotation.dart';
 
@@ -52,8 +52,10 @@ class _SkaterImageState extends State<SkaterImage> {
     final rotationPosition =
         Offset(comFinal.dx - 0.1 * w, comFinal.dy - 0.1 * w);
 
-    final preRotationSliderPosition = Offset(0.205 * w, 0.19 * w);
-    final preRotationSliderSize = 0.13 * w;
+    final initialRotationSliderPosition = Offset(0.17 * w, 0.15 * w);
+    final initialRotationSliderSize = 0.20 * w;
+    final initialVelocitySliderPosition = Offset(0.17 * w, 0.22 * w);
+    final initialVelocitySliderSize = 0.20 * w;
 
     final grfArrow = Offset(0.280 * w, -floor - 0.270 * w);
     final grfSliderPosition = Offset(0.20 * w, floor + 0.180 * w);
@@ -140,9 +142,11 @@ class _SkaterImageState extends State<SkaterImage> {
               comFinal: comFinal,
               arrowsBelow: arrowsBelow,
               land: land),
-          PreRotation(
-            position: preRotationSliderPosition,
-            size: preRotationSliderSize,
+          PreJumpRotation(
+            initialRotationSliderPosition: initialRotationSliderPosition,
+            initialRotationSliderSize: initialRotationSliderSize,
+            initialVelocitySliderPosition: initialVelocitySliderPosition,
+            initialVelocitySliderSize: initialVelocitySliderSize,
             floor: floor,
             fontSize: arrowsHeadSize,
           ),

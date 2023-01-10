@@ -26,6 +26,8 @@ class LocaleText with ChangeNotifier {
   String get rotation => {'en': 'Rotation', 'fr': 'Rotation'}[language]!;
   String get preRotation =>
       {'en': 'Prerotation', 'fr': 'Prérotation'}[language]!;
+  String get angularVelocity =>
+      {'en': 'Ang. velocity', 'fr': 'Vitesse ang.'}[language]!;
 
   String get aerialPhaseTooltip => {
         'en': 'Duration of the aerial phase',
