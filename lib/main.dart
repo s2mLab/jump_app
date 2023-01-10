@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
-      ChangeNotifierProvider(create: (ctx) => LocaleText(language: 'fr')),
+      ChangeNotifierProvider(create: (ctx) => LocaleText(language: 'Fr')),
       ChangeNotifierProvider(create: (ctx) => Biomechanics()),
       ChangeNotifierProvider(create: (ctx) => AppParameters()),
     ], child: const MaterialApp(title: 'Jump app', home: JumpScreen()));

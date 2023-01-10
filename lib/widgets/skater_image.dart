@@ -67,7 +67,7 @@ class _SkaterImageState extends State<SkaterImage> {
     final timeToMinimumInertiaSliderSize = 0.200 * w;
 
     final grfArrow = Offset(0.280 * w, -floor - 0.270 * w);
-    final grfSliderPosition = Offset(0.20 * w, floor + 0.180 * w);
+    final grfSliderPosition = Offset(0.20 * w, floor + 0.18 * w);
     final grfSliderHeight = 0.200 * w;
 
     final pushoff = 0.05 * w;
@@ -76,7 +76,7 @@ class _SkaterImageState extends State<SkaterImage> {
     final land = 0.95 * w;
 
     final arrowsHeadSize = 0.023 * w;
-    final arrowsBelow = -floor + 0.03 * w;
+    final arrowsBelow = -floor + 0.033 * w;
 
     return Container(
       decoration: BoxDecoration(border: Border.all(color: Colors.black)),
