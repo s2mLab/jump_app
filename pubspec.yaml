@@ -14,6 +14,7 @@ dependencies:
   path_drawing: ^1.0.1
   syncfusion_flutter_core: ^20.4.42
   syncfusion_flutter_sliders: ^20.4.42
+  syncfusion_flutter_gauges: ^20.4.43
   provider: ^6.0.5
 
 dev_dependencies:

@@ -60,7 +60,6 @@ class _ValuePickerState extends State<ValuePicker> {
     if (widget.onValueChanged != null) widget.onValueChanged!(value);
 
     _currentValue = value;
-    debugPrint(_currentValue.toString());
     setState(() {});
   }
 

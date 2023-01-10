@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '/providers/app_parameters.dart';
 import '/providers/locale_text.dart';
 import 'aerial_phase.dart';
 import 'airborne_trajectory.dart';
@@ -10,6 +11,7 @@ import 'floor.dart';
 import 'ground_reaction_force.dart';
 import 'header.dart';
 import 'landing_phase.dart';
+import 'pre_rotation.dart';
 import 'pushoff_phase.dart';
 import 'total_rotation.dart';
 
@@ -29,6 +31,9 @@ class _SkaterImageState extends State<SkaterImage> {
   @override
   Widget build(BuildContext context) {
     final texts = LocaleText.of(context);
+    final appParameters = AppParameters.of(context);
+    final isRotation = appParameters.type == AppType.rotation;
+    final isTranslation = !isRotation;
 
     final w = widget.width ?? MediaQuery.of(context).size.width;
 
@@ -46,6 +51,9 @@ class _SkaterImageState extends State<SkaterImage> {
     final comSize = 0.011 * w;
     final rotationPosition =
         Offset(comFinal.dx - 0.1 * w, comFinal.dy - 0.1 * w);
+
+    final preRotationSliderPosition = Offset(0.205 * w, 0.19 * w);
+    final preRotationSliderSize = 0.13 * w;
 
     final grfArrow = Offset(0.280 * w, -floor - 0.270 * w);
     final grfSliderPosition = Offset(0.20 * w, floor + 0.180 * w);
@@ -69,33 +77,36 @@ class _SkaterImageState extends State<SkaterImage> {
           const Header(),
           BackgoundImage(
               floor: floor, imagePath: 'assets/images/key_frames_axel.png'),
-          GroundReactionForce(
-            arrowHead: grfArrow,
-            arrowHeadSize: arrowsHeadSize,
-            sliderPosition: grfSliderPosition,
-            sliderHeight: grfSliderHeight,
-            floor: floor,
-          ),
-          CenterOfMass(
-            comStart,
-            type: CenterOfMassType.start,
-            radius: comSize,
-            floor: floor,
-            withPicker: true,
-            pickerPosition: comSliderStartPosition,
-            pickerHeight: comSliderHeight,
-            textSize: arrowsHeadSize,
-          ),
-          CenterOfMass(
-            comFinal,
-            type: CenterOfMassType.end,
-            radius: comSize,
-            floor: floor,
-            withPicker: true,
-            pickerPosition: comSliderFinalPosition,
-            pickerHeight: comSliderHeight,
-            textSize: arrowsHeadSize,
-          ),
+          if (isTranslation)
+            GroundReactionForce(
+              arrowHead: grfArrow,
+              arrowHeadSize: arrowsHeadSize,
+              sliderPosition: grfSliderPosition,
+              sliderHeight: grfSliderHeight,
+              floor: floor,
+            ),
+          if (isTranslation)
+            CenterOfMass(
+              comStart,
+              type: CenterOfMassType.start,
+              radius: comSize,
+              floor: floor,
+              withPicker: true,
+              pickerPosition: comSliderStartPosition,
+              pickerHeight: comSliderHeight,
+              textSize: arrowsHeadSize,
+            ),
+          if (isTranslation)
+            CenterOfMass(
+              comFinal,
+              type: CenterOfMassType.end,
+              radius: comSize,
+              floor: floor,
+              withPicker: true,
+              pickerPosition: comSliderFinalPosition,
+              pickerHeight: comSliderHeight,
+              textSize: arrowsHeadSize,
+            ),
           AirboneTrajectory(start: comStart, end: comFinal, height: jumpHeigh),
           FlightApex(
             apex: Offset(comMid.dx, comMid.dy - jumpHeigh),
@@ -107,15 +118,16 @@ class _SkaterImageState extends State<SkaterImage> {
             fontSize: arrowsHeadSize,
           ),
           Floor(floor: floor),
-          PushoffPhase(
-            texts: texts,
-            arrowsHeadSize: arrowsHeadSize,
-            pushoff: pushoff,
-            arrowsBelow: arrowsBelow,
-            comStart: comStart,
-            pushoffSliderPosition: pushoffSliderPosition,
-            pushoffSliderWidth: pushoffSliderWidth,
-          ),
+          if (isTranslation)
+            PushoffPhase(
+              texts: texts,
+              arrowsHeadSize: arrowsHeadSize,
+              pushoff: pushoff,
+              arrowsBelow: arrowsBelow,
+              comStart: comStart,
+              pushoffSliderPosition: pushoffSliderPosition,
+              pushoffSliderWidth: pushoffSliderWidth,
+            ),
           AerialPhase(
             arrowsHeadSize: arrowsHeadSize,
             comStart: comStart,
@@ -128,6 +140,12 @@ class _SkaterImageState extends State<SkaterImage> {
               comFinal: comFinal,
               arrowsBelow: arrowsBelow,
               land: land),
+          PreRotation(
+            position: preRotationSliderPosition,
+            size: preRotationSliderSize,
+            floor: floor,
+            fontSize: arrowsHeadSize,
+          ),
         ],
       ),
     );

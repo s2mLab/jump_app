@@ -88,8 +88,12 @@ class _ChoseType extends StatelessWidget {
           style: TextStyle(fontSize: deviseSize.width * 0.02),
         ),
         Switch(
-            value: appParameters.type == AppType.rotation,
-            onChanged: (value) => _changeType(context)),
+          value: appParameters.type == AppType.rotation,
+          onChanged: (value) => _changeType(context),
+          thumbColor: const MaterialStatePropertyAll(Colors.orange),
+          trackColor: MaterialStateProperty.resolveWith((states) =>
+              states.contains(MaterialState.selected) ? Colors.amber : null),
+        ),
         Text(
           'Rotation',
           style: TextStyle(fontSize: deviseSize.width * 0.02),
