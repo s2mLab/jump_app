@@ -25,8 +25,8 @@ class FlightApex extends StatelessWidget {
       alignment: Alignment.bottomLeft,
       children: [
         Positioned(
-          left: apex.dx - deviceSize.width * 0.02,
-          bottom: -(apex.dy - floor) / 2 - deviceSize.height * 0.05,
+          left: apex.dx + deviceSize.width * 0.001,
+          bottom: -(apex.dy - floor) / 2 + deviceSize.height * 0.05,
           child: Container(
             decoration: BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
             padding: const EdgeInsets.all(2),
