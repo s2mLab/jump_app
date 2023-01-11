@@ -28,7 +28,7 @@ class LocaleText with ChangeNotifier {
   String get preRotation =>
       {'En': 'Prerotation', 'Fr': 'Prérotation'}[language]!;
   String get angularVelocity =>
-      {'En': 'Ang. velocity', 'Fr': 'Vit. ang.'}[language]!;
+      {'En': 'Ang. vel.', 'Fr': 'Vit. ang.'}[language]!;
   String get inertia => {'En': 'Inertia', 'Fr': 'Inertie'}[language]!;
   String get minimumInertia =>
       {'En': 'Min. inertia', 'Fr': 'Inertie min.'}[language]!;

@@ -1,39 +1,36 @@
 import 'package:flutter/material.dart';
 
-import '/providers/locale_text.dart';
+import '/providers/jump_app_theme.dart';
 import 'double_heads_arrow.dart';
 
 class LandingPhase extends StatelessWidget {
   const LandingPhase({
     Key? key,
-    required this.texts,
-    required this.arrowsHeadSize,
     required this.comFinal,
     required this.arrowsBelow,
     required this.land,
   }) : super(key: key);
 
-  final LocaleText texts;
-  final double arrowsHeadSize;
   final Offset comFinal;
   final double arrowsBelow;
   final double land;
 
   @override
   Widget build(BuildContext context) {
-    const color = Color.fromARGB(255, 8, 0, 239);
+    final theme = JumpAppTheme.of(context);
+
     return DoubleHeadsArrow(
       start: Offset(comFinal.dx, arrowsBelow),
       end: Offset(land, arrowsBelow),
-      headSize: arrowsHeadSize,
-      color: color,
+      headSize: theme.arrowHeadSize,
+      color: theme.colorPhaseLanding,
       child: Text(
-        texts.landing,
+        theme.texts.landing,
         textAlign: TextAlign.center,
         style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: color,
-            fontSize: arrowsHeadSize * 3 / 4),
+            color: theme.colorPhaseLanding,
+            fontSize: theme.fontSizePhaseName),
       ),
     );
   }

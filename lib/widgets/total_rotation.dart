@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '/providers/biomechanics.dart';
-import '/providers/locale_text.dart';
+import '/providers/jump_app_theme.dart';
 
 class TotalRotation extends StatelessWidget {
   const TotalRotation({
@@ -18,21 +18,20 @@ class TotalRotation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final biomechanics = Biomechanics.of(context, listen: true);
-    const color = Color.fromARGB(255, 31, 120, 165);
-    final texts = LocaleText.of(context);
+    final theme = JumpAppTheme.of(context);
 
     return Positioned(
       left: position.dx,
       bottom: -position.dy,
       child: Container(
-        decoration: BoxDecoration(color: color.withAlpha(30)),
+        decoration: BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
         padding: const EdgeInsets.all(2),
         child: Text(
-          '${texts.rotation} = ${(biomechanics.finalRotation * 180 / pi).toStringAsFixed(0)}°',
+          '${theme.texts.rotation} = ${(biomechanics.finalRotation * 180 / pi).toStringAsFixed(0)}°',
           style: TextStyle(
-            color: color,
+            color: theme.colorAnswer,
             fontWeight: FontWeight.bold,
-            fontSize: fontSize,
+            fontSize: theme.fontSize,
           ),
         ),
       ),

@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 
 import '/providers/biomechanics.dart';
-import '/providers/locale_text.dart';
+import '/providers/jump_app_theme.dart';
 import 'double_heads_arrow.dart';
 import 'text_with_index.dart';
 
 class AerialPhase extends StatelessWidget {
   const AerialPhase({
     Key? key,
-    required this.arrowsHeadSize,
     required this.comStart,
     required this.arrowsBelow,
     required this.comFinal,
   }) : super(key: key);
 
-  final double arrowsHeadSize;
   final Offset comStart;
   final double arrowsBelow;
   final Offset comFinal;
@@ -24,7 +22,7 @@ class AerialPhase extends StatelessWidget {
     final biomechanics = Biomechanics.of(context, listen: true);
     const color = Color.fromARGB(255, 31, 120, 165);
     final deviceSize = MediaQuery.of(context).size;
-    final texts = LocaleText.of(context);
+    final theme = JumpAppTheme.of(context);
 
     return Stack(
       alignment: Alignment.bottomLeft,
@@ -37,23 +35,23 @@ class AerialPhase extends StatelessWidget {
             decoration: BoxDecoration(color: color.withAlpha(30)),
             padding: const EdgeInsets.all(2),
             child: Tooltip(
-              message: texts.computedAerialPhaseTooltip,
+              message: theme.texts.computedAerialPhaseTooltip,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextWithIndex('T', texts.flight,
+                  TextWithIndex('T', theme.texts.flight,
                       textStyle: TextStyle(
                         color: color,
                         fontWeight: FontWeight.bold,
-                        fontSize: arrowsHeadSize,
+                        fontSize: theme.fontSize,
                       )),
                   Text(
-                    ' = ${biomechanics.flightTime.toStringAsFixed(2)} s',
+                    ' = ${biomechanics.flightTime.toStringAsFixed(3)} s',
                     style: TextStyle(
                       color: color,
                       fontWeight: FontWeight.bold,
-                      fontSize: arrowsHeadSize,
+                      fontSize: theme.fontSize,
                     ),
                   ),
                 ],
@@ -64,15 +62,15 @@ class AerialPhase extends StatelessWidget {
         DoubleHeadsArrow(
           start: Offset(comStart.dx, arrowsBelow),
           end: Offset(comFinal.dx, arrowsBelow),
-          headSize: arrowsHeadSize,
+          headSize: theme.arrowHeadSize,
           color: color,
           child: Text(
-            texts.aerialPhase,
+            theme.texts.aerialPhase,
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: color,
-                fontSize: arrowsHeadSize * 3 / 4),
+                fontSize: theme.fontSizePhaseName),
           ),
         )
       ],

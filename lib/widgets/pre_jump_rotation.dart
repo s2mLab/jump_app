@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '/providers/biomechanics.dart';
-import '/providers/locale_text.dart';
+import '/providers/jump_app_theme.dart';
 import 'value_picker_rotation.dart';
 import 'value_picker.dart';
 
@@ -12,7 +12,6 @@ class PreJumpRotation extends StatelessWidget {
     super.key,
     required this.initialRotationSliderPosition,
     required this.initialRotationSliderSize,
-    required this.fontSize,
     required this.initialVelocitySliderPosition,
     required this.initialVelocitySliderSize,
     required this.inertiaSliderPosition,
@@ -25,7 +24,6 @@ class PreJumpRotation extends StatelessWidget {
   final double initialVelocitySliderSize;
   final Offset inertiaSliderPosition;
   final double inertiaSliderSize;
-  final double fontSize;
 
   void _onInitialRotationChanged(BuildContext context, value) {
     final biomechanics = Biomechanics.of(context);
@@ -44,29 +42,28 @@ class PreJumpRotation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final texts = LocaleText.of(context);
+    final theme = JumpAppTheme.of(context);
     final biomechanics = Biomechanics.of(context);
-    const color = Colors.brown;
 
     return Stack(
       alignment: Alignment.bottomLeft,
       children: [
         ValuePicker.diagonal(
-          title: texts.inertia,
+          title: theme.texts.inertia,
           unit: 'kgm^2',
-          color: color,
+          color: theme.colorParametersPreJump,
           width: inertiaSliderSize,
           initial: biomechanics.initialInertia,
           min: 1,
           max: 4,
           position: inertiaSliderPosition,
           precision: 1,
-          fontSize: fontSize,
+          fontSize: theme.fontSize,
           onValueChanged: (value) => _onInertiaChanged(context, value),
-          tooltip: texts.inertiaTooltip,
+          tooltip: theme.texts.inertiaTooltip,
         ),
         ValuePickerRotation(
-          title: texts.angularVelocity,
+          title: theme.texts.angularVelocity,
           units: '°/s',
           precision: 0,
           initial: biomechanics.initialAngularVelocity * 180 / pi,
@@ -74,13 +71,13 @@ class PreJumpRotation extends StatelessWidget {
           max: 1000,
           position: initialVelocitySliderPosition,
           size: initialVelocitySliderSize,
-          fontSize: fontSize,
+          fontSize: theme.fontSize,
           onChange: (value) => _onInitialVelocityChanged(context, value),
-          color: color,
-          tooltip: texts.angularVelocityTooltip,
+          color: theme.colorParametersPreJump,
+          tooltip: theme.texts.angularVelocityTooltip,
         ),
         ValuePickerRotation(
-          title: texts.preRotation,
+          title: theme.texts.preRotation,
           units: '°',
           precision: 0,
           initial: biomechanics.initialRotation * 180 / pi,
@@ -88,10 +85,10 @@ class PreJumpRotation extends StatelessWidget {
           max: 180,
           position: initialRotationSliderPosition,
           size: initialRotationSliderSize,
-          fontSize: fontSize,
+          fontSize: theme.fontSize,
           onChange: (value) => _onInitialRotationChanged(context, value),
-          color: color,
-          tooltip: texts.initialRotationTooltip,
+          color: theme.colorParametersPreJump,
+          tooltip: theme.texts.initialRotationTooltip,
         ),
       ],
     );

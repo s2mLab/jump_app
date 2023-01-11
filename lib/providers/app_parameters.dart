@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'biomechanics.dart';
 import 'package:provider/provider.dart';
 
 import '/models/app_type.dart';
@@ -13,8 +14,9 @@ class AppParameters with ChangeNotifier {
 
   DetailLevel _level = DetailLevel.medium;
   DetailLevel get level => _level;
-  set level(value) {
+  void setLevel(BuildContext context, value) {
     _level = value;
+    Biomechanics.of(context).level = value;
     notifyListeners();
   }
 

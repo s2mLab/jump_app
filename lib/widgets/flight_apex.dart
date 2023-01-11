@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '/providers/biomechanics.dart';
-import '/providers/locale_text.dart';
+import '/providers/jump_app_theme.dart';
 import 'double_heads_arrow.dart';
 import 'text_with_index.dart';
 
@@ -10,18 +10,16 @@ class FlightApex extends StatelessWidget {
     super.key,
     required this.apex,
     required this.floor,
-    required this.arrowsHeadSize,
   });
 
   final Offset apex;
   final double floor;
-  final double arrowsHeadSize;
 
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     final biomechanics = Biomechanics.of(context, listen: true);
-    final texts = LocaleText.of(context);
+    final theme = JumpAppTheme.of(context);
     const color = Color.fromARGB(255, 31, 120, 165);
 
     return Stack(
@@ -34,21 +32,21 @@ class FlightApex extends StatelessWidget {
             decoration: BoxDecoration(color: color.withAlpha(30)),
             padding: const EdgeInsets.all(2),
             child: Tooltip(
-              message: texts.computedMaximalHeight,
+              message: theme.texts.computedMaximalHeight,
               child: Row(
                 children: [
                   TextWithIndex('H', 'max',
                       textStyle: TextStyle(
                         color: color,
                         fontWeight: FontWeight.bold,
-                        fontSize: arrowsHeadSize,
+                        fontSize: theme.fontSize,
                       )),
                   Text(
                     ' = ${biomechanics.apex.toStringAsFixed(2)} m',
                     style: TextStyle(
                       color: color,
                       fontWeight: FontWeight.bold,
-                      fontSize: arrowsHeadSize,
+                      fontSize: theme.fontSize,
                     ),
                   ),
                 ],
@@ -59,7 +57,7 @@ class FlightApex extends StatelessWidget {
         DoubleHeadsArrow(
           start: Offset(apex.dx, -floor),
           end: apex,
-          headSize: arrowsHeadSize,
+          headSize: theme.arrowHeadSize,
           color: color,
         ),
       ],

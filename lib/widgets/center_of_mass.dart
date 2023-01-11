@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '/providers/biomechanics.dart';
-import '/providers/locale_text.dart';
+import '/providers/jump_app_theme.dart';
 import 'text_with_index.dart';
 import 'value_picker.dart';
 
@@ -21,7 +21,6 @@ class CenterOfMass extends StatelessWidget {
     required this.withPicker,
     this.pickerPosition,
     this.pickerHeight,
-    this.textSize,
   });
 
   final CenterOfMassType type;
@@ -31,7 +30,6 @@ class CenterOfMass extends StatelessWidget {
   final bool withPicker;
   final Offset? pickerPosition;
   final double? pickerHeight;
-  final double? textSize;
 
   void _updateHeight(BuildContext context, double value) {
     final biomechanics = Biomechanics.of(context);
@@ -47,8 +45,8 @@ class CenterOfMass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (withPicker) {
-      if (pickerPosition == null || pickerHeight == null || textSize == null) {
-        throw '[pickerPosition], [pickerHeight] and [textSize] must be provided '
+      if (pickerPosition == null || pickerHeight == null) {
+        throw '[pickerPosition] and [pickerHeight] must be provided '
             'if [withPicker] is set to true';
       }
 
@@ -56,15 +54,13 @@ class CenterOfMass extends StatelessWidget {
         throw '[withPicker] necessitate a [type]';
       }
     }
-    if (type != CenterOfMassType.any && textSize == null) {
-      throw '[textSize] must be provided if [title] is not null';
-    }
 
     final biomechanics = Biomechanics.of(context);
+    final theme = JumpAppTheme.of(context);
     final deviceSize = MediaQuery.of(context).size;
-    final texts = LocaleText.of(context);
-    final tooltip =
-        type == CenterOfMassType.start ? texts.h0Tooltip : texts.hfTooltip;
+    final tooltip = type == CenterOfMassType.start
+        ? theme.texts.h0Tooltip
+        : theme.texts.hfTooltip;
 
     return SizedBox(
       width: deviceSize.width,
@@ -81,14 +77,41 @@ class CenterOfMass extends StatelessWidget {
                   : biomechanics.finalHeight,
               position: pickerPosition!,
               height: pickerHeight!,
-              color: const Color(0xff63aa65),
-              fontSize: textSize!,
+              color: theme.colorParametersCenterOfMass,
+              fontSize: theme.fontSize,
               unit: 'm',
               precision: 2,
               onValueChanged: type != CenterOfMassType.any
                   ? (value) => _updateHeight(context, value)
                   : null,
               tooltip: tooltip,
+            ),
+          if (!withPicker)
+            Container(
+              decoration: BoxDecoration(
+                  color: theme.colorParametersCenterOfMass.withAlpha(30)),
+              padding: const EdgeInsets.all(2),
+              child: Tooltip(
+                message: theme.texts.computedMaximalHeight,
+                child: Row(
+                  children: [
+                    TextWithIndex('H', 'max',
+                        textStyle: TextStyle(
+                          color: theme.colorParametersCenterOfMass,
+                          fontWeight: FontWeight.bold,
+                          fontSize: theme.fontSize,
+                        )),
+                    Text(
+                      ' = ${biomechanics.apex.toStringAsFixed(2)} m',
+                      style: TextStyle(
+                        color: theme.colorParametersCenterOfMass,
+                        fontWeight: FontWeight.bold,
+                        fontSize: theme.fontSize,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           if (type != CenterOfMassType.any)
             Positioned(
@@ -101,13 +124,20 @@ class CenterOfMass extends StatelessWidget {
                     type == CenterOfMassType.start ? '0' : 'F',
                     textAlign: TextAlign.end,
                     textStyle: TextStyle(
-                      color: const Color(0xff63aa65),
+                      color: theme.colorParametersCenterOfMass,
                       fontWeight: FontWeight.bold,
-                      fontSize: textSize!,
+                      fontSize: theme.fontSize,
                     ),
                   )),
             ),
-          CustomPaint(painter: _CenterOfMassPainting(position, radius, floor)),
+          CustomPaint(
+            painter: _CenterOfMassPainting(
+              position,
+              radius,
+              floor,
+              theme.colorParametersCenterOfMass,
+            ),
+          ),
         ],
       ),
     );
@@ -115,16 +145,22 @@ class CenterOfMass extends StatelessWidget {
 }
 
 class _CenterOfMassPainting extends CustomPainter {
-  const _CenterOfMassPainting(this.position, this.radius, this.floor);
+  const _CenterOfMassPainting(
+    this.position,
+    this.radius,
+    this.floor,
+    this.color,
+  );
 
   final Offset position;
   final double radius;
   final double floor;
+  final Color color;
 
   @override
   void paint(Canvas canvas, Size size) {
     var painter = Paint()
-      ..color = const Color(0xff63aa65)
+      ..color = color
       ..style = PaintingStyle.fill
       ..strokeWidth = 3;
 

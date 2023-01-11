@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jump_app/widgets/double_heads_arrow.dart';
 
 import '/providers/biomechanics.dart';
-import '/providers/locale_text.dart';
+import '/providers/jump_app_theme.dart';
 import 'value_picker.dart';
 
 class FlightInertia extends StatelessWidget {
@@ -10,7 +10,6 @@ class FlightInertia extends StatelessWidget {
     super.key,
     required this.inertiaSliderPosition,
     required this.inertiaSliderSize,
-    required this.fontSize,
     required this.timeToInertiaSliderPosition,
     required this.timeToInertiaSliderSize,
   });
@@ -19,7 +18,6 @@ class FlightInertia extends StatelessWidget {
   final double inertiaSliderSize;
   final Offset timeToInertiaSliderPosition;
   final double timeToInertiaSliderSize;
-  final double fontSize;
 
   void _onInertiaChanged(BuildContext context, value) {
     final biomechanics = Biomechanics.of(context);
@@ -34,7 +32,7 @@ class FlightInertia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    final texts = LocaleText.of(context);
+    final theme = JumpAppTheme.of(context);
     final biomechanics = Biomechanics.of(context);
     const color = Colors.purple;
 
@@ -42,7 +40,7 @@ class FlightInertia extends StatelessWidget {
       alignment: Alignment.bottomLeft,
       children: [
         ValuePicker.diagonal(
-          title: texts.minimumInertia,
+          title: theme.texts.minimumInertia,
           unit: 'kgm^2',
           color: color,
           width: inertiaSliderSize,
@@ -51,26 +49,26 @@ class FlightInertia extends StatelessWidget {
           max: 4,
           position: inertiaSliderPosition,
           precision: 1,
-          fontSize: fontSize,
+          fontSize: theme.fontSize,
           onValueChanged: (value) => _onInertiaChanged(context, value),
-          tooltip: texts.minimumInertiaTooltip,
+          tooltip: theme.texts.minimumInertiaTooltip,
         ),
         DoubleHeadsArrow(
           start: Offset(
               timeToInertiaSliderPosition.dx,
               -timeToInertiaSliderPosition.dy -
-                  fontSize * 2 -
+                  theme.fontSize * 2 -
                   deviceSize.width * 0.01),
           end: Offset(
               timeToInertiaSliderPosition.dx + timeToInertiaSliderSize,
               -timeToInertiaSliderPosition.dy -
-                  fontSize * 2 -
+                  theme.fontSize * 2 -
                   deviceSize.width * 0.01),
-          headSize: fontSize,
+          headSize: theme.fontSize,
           color: color,
         ),
         ValuePicker.horizontal(
-          title: texts.timeToMinimumInertia,
+          title: theme.texts.timeToMinimumInertia,
           unit: 'ms',
           color: color,
           width: timeToInertiaSliderSize,
@@ -79,9 +77,9 @@ class FlightInertia extends StatelessWidget {
           max: 300,
           position: timeToInertiaSliderPosition,
           precision: 0,
-          fontSize: fontSize,
+          fontSize: theme.fontSize,
           onValueChanged: (value) => _onTimeToInertiaChanged(context, value),
-          tooltip: texts.timeToMinimumInertiaTooltip,
+          tooltip: theme.texts.timeToMinimumInertiaTooltip,
         )
       ],
     );

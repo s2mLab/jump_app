@@ -3,9 +3,14 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '/models/detail_level.dart';
+
 class Biomechanics with ChangeNotifier {
   static Biomechanics of(BuildContext context, {bool listen = false}) =>
       Provider.of<Biomechanics>(context, listen: listen);
+
+  DetailLevel _level = DetailLevel.medium;
+  set level(value) => _level = value;
 
   double get bodyMass => 70; // kg
   double get g => -9.81;
@@ -19,7 +24,8 @@ class Biomechanics with ChangeNotifier {
   }
 
   double _finalHeight = 1.15; // m
-  double get finalHeight => _finalHeight;
+  double get finalHeight =>
+      _level == DetailLevel.easy ? initialHeight : _finalHeight;
   set finalHeigh(value) {
     _finalHeight = value;
     notifyListeners();

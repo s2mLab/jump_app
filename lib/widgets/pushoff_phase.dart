@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '/providers/locale_text.dart';
+import '/providers/jump_app_theme.dart';
 import 'double_heads_arrow.dart';
 import 'pushoff_slider.dart';
 
 class PushoffPhase extends StatelessWidget {
   const PushoffPhase({
     Key? key,
-    required this.texts,
-    required this.arrowsHeadSize,
     required this.pushoff,
     required this.arrowsBelow,
     required this.comStart,
@@ -16,8 +14,6 @@ class PushoffPhase extends StatelessWidget {
     required this.pushoffSliderWidth,
   }) : super(key: key);
 
-  final LocaleText texts;
-  final double arrowsHeadSize;
   final double pushoff;
   final double arrowsBelow;
   final Offset comStart;
@@ -26,29 +22,29 @@ class PushoffPhase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const color = Color.fromARGB(255, 128, 8, 162);
+    final theme = JumpAppTheme.of(context);
 
     return Stack(
       alignment: Alignment.bottomLeft,
       children: [
         PushoffSlider(
-          color: const Color.fromARGB(255, 128, 8, 162),
+          color: theme.colorParametersPushoff,
           position: pushoffSliderPosition,
-          fontSize: arrowsHeadSize,
+          fontSize: theme.fontSize,
           width: pushoffSliderWidth,
         ),
         DoubleHeadsArrow(
           start: Offset(pushoff, arrowsBelow),
           end: Offset(comStart.dx, arrowsBelow),
-          headSize: arrowsHeadSize,
-          color: color,
+          headSize: theme.arrowHeadSize,
+          color: theme.colorPhasePushoff,
           child: Text(
-            texts.pushoffPhase,
+            theme.texts.pushoffPhase,
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: color,
-                fontSize: arrowsHeadSize * 3 / 4),
+                color: theme.colorParametersPushoff,
+                fontSize: theme.fontSizePhaseName),
           ),
         ),
       ],

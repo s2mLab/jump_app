@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '/providers/app_parameters.dart';
-import '/providers/locale_text.dart';
 import 'aerial_phase.dart';
 import 'airborne_trajectory.dart';
 import 'background_image.dart';
@@ -31,12 +30,11 @@ class SkaterImage extends StatefulWidget {
 class _SkaterImageState extends State<SkaterImage> {
   @override
   Widget build(BuildContext context) {
-    final texts = LocaleText.of(context);
+    final w = widget.width ?? MediaQuery.of(context).size.width;
     final appParameters = AppParameters.of(context);
     final isRotation = appParameters.type == AppType.rotation;
     final isTranslation = !isRotation;
-
-    final w = widget.width ?? MediaQuery.of(context).size.width;
+    final level = appParameters.level;
 
     // Precompute some widget positions on the screen
     final floor = 0.11 * w;
@@ -91,7 +89,6 @@ class _SkaterImageState extends State<SkaterImage> {
           if (isTranslation)
             GroundReactionForce(
               arrowHead: grfArrow,
-              arrowHeadSize: arrowsHeadSize,
               sliderPosition: grfSliderPosition,
               sliderHeight: grfSliderHeight,
               floor: floor,
@@ -105,7 +102,6 @@ class _SkaterImageState extends State<SkaterImage> {
               withPicker: true,
               pickerPosition: comSliderStartPosition,
               pickerHeight: comSliderHeight,
-              textSize: arrowsHeadSize,
             ),
           if (isTranslation)
             CenterOfMass(
@@ -113,16 +109,14 @@ class _SkaterImageState extends State<SkaterImage> {
               type: CenterOfMassType.end,
               radius: comSize,
               floor: floor,
-              withPicker: true,
+              withPicker: level != DetailLevel.easy,
               pickerPosition: comSliderFinalPosition,
               pickerHeight: comSliderHeight,
-              textSize: arrowsHeadSize,
             ),
           AirboneTrajectory(start: comStart, end: comFinal, height: jumpHeigh),
           FlightApex(
             apex: Offset(comMid.dx, comMid.dy - jumpHeigh),
             floor: floor,
-            arrowsHeadSize: arrowsHeadSize,
           ),
           TotalRotation(
             position: rotationPosition,
@@ -134,13 +128,10 @@ class _SkaterImageState extends State<SkaterImage> {
               inertiaSliderSize: minimumInertiaSliderSize,
               timeToInertiaSliderPosition: timeToMinimumInertiaSliderPosition,
               timeToInertiaSliderSize: timeToMinimumInertiaSliderSize,
-              fontSize: arrowsHeadSize,
             ),
           Floor(floor: floor),
           if (isTranslation)
             PushoffPhase(
-              texts: texts,
-              arrowsHeadSize: arrowsHeadSize,
               pushoff: pushoff,
               arrowsBelow: arrowsBelow,
               comStart: comStart,
@@ -148,18 +139,13 @@ class _SkaterImageState extends State<SkaterImage> {
               pushoffSliderWidth: pushoffSliderWidth,
             ),
           AerialPhase(
-            arrowsHeadSize: arrowsHeadSize,
             comStart: comStart,
             arrowsBelow: arrowsBelow,
             comFinal: comFinal,
           ),
           if (!isTranslation && !isRotation)
             LandingPhase(
-                texts: texts,
-                arrowsHeadSize: arrowsHeadSize,
-                comFinal: comFinal,
-                arrowsBelow: arrowsBelow,
-                land: land),
+                comFinal: comFinal, arrowsBelow: arrowsBelow, land: land),
           if (isRotation)
             PreJumpRotation(
               initialRotationSliderPosition: initialRotationSliderPosition,
@@ -168,7 +154,6 @@ class _SkaterImageState extends State<SkaterImage> {
               initialVelocitySliderSize: initialVelocitySliderSize,
               inertiaSliderPosition: inertiaSliderPosition,
               inertiaSliderSize: inertiaSliderSize,
-              fontSize: arrowsHeadSize,
             ),
         ],
       ),

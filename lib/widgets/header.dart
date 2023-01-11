@@ -3,7 +3,7 @@ import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '/providers/app_parameters.dart';
-import '/providers/locale_text.dart';
+import '/providers/jump_app_theme.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
@@ -40,7 +40,7 @@ class _ChoseLevel extends StatelessWidget {
 
   void _changeLevel(BuildContext context) {
     final appParameters = AppParameters.of(context, listen: false);
-    appParameters.level = appParameters.level.next;
+    appParameters.setLevel(context, appParameters.level.next);
   }
 
   @override
@@ -124,54 +124,55 @@ class _Help extends StatelessWidget {
   const _Help();
 
   void _showHelp(BuildContext context) async {
-    final texts = LocaleText.of(context, listen: false);
+    final theme = JumpAppTheme.of(context, listen: false);
 
     await showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(texts.helpTitle),
-          content: Text(texts.help),
+          title: Text(theme.texts.helpTitle),
+          content: Text(theme.texts.help),
         );
       },
     );
   }
 
   void _swapLanguage(BuildContext context) {
-    final texts = LocaleText.of(context, listen: false);
-    texts.language = texts.language == 'Fr' ? 'En' : 'Fr';
+    final theme = JumpAppTheme.of(context, listen: false);
+    theme.texts.language = theme.texts.language == 'Fr' ? 'En' : 'Fr';
   }
 
   @override
   Widget build(BuildContext context) {
-    final deviceSize = MediaQuery.of(context).size;
-    final texts = LocaleText.of(context);
+    final theme = JumpAppTheme.of(context);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
-          iconSize: deviceSize.width * 0.04,
+          iconSize: theme.headerIconSize,
           color: Colors.white,
           icon: CircleAvatar(
             backgroundColor: Colors.black,
             foregroundColor: Colors.white,
-            radius: deviceSize.width * 0.03,
+            radius: 3 / 4 * theme.headerIconSize,
             child: Icon(
               Icons.question_mark,
-              size: deviceSize.width * 0.03,
+              size: 3 / 4 * theme.headerIconSize,
             ),
           ),
           onPressed: () => _showHelp(context),
         ),
         SizedBox(
-          width: deviceSize.width * 0.06,
+          width: 3 * theme.headerLanguageSize,
           child: TextButton(
             onPressed: () => _swapLanguage(context),
             child: Text(
-              texts.language == 'Fr' ? 'En' : 'Fr',
+              theme.texts.language == 'Fr' ? 'En' : 'Fr',
               style: TextStyle(
-                  color: Colors.black, fontSize: deviceSize.width * 0.025),
+                color: Colors.black,
+                fontSize: theme.headerLanguageSize,
+              ),
             ),
           ),
         ),

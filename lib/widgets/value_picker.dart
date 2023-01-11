@@ -168,7 +168,7 @@ class _ValuePickerState extends State<ValuePicker> {
     return [
       Positioned(
         right: deviceSize.width - widget.position.dx,
-        bottom: widget.position.dy + widget.fontSize,
+        bottom: widget.position.dy + widget.fontSize - deviceSize.width * 0.01,
         top: deviceSize.height - length / 2 - widget.position.dy,
         child: _buildText(),
       ),

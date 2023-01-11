@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '/providers/biomechanics.dart';
-import '/providers/locale_text.dart';
+import '/providers/jump_app_theme.dart';
 import 'arrow.dart';
 import 'text_with_index.dart';
 import 'value_picker.dart';
@@ -10,14 +10,12 @@ class GroundReactionForce extends StatelessWidget {
   const GroundReactionForce({
     super.key,
     required this.arrowHead,
-    required this.arrowHeadSize,
     required this.sliderPosition,
     required this.sliderHeight,
     this.floor = 0,
   });
 
   final Offset arrowHead;
-  final double arrowHeadSize;
   final Offset sliderPosition;
   final double sliderHeight;
   final double floor;
@@ -30,8 +28,7 @@ class GroundReactionForce extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final biomechanics = Biomechanics.of(context);
-    final texts = LocaleText.of(context);
-    final tooltip = texts.fmaxTooltip;
+    final theme = JumpAppTheme.of(context);
 
     return SizedBox(
       width: MediaQuery.of(context).size.width,
@@ -42,21 +39,21 @@ class GroundReactionForce extends StatelessWidget {
           Arrows(
             start: Offset(arrowHead.dx, -floor),
             end: arrowHead,
-            headSize: arrowHeadSize,
-            color: Colors.red,
+            headSize: theme.arrowHeadSize,
+            color: theme.colorParametersGroundReactionForce,
           ),
           Positioned(
-            left: arrowHead.dx + arrowHeadSize / 2,
-            bottom: -arrowHead.dy - 2 * arrowHeadSize,
+            left: arrowHead.dx + theme.arrowHeadSize / 2,
+            bottom: -arrowHead.dy - 2 * theme.arrowHeadSize,
             child: Tooltip(
-              message: tooltip,
+              message: theme.texts.fmaxTooltip,
               child: TextWithIndex(
                 'F',
                 'max',
                 textStyle: TextStyle(
-                  color: Colors.red,
+                  color: theme.colorParametersGroundReactionForce,
                   fontWeight: FontWeight.bold,
-                  fontSize: arrowHeadSize,
+                  fontSize: theme.arrowHeadSize,
                 ),
               ),
             ),
@@ -67,12 +64,12 @@ class GroundReactionForce extends StatelessWidget {
             initial: biomechanics.groundReactionForce,
             position: sliderPosition,
             height: sliderHeight,
-            color: Colors.red,
-            fontSize: arrowHeadSize,
+            color: theme.colorParametersGroundReactionForce,
+            fontSize: theme.arrowHeadSize,
             unit: 'N',
             precision: 0,
             onValueChanged: (value) => _updateGrf(context, value),
-            tooltip: tooltip,
+            tooltip: theme.texts.fmaxTooltip,
           ),
         ],
       ),
