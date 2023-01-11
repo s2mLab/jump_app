@@ -89,7 +89,9 @@ class CenterOfMass extends StatelessWidget {
                       textStyle: theme.textStyle
                           .copyWith(color: theme.colorParametersCenterOfMass),
                     ),
-              unit: 'm',
+              unit: Text('m',
+                  style: theme.textStyle
+                      .copyWith(color: theme.colorParametersCenterOfMass)),
               precision: 2,
               onValueChanged: type != CenterOfMassType.any
                   ? (value) => _updateHeight(context, value)

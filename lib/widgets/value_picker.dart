@@ -72,7 +72,7 @@ class ValuePicker extends StatefulWidget {
   final Color color;
 
   final int precision;
-  final String unit;
+  final Widget? unit;
   final Widget? title;
   final String? tooltip;
 
@@ -134,10 +134,16 @@ class _ValuePickerState extends State<ValuePicker> {
 
     return [
       Positioned(
-          left: widget.position.dx,
-          right: deviceSize.width - widget.width! - widget.position.dx,
-          bottom: widget.position.dy,
-          top: deviceSize.height - widget.position.dy - fontSize * 2.3,
+          left: widget.position.dx + widget.textOffset.dx,
+          right: deviceSize.width -
+              widget.width! -
+              widget.position.dx -
+              widget.textOffset.dx,
+          bottom: widget.position.dy + widget.textOffset.dy,
+          top: deviceSize.height -
+              widget.position.dy -
+              fontSize * 2.3 -
+              widget.textOffset.dy,
           child: _buildText()),
       Positioned(
           left: widget.position.dx,
@@ -177,9 +183,15 @@ class _ValuePickerState extends State<ValuePicker> {
 
     return [
       Positioned(
-        right: deviceSize.width - widget.position.dx,
-        bottom: widget.position.dy + fontSize - deviceSize.width * 0.01,
-        top: deviceSize.height - length / 2 - widget.position.dy,
+        right: deviceSize.width - widget.position.dx - widget.textOffset.dx,
+        bottom: widget.position.dy +
+            fontSize -
+            deviceSize.width * 0.01 +
+            widget.textOffset.dy,
+        top: deviceSize.height -
+            length / 2 -
+            widget.position.dy -
+            widget.textOffset.dy,
         child: _buildText(),
       ),
       Positioned(
@@ -233,11 +245,11 @@ class _ValuePickerState extends State<ValuePicker> {
           if (widget.title != null) widget.title!,
           Text(
             '${widget.title != null ? ' = ' : ''}'
-            '${_currentValue.toStringAsFixed(widget.precision)} '
-            '${widget.unit}',
+            '${_currentValue.toStringAsFixed(widget.precision)} ',
             textAlign: TextAlign.center,
             style: widget.textStyle.copyWith(color: widget.color),
           ),
+          if (widget.unit != null) widget.unit!,
         ],
       ),
     );

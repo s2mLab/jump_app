@@ -58,7 +58,9 @@ class GroundReactionForce extends StatelessWidget {
               textStyle: theme.textStyle
                   .copyWith(color: theme.colorParametersGroundReactionForce),
             ),
-            unit: 'N',
+            unit: Text('N',
+                style: theme.textStyle
+                    .copyWith(color: theme.colorParametersGroundReactionForce)),
             precision: 0,
             onValueChanged: (value) => _updateGrf(context, value),
             tooltip: theme.texts.fmaxTooltip,

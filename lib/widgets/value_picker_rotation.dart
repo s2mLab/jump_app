@@ -9,6 +9,7 @@ class ValuePickerRotation extends StatefulWidget {
     required this.precision,
     required this.position,
     required this.size,
+    this.textOffset = const Offset(0, 0),
     required this.textStyle,
     required this.min,
     required this.max,
@@ -18,8 +19,8 @@ class ValuePickerRotation extends StatefulWidget {
     this.tooltip,
   });
 
-  final String title;
-  final String units;
+  final Widget? title;
+  final Widget? units;
   final String? tooltip;
   final int precision;
   final Color color;
@@ -28,6 +29,7 @@ class ValuePickerRotation extends StatefulWidget {
   final double initial;
   final Offset position;
   final double size;
+  final Offset textOffset;
   final TextStyle textStyle;
   final Function(double)? onChange;
 
@@ -58,15 +60,24 @@ class _ValuePickerRotationState extends State<ValuePickerRotation> {
         alignment: Alignment.bottomLeft,
         children: [
           Positioned(
-            right:
-                deviceSize.width - widget.position.dx - deviceSize.width * 0.04,
-            bottom: widget.position.dy + widget.size / 3,
+            right: deviceSize.width -
+                widget.position.dx -
+                deviceSize.width * 0.04 -
+                widget.textOffset.dx,
+            bottom: widget.position.dy + widget.size / 3 + widget.textOffset.dy,
             child: Tooltip(
               message: widget.tooltip ?? '',
-              child: Text(
-                '${widget.title} = ${_currentValue.toStringAsFixed(widget.precision)}${widget.units}',
-                textAlign: TextAlign.right,
-                style: widget.textStyle,
+              child: Row(
+                children: [
+                  if (widget.title != null) widget.title!,
+                  Text(
+                    '${widget.title != null ? ' = ' : ''}'
+                    '${_currentValue.toStringAsFixed(widget.precision)}',
+                    textAlign: TextAlign.right,
+                    style: widget.textStyle,
+                  ),
+                  if (widget.units != null) widget.units!,
+                ],
               ),
             ),
           ),

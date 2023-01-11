@@ -27,6 +27,7 @@ class PushoffSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = JumpAppTheme.of(context);
     final biomechanics = Biomechanics.of(context);
+    final deviceSize = MediaQuery.of(context).size;
 
     return ValuePicker.horizontal(
       min: 150,
@@ -36,7 +37,11 @@ class PushoffSlider extends StatelessWidget {
       width: width,
       color: theme.colorParametersPushoff,
       textStyle: theme.textStyle,
-      unit: 'ms',
+      title: Text('T',
+          style: theme.textStyle.copyWith(color: theme.colorParametersPushoff)),
+      unit: Text('ms',
+          style: theme.textStyle.copyWith(color: theme.colorParametersPushoff)),
+      textOffset: Offset(deviceSize.width * 0.08, deviceSize.width * 0.01),
       precision: 0,
       onValueChanged: (value) => _updatePushoffTime(context, value),
       tooltip: theme.texts.pushoffPhaseLengthTooltip,

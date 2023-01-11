@@ -32,7 +32,6 @@ class LocaleText with ChangeNotifier {
   String get inertia => {'En': 'Inertia', 'Fr': 'Inertie'}[language]!;
   String get minimumInertia =>
       {'En': 'Min. inertia', 'Fr': 'Inertie min.'}[language]!;
-  String get timeToMinimumInertia => {'En': 'Tmin', 'Fr': 'Tmin'}[language]!;
 
   String get aerialPhaseTooltip => {
         'En': 'Duration of the aerial phase',
