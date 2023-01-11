@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '/providers/biomechanics.dart';
 import '/providers/jump_app_theme.dart';
 import 'arrow.dart';
-import 'text_with_index.dart';
+import 'text_with_subscript.dart';
 import 'value_picker.dart';
 
 class GroundReactionForce extends StatelessWidget {
@@ -29,6 +29,7 @@ class GroundReactionForce extends StatelessWidget {
   Widget build(BuildContext context) {
     final biomechanics = Biomechanics.of(context);
     final theme = JumpAppTheme.of(context);
+    final deviceSize = MediaQuery.of(context).size;
 
     return SizedBox(
       width: MediaQuery.of(context).size.width,
@@ -42,19 +43,6 @@ class GroundReactionForce extends StatelessWidget {
             headSize: theme.arrowHeadSize,
             color: theme.colorParametersGroundReactionForce,
           ),
-          Positioned(
-            left: arrowHead.dx + theme.arrowHeadSize / 2,
-            bottom: -arrowHead.dy - 2 * theme.arrowHeadSize,
-            child: Tooltip(
-              message: theme.texts.fmaxTooltip,
-              child: TextWithIndex(
-                'F',
-                'max',
-                textStyle: theme.textStyle
-                    .copyWith(color: theme.colorParametersGroundReactionForce),
-              ),
-            ),
-          ),
           ValuePicker.vertical(
             min: 1000,
             max: 5000,
@@ -63,6 +51,13 @@ class GroundReactionForce extends StatelessWidget {
             height: sliderHeight,
             color: theme.colorParametersGroundReactionForce,
             textStyle: theme.textStyle,
+            textOffset: Offset(-deviceSize.width * 0.03, 0),
+            title: TextWithSubscript(
+              'F',
+              'max',
+              textStyle: theme.textStyle
+                  .copyWith(color: theme.colorParametersGroundReactionForce),
+            ),
             unit: 'N',
             precision: 0,
             onValueChanged: (value) => _updateGrf(context, value),

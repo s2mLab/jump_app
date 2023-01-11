@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '/providers/biomechanics.dart';
 import '/providers/jump_app_theme.dart';
 import 'double_heads_arrow.dart';
-import 'text_with_index.dart';
+import 'text_with_subscript.dart';
 
 class FlightApex extends StatelessWidget {
   const FlightApex({
@@ -34,7 +34,8 @@ class FlightApex extends StatelessWidget {
               message: theme.texts.computedMaximalHeight,
               child: Row(
                 children: [
-                  TextWithIndex('H', 'max', textStyle: theme.textStyleAnswer),
+                  TextWithSubscript('H', 'max',
+                      textStyle: theme.textStyleAnswer),
                   Text(
                     ' = ${biomechanics.apex.toStringAsFixed(2)} m',
                     style: theme.textStyleAnswer,

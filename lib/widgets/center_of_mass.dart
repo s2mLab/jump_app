@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '/providers/biomechanics.dart';
 import '/providers/jump_app_theme.dart';
-import 'text_with_index.dart';
+import 'text_with_subscript.dart';
 import 'value_picker.dart';
 
 enum CenterOfMassType {
@@ -36,7 +36,7 @@ class CenterOfMass extends StatelessWidget {
     if (type == CenterOfMassType.start) {
       biomechanics.initialHeigh = value;
     } else if (type == CenterOfMassType.end) {
-      biomechanics.finalHeigh = value;
+      biomechanics.finalHeight = value;
     } else {
       throw 'Wrong update height type';
     }
@@ -55,7 +55,7 @@ class CenterOfMass extends StatelessWidget {
       }
     }
 
-    final biomechanics = Biomechanics.of(context);
+    final biomechanics = Biomechanics.of(context, listen: true);
     final theme = JumpAppTheme.of(context);
     final deviceSize = MediaQuery.of(context).size;
     final tooltip = type == CenterOfMassType.start
@@ -79,6 +79,16 @@ class CenterOfMass extends StatelessWidget {
               height: pickerHeight!,
               color: theme.colorParametersCenterOfMass,
               textStyle: theme.textStyle,
+              textOffset: Offset(-deviceSize.width * 0.05, 0),
+              title: type == CenterOfMassType.any
+                  ? null
+                  : TextWithSubscript(
+                      'H',
+                      type == CenterOfMassType.start ? '0' : 'F',
+                      textAlign: TextAlign.end,
+                      textStyle: theme.textStyle
+                          .copyWith(color: theme.colorParametersCenterOfMass),
+                    ),
               unit: 'm',
               precision: 2,
               onValueChanged: type != CenterOfMassType.any
@@ -87,37 +97,31 @@ class CenterOfMass extends StatelessWidget {
               tooltip: tooltip,
             ),
           if (!withPicker)
-            Container(
-              decoration: BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
-              padding: const EdgeInsets.all(2),
-              child: Tooltip(
-                message: theme.texts.computedMaximalHeight,
-                child: Row(
-                  children: [
-                    TextWithIndex('H', 'max',
-                        textStyle:
-                            theme.textStyle.copyWith(color: theme.colorAnswer)),
-                    Text(
-                      ' = ${biomechanics.apex.toStringAsFixed(2)} m',
-                      style: theme.textStyle.copyWith(color: theme.colorAnswer),
-                    ),
-                  ],
+            Positioned(
+              left: position.dx + deviceSize.width * 0.02,
+              bottom: -position.dy,
+              child: Container(
+                decoration:
+                    BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
+                padding: const EdgeInsets.all(2),
+                child: Tooltip(
+                  message: tooltip,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextWithSubscript(
+                        'H',
+                        type == CenterOfMassType.start ? '0' : 'F',
+                        textAlign: TextAlign.end,
+                        textStyle: theme.textStyleAnswer,
+                      ),
+                      Text(
+                          ' = ${biomechanics.finalHeight.toStringAsFixed(2)} m',
+                          style: theme.textStyleAnswer),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          if (type != CenterOfMassType.any)
-            Positioned(
-              left: position.dx - deviceSize.width * 0.04,
-              bottom: -(position.dy - floor) / 2,
-              child: Tooltip(
-                  message: tooltip,
-                  child: TextWithIndex(
-                    'H',
-                    type == CenterOfMassType.start ? '0' : 'F',
-                    textAlign: TextAlign.end,
-                    textStyle: theme.textStyle
-                        .copyWith(color: theme.colorParametersCenterOfMass),
-                  )),
             ),
           CustomPaint(
             painter: _CenterOfMassPainting(

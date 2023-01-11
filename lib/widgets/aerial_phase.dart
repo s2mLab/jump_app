@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '/providers/biomechanics.dart';
 import '/providers/jump_app_theme.dart';
 import 'double_heads_arrow.dart';
-import 'text_with_index.dart';
+import 'text_with_subscript.dart';
 
 class AerialPhase extends StatelessWidget {
   const AerialPhase({
@@ -39,7 +39,7 @@ class AerialPhase extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextWithIndex('T', theme.texts.flight,
+                  TextWithSubscript('T', theme.texts.flight,
                       textStyle: theme.textStyleAnswer),
                   Text(
                     ' = ${biomechanics.flightTime.toStringAsFixed(3)} s',

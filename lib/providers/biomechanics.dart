@@ -26,7 +26,7 @@ class Biomechanics with ChangeNotifier {
   double _finalHeight = 1.15; // m
   double get finalHeight =>
       _level == DetailLevel.easy ? initialHeight : _finalHeight;
-  set finalHeigh(value) {
+  set finalHeight(value) {
     _finalHeight = value;
     notifyListeners();
   }

@@ -49,7 +49,7 @@ class PreJumpRotation extends StatelessWidget {
       alignment: Alignment.bottomLeft,
       children: [
         ValuePicker.diagonal(
-          title: theme.texts.inertia,
+          title: Text(theme.texts.inertia),
           unit: 'kgm^2',
           color: theme.colorParametersPreJump,
           width: inertiaSliderSize,

@@ -39,7 +39,7 @@ class FlightInertia extends StatelessWidget {
       alignment: Alignment.bottomLeft,
       children: [
         ValuePicker.diagonal(
-          title: theme.texts.minimumInertia,
+          title: Text(theme.texts.minimumInertia),
           unit: 'kgm^2',
           color: theme.colorParametersInertia,
           width: inertiaSliderSize,
@@ -67,7 +67,7 @@ class FlightInertia extends StatelessWidget {
           color: theme.colorParametersInertia,
         ),
         ValuePicker.horizontal(
-          title: theme.texts.timeToMinimumInertia,
+          title: Text(theme.texts.timeToMinimumInertia),
           unit: 'ms',
           color: theme.colorParametersInertia,
           width: timeToInertiaSliderSize,

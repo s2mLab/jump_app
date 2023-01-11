@@ -5,7 +5,6 @@ import '/providers/locale_text.dart';
 enum DetailLevel {
   easy,
   medium,
-  hard,
 }
 
 extension DetailLevelExtension on DetailLevel {
@@ -14,8 +13,6 @@ extension DetailLevelExtension on DetailLevel {
       case DetailLevel.easy:
         return DetailLevel.medium;
       case DetailLevel.medium:
-        return DetailLevel.hard;
-      case DetailLevel.hard:
         return DetailLevel.easy;
     }
   }
@@ -28,8 +25,6 @@ extension DetailLevelExtension on DetailLevel {
         return texts.easy;
       case DetailLevel.medium:
         return texts.medium;
-      case DetailLevel.hard:
-        return texts.hard;
     }
   }
 }

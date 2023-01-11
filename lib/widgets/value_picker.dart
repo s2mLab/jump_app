@@ -14,6 +14,7 @@ class ValuePicker extends StatefulWidget {
     required this.position,
     this.height,
     this.width,
+    this.textOffset = const Offset(0, 0),
     required this.textStyle,
     required this.unit,
     required this.precision,
@@ -31,6 +32,7 @@ class ValuePicker extends StatefulWidget {
     required this.position,
     this.height,
     this.width,
+    this.textOffset = const Offset(0, 0),
     required this.textStyle,
     required this.unit,
     required this.precision,
@@ -48,6 +50,7 @@ class ValuePicker extends StatefulWidget {
     required this.position,
     this.height,
     this.width,
+    this.textOffset = const Offset(0, 0),
     required this.textStyle,
     required this.unit,
     required this.precision,
@@ -62,6 +65,7 @@ class ValuePicker extends StatefulWidget {
   final double initial;
 
   final TextStyle textStyle;
+  final Offset textOffset;
   final Offset position;
   final double? height;
   final double? width;
@@ -69,7 +73,7 @@ class ValuePicker extends StatefulWidget {
 
   final int precision;
   final String unit;
-  final String? title;
+  final Widget? title;
   final String? tooltip;
 
   final Function(double)? onValueChanged;
@@ -150,8 +154,11 @@ class _ValuePickerState extends State<ValuePicker> {
 
     return [
       Positioned(
-        left: widget.position.dx,
-        bottom: widget.position.dy + widget.height! - fontSize * 2,
+        left: widget.position.dx + widget.textOffset.dx,
+        bottom: widget.position.dy +
+            widget.height! -
+            fontSize * 2 -
+            widget.textOffset.dy,
         top: deviceSize.height - widget.height! - widget.position.dy,
         child: _buildText(),
       ),
@@ -221,10 +228,17 @@ class _ValuePickerState extends State<ValuePicker> {
   Widget _buildText() {
     return Tooltip(
       message: widget.tooltip ?? '',
-      child: Text(
-        '${widget.title != null ? '${widget.title} = ' : ''}${_currentValue.toStringAsFixed(widget.precision)} ${widget.unit}',
-        textAlign: TextAlign.center,
-        style: widget.textStyle.copyWith(color: widget.color),
+      child: Row(
+        children: [
+          if (widget.title != null) widget.title!,
+          Text(
+            '${widget.title != null ? ' = ' : ''}'
+            '${_currentValue.toStringAsFixed(widget.precision)} '
+            '${widget.unit}',
+            textAlign: TextAlign.center,
+            style: widget.textStyle.copyWith(color: widget.color),
+          ),
+        ],
       ),
     );
   }
