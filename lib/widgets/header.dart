@@ -46,20 +46,20 @@ class _ChoseLevel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appParameters = AppParameters.of(context);
-    final deviceSize = MediaQuery.of(context).size;
+    final theme = JumpAppTheme.of(context);
 
     return SizedBox(
-      width: deviceSize.width * 0.08,
+      width: theme.iconSizeHeader * 2,
       child: GestureDetector(
         child: Column(
           children: [
             Icon(
               Icons.stacked_line_chart_sharp,
-              size: deviceSize.width * 0.05,
+              size: theme.iconSizeHeader,
             ),
             Text(
               appParameters.level.asText(context),
-              style: TextStyle(fontSize: deviceSize.width * 0.02),
+              style: TextStyle(fontSize: theme.fontSizeHeader),
             ),
           ],
         ),
@@ -83,22 +83,23 @@ class _ChoseType extends StatelessWidget {
   Widget build(BuildContext context) {
     final appParameters = AppParameters.of(context);
     final deviceSize = MediaQuery.of(context).size;
+    final theme = JumpAppTheme.of(context, listen: false);
 
     return Row(
       children: [
         Text(
           'Translation',
-          style: TextStyle(fontSize: deviceSize.width * 0.02),
+          style: TextStyle(fontSize: theme.fontSizeHeader),
         ),
         SizedBox(
           width: deviceSize.width * 0.07,
           child: SfSliderTheme(
             data: SfSliderThemeData(
-              activeTrackColor: Colors.black,
-              inactiveTrackColor: Colors.black,
+              activeTrackColor: theme.colorHeaderPrimary,
+              inactiveTrackColor: theme.colorHeaderPrimary,
               inactiveTrackHeight: deviceSize.width * 0.023,
               activeTrackHeight: deviceSize.width * 0.023,
-              thumbColor: Colors.white,
+              thumbColor: theme.colorHeaderSecondary,
               thumbRadius: deviceSize.width * 0.008,
               overlayRadius: 0,
             ),
@@ -113,7 +114,7 @@ class _ChoseType extends StatelessWidget {
         ),
         Text(
           'Rotation',
-          style: TextStyle(fontSize: deviceSize.width * 0.02),
+          style: TextStyle(fontSize: theme.fontSizeHeader),
         ),
       ],
     );
@@ -150,28 +151,28 @@ class _Help extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
-          iconSize: theme.headerIconSize,
-          color: Colors.white,
+          iconSize: theme.iconSizeHeader,
+          color: theme.colorHeaderPrimary,
           icon: CircleAvatar(
-            backgroundColor: Colors.black,
-            foregroundColor: Colors.white,
-            radius: 3 / 4 * theme.headerIconSize,
+            backgroundColor: theme.colorHeaderPrimary,
+            foregroundColor: theme.colorHeaderSecondary,
+            radius: 3 / 4 * theme.iconSizeHeader,
             child: Icon(
               Icons.question_mark,
-              size: 3 / 4 * theme.headerIconSize,
+              size: 3 / 4 * theme.iconSizeHeader,
             ),
           ),
           onPressed: () => _showHelp(context),
         ),
         SizedBox(
-          width: 3 * theme.headerLanguageSize,
+          width: 3 * theme.fontSizeLanguageSelection,
           child: TextButton(
             onPressed: () => _swapLanguage(context),
             child: Text(
               theme.texts.language == 'Fr' ? 'En' : 'Fr',
               style: TextStyle(
-                color: Colors.black,
-                fontSize: theme.headerLanguageSize,
+                color: theme.colorHeaderPrimary,
+                fontSize: theme.fontSizeLanguageSelection,
               ),
             ),
           ),

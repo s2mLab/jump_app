@@ -34,7 +34,6 @@ class FlightInertia extends StatelessWidget {
     final deviceSize = MediaQuery.of(context).size;
     final theme = JumpAppTheme.of(context);
     final biomechanics = Biomechanics.of(context);
-    const color = Colors.purple;
 
     return Stack(
       alignment: Alignment.bottomLeft,
@@ -42,7 +41,7 @@ class FlightInertia extends StatelessWidget {
         ValuePicker.diagonal(
           title: theme.texts.minimumInertia,
           unit: 'kgm^2',
-          color: color,
+          color: theme.colorParametersInertia,
           width: inertiaSliderSize,
           initial: biomechanics.minimumInertia,
           min: 1,
@@ -65,12 +64,12 @@ class FlightInertia extends StatelessWidget {
                   theme.fontSize * 2 -
                   deviceSize.width * 0.01),
           headSize: theme.fontSize,
-          color: color,
+          color: theme.colorParametersInertia,
         ),
         ValuePicker.horizontal(
           title: theme.texts.timeToMinimumInertia,
           unit: 'ms',
-          color: color,
+          color: theme.colorParametersInertia,
           width: timeToInertiaSliderSize,
           initial: biomechanics.timeToMinimumInertia * 1000,
           min: 100,

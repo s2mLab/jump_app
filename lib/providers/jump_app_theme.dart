@@ -14,13 +14,16 @@ class JumpAppTheme with ChangeNotifier {
 
   late double _currentDeviceWidth;
 
-  // Header
-  double get headerIconSize => 0.04 * _currentDeviceWidth;
-  double get headerLanguageSize => 0.025 * _currentDeviceWidth;
+  // Icons
+  double get iconSizeHeader => 0.04 * _currentDeviceWidth;
 
   // Colors
+  Color colorAirborneTrajectory = Colors.black;
   Color colorAnswer = const Color.fromARGB(255, 31, 120, 165);
+  Color colorHeaderPrimary = Colors.black;
+  Color colorHeaderSecondary = Colors.white;
   Color colorParametersCenterOfMass = const Color(0xff63aa65);
+  Color colorParametersInertia = Colors.purple;
   Color colorParametersGroundReactionForce = Colors.red;
   Color colorParametersPreJump = Colors.brown;
   Color colorParametersPushoff = const Color.fromARGB(255, 128, 8, 162);
@@ -35,4 +38,6 @@ class JumpAppTheme with ChangeNotifier {
   LocaleText get texts => _currentLocale;
   double get fontSize => 0.023 * _currentDeviceWidth;
   double get fontSizePhaseName => 3 / 4 * fontSize;
+  double get fontSizeHeader => 0.02 * _currentDeviceWidth;
+  double get fontSizeLanguageSelection => 0.025 * _currentDeviceWidth;
 }

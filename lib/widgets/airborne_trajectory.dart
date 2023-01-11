@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:path_drawing/path_drawing.dart';
 
+import '/providers/jump_app_theme.dart';
+
 class AirboneTrajectory extends StatelessWidget {
   const AirboneTrajectory({
     super.key,
@@ -15,16 +17,22 @@ class AirboneTrajectory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(painter: _AirboneTrajectoryPainting(start, end, height));
+    final theme = JumpAppTheme.of(context);
+
+    return CustomPaint(
+        painter: _AirboneTrajectoryPainting(
+            start, end, height, theme.colorAirborneTrajectory));
   }
 }
 
 class _AirboneTrajectoryPainting extends CustomPainter {
-  const _AirboneTrajectoryPainting(this.start, this.end, this.height);
+  const _AirboneTrajectoryPainting(
+      this.start, this.end, this.height, this.color);
 
   final Offset start;
   final Offset end;
   final double height;
+  final Color color;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -43,7 +51,7 @@ class _AirboneTrajectoryPainting extends CustomPainter {
 
     final painter = Paint()
       ..style = PaintingStyle.stroke
-      ..color = Colors.black
+      ..color = color
       ..strokeWidth = 3;
 
     canvas.drawPath(

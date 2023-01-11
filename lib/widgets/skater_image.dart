@@ -76,8 +76,7 @@ class _SkaterImageState extends State<SkaterImage> {
     final arrowsHeadSize = 0.023 * w;
     final arrowsBelow = -floor + 0.033 * w;
 
-    return Container(
-      decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+    return SizedBox(
       width: w,
       height: 0.55 * w,
       child: Stack(
