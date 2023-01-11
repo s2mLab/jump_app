@@ -14,7 +14,7 @@ class ValuePicker extends StatefulWidget {
     required this.position,
     this.height,
     this.width,
-    required this.fontSize,
+    required this.textStyle,
     required this.unit,
     required this.precision,
     this.color = Colors.black,
@@ -31,7 +31,7 @@ class ValuePicker extends StatefulWidget {
     required this.position,
     this.height,
     this.width,
-    required this.fontSize,
+    required this.textStyle,
     required this.unit,
     required this.precision,
     this.color = Colors.black,
@@ -48,7 +48,7 @@ class ValuePicker extends StatefulWidget {
     required this.position,
     this.height,
     this.width,
-    required this.fontSize,
+    required this.textStyle,
     required this.unit,
     required this.precision,
     this.color = Colors.black,
@@ -61,7 +61,7 @@ class ValuePicker extends StatefulWidget {
   final double max;
   final double initial;
 
-  final double fontSize;
+  final TextStyle textStyle;
   final Offset position;
   final double? height;
   final double? width;
@@ -126,12 +126,14 @@ class _ValuePickerState extends State<ValuePicker> {
   }
 
   List<Widget> _buildHorizontal(Size deviceSize) {
+    final fontSize = widget.textStyle.fontSize!;
+
     return [
       Positioned(
           left: widget.position.dx,
           right: deviceSize.width - widget.width! - widget.position.dx,
           bottom: widget.position.dy,
-          top: deviceSize.height - widget.position.dy - widget.fontSize * 2.3,
+          top: deviceSize.height - widget.position.dy - fontSize * 2.3,
           child: _buildText()),
       Positioned(
           left: widget.position.dx,
@@ -144,20 +146,19 @@ class _ValuePickerState extends State<ValuePicker> {
   }
 
   List<Widget> _buildVertical(Size deviceSize) {
+    final fontSize = widget.textStyle.fontSize!;
+
     return [
       Positioned(
         left: widget.position.dx,
-        bottom: widget.position.dy + widget.height! - widget.fontSize * 2,
+        bottom: widget.position.dy + widget.height! - fontSize * 2,
         top: deviceSize.height - widget.height! - widget.position.dy,
         child: _buildText(),
       ),
       Positioned(
         left: widget.position.dx,
         bottom: widget.position.dy,
-        top: deviceSize.height -
-            widget.height! -
-            widget.position.dy +
-            widget.fontSize,
+        top: deviceSize.height - widget.height! - widget.position.dy + fontSize,
         child: _buildSlider(),
       ),
     ];
@@ -165,17 +166,19 @@ class _ValuePickerState extends State<ValuePicker> {
 
   List<Widget> _buildDiagonal(Size deviceSize) {
     final length = widget.width ?? widget.height!;
+    final fontSize = widget.textStyle.fontSize!;
+
     return [
       Positioned(
         right: deviceSize.width - widget.position.dx,
-        bottom: widget.position.dy + widget.fontSize - deviceSize.width * 0.01,
+        bottom: widget.position.dy + fontSize - deviceSize.width * 0.01,
         top: deviceSize.height - length / 2 - widget.position.dy,
         child: _buildText(),
       ),
       Positioned(
         left: widget.position.dx,
         bottom: widget.position.dy,
-        top: deviceSize.height - length - widget.position.dy + widget.fontSize,
+        top: deviceSize.height - length - widget.position.dy + fontSize,
         child: Transform.rotate(angle: -45, child: _buildSlider()),
       ),
     ];
@@ -221,10 +224,7 @@ class _ValuePickerState extends State<ValuePicker> {
       child: Text(
         '${widget.title != null ? '${widget.title} = ' : ''}${_currentValue.toStringAsFixed(widget.precision)} ${widget.unit}',
         textAlign: TextAlign.center,
-        style: TextStyle(
-            color: widget.color,
-            fontWeight: FontWeight.bold,
-            fontSize: widget.fontSize),
+        style: widget.textStyle.copyWith(color: widget.color),
       ),
     );
   }

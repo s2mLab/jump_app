@@ -20,7 +20,6 @@ class FlightApex extends StatelessWidget {
     final deviceSize = MediaQuery.of(context).size;
     final biomechanics = Biomechanics.of(context, listen: true);
     final theme = JumpAppTheme.of(context);
-    const color = Color.fromARGB(255, 31, 120, 165);
 
     return Stack(
       alignment: Alignment.bottomLeft,
@@ -29,25 +28,16 @@ class FlightApex extends StatelessWidget {
           left: apex.dx - deviceSize.width * 0.02,
           bottom: -(apex.dy - floor) / 2 - deviceSize.height * 0.05,
           child: Container(
-            decoration: BoxDecoration(color: color.withAlpha(30)),
+            decoration: BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
             padding: const EdgeInsets.all(2),
             child: Tooltip(
               message: theme.texts.computedMaximalHeight,
               child: Row(
                 children: [
-                  TextWithIndex('H', 'max',
-                      textStyle: TextStyle(
-                        color: color,
-                        fontWeight: FontWeight.bold,
-                        fontSize: theme.fontSize,
-                      )),
+                  TextWithIndex('H', 'max', textStyle: theme.textStyleAnswer),
                   Text(
                     ' = ${biomechanics.apex.toStringAsFixed(2)} m',
-                    style: TextStyle(
-                      color: color,
-                      fontWeight: FontWeight.bold,
-                      fontSize: theme.fontSize,
-                    ),
+                    style: theme.textStyleAnswer,
                   ),
                 ],
               ),
@@ -58,7 +48,7 @@ class FlightApex extends StatelessWidget {
           start: Offset(apex.dx, -floor),
           end: apex,
           headSize: theme.arrowHeadSize,
-          color: color,
+          color: theme.colorAnswer,
         ),
       ],
     );

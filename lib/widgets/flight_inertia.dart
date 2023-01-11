@@ -48,7 +48,7 @@ class FlightInertia extends StatelessWidget {
           max: 4,
           position: inertiaSliderPosition,
           precision: 1,
-          fontSize: theme.fontSize,
+          textStyle: theme.textStyle,
           onValueChanged: (value) => _onInertiaChanged(context, value),
           tooltip: theme.texts.minimumInertiaTooltip,
         ),
@@ -76,7 +76,7 @@ class FlightInertia extends StatelessWidget {
           max: 300,
           position: timeToInertiaSliderPosition,
           precision: 0,
-          fontSize: theme.fontSize,
+          textStyle: theme.textStyle,
           onValueChanged: (value) => _onTimeToInertiaChanged(context, value),
           tooltip: theme.texts.timeToMinimumInertiaTooltip,
         )

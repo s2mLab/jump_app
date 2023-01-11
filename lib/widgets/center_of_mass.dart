@@ -78,7 +78,7 @@ class CenterOfMass extends StatelessWidget {
               position: pickerPosition!,
               height: pickerHeight!,
               color: theme.colorParametersCenterOfMass,
-              fontSize: theme.fontSize,
+              textStyle: theme.textStyle,
               unit: 'm',
               precision: 2,
               onValueChanged: type != CenterOfMassType.any
@@ -88,26 +88,18 @@ class CenterOfMass extends StatelessWidget {
             ),
           if (!withPicker)
             Container(
-              decoration: BoxDecoration(
-                  color: theme.colorParametersCenterOfMass.withAlpha(30)),
+              decoration: BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
               padding: const EdgeInsets.all(2),
               child: Tooltip(
                 message: theme.texts.computedMaximalHeight,
                 child: Row(
                   children: [
                     TextWithIndex('H', 'max',
-                        textStyle: TextStyle(
-                          color: theme.colorParametersCenterOfMass,
-                          fontWeight: FontWeight.bold,
-                          fontSize: theme.fontSize,
-                        )),
+                        textStyle:
+                            theme.textStyle.copyWith(color: theme.colorAnswer)),
                     Text(
                       ' = ${biomechanics.apex.toStringAsFixed(2)} m',
-                      style: TextStyle(
-                        color: theme.colorParametersCenterOfMass,
-                        fontWeight: FontWeight.bold,
-                        fontSize: theme.fontSize,
-                      ),
+                      style: theme.textStyle.copyWith(color: theme.colorAnswer),
                     ),
                   ],
                 ),
@@ -123,11 +115,8 @@ class CenterOfMass extends StatelessWidget {
                     'H',
                     type == CenterOfMassType.start ? '0' : 'F',
                     textAlign: TextAlign.end,
-                    textStyle: TextStyle(
-                      color: theme.colorParametersCenterOfMass,
-                      fontWeight: FontWeight.bold,
-                      fontSize: theme.fontSize,
-                    ),
+                    textStyle: theme.textStyle
+                        .copyWith(color: theme.colorParametersCenterOfMass),
                   )),
             ),
           CustomPaint(

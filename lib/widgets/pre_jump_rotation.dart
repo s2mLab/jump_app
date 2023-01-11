@@ -58,7 +58,7 @@ class PreJumpRotation extends StatelessWidget {
           max: 4,
           position: inertiaSliderPosition,
           precision: 1,
-          fontSize: theme.fontSize,
+          textStyle: theme.textStyle,
           onValueChanged: (value) => _onInertiaChanged(context, value),
           tooltip: theme.texts.inertiaTooltip,
         ),
@@ -71,7 +71,8 @@ class PreJumpRotation extends StatelessWidget {
           max: 1000,
           position: initialVelocitySliderPosition,
           size: initialVelocitySliderSize,
-          fontSize: theme.fontSize,
+          textStyle:
+              theme.textStyle.copyWith(color: theme.colorParametersPreJump),
           onChange: (value) => _onInitialVelocityChanged(context, value),
           color: theme.colorParametersPreJump,
           tooltip: theme.texts.angularVelocityTooltip,
@@ -85,7 +86,8 @@ class PreJumpRotation extends StatelessWidget {
           max: 180,
           position: initialRotationSliderPosition,
           size: initialRotationSliderSize,
-          fontSize: theme.fontSize,
+          textStyle:
+              theme.textStyle.copyWith(color: theme.colorParametersPreJump),
           onChange: (value) => _onInitialRotationChanged(context, value),
           color: theme.colorParametersPreJump,
           tooltip: theme.texts.initialRotationTooltip,

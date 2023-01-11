@@ -8,7 +8,7 @@ class JumpAppTheme with ChangeNotifier {
   static JumpAppTheme of(BuildContext context, {bool listen = true}) {
     final instance = Provider.of<JumpAppTheme>(context, listen: listen);
     instance._currentDeviceWidth = MediaQuery.of(context).size.width;
-    instance._currentLocale = LocaleText.of(context);
+    instance._currentLocale = LocaleText.of(context, listen: listen);
     return instance;
   }
 
@@ -27,17 +27,36 @@ class JumpAppTheme with ChangeNotifier {
   Color colorParametersGroundReactionForce = Colors.red;
   Color colorParametersPreJump = Colors.brown;
   Color colorParametersPushoff = const Color.fromARGB(255, 128, 8, 162);
+  Color colorPhaseAerial = const Color.fromARGB(255, 31, 120, 165);
   Color colorPhaseLanding = const Color.fromARGB(255, 8, 0, 239);
   Color colorPhasePushoff = const Color.fromARGB(255, 128, 8, 162);
 
   // Painting
-  double get arrowHeadSize => 0.023 * _currentDeviceWidth;
+  double get arrowHeadSize => 0.03 * _currentDeviceWidth;
 
   // Text
   late LocaleText _currentLocale;
   LocaleText get texts => _currentLocale;
-  double get fontSize => 0.023 * _currentDeviceWidth;
+  double get fontSize => 0.02 * _currentDeviceWidth;
   double get fontSizePhaseName => 3 / 4 * fontSize;
   double get fontSizeHeader => 0.02 * _currentDeviceWidth;
-  double get fontSizeLanguageSelection => 0.025 * _currentDeviceWidth;
+  double get fontSizeLanguageSelection => 0.02 * _currentDeviceWidth;
+  TextStyle get textStyle => TextStyle(
+        fontWeight: FontWeight.normal,
+        fontSize: fontSize,
+      );
+  TextStyle get textStyleAnswer => TextStyle(
+        fontWeight: FontWeight.normal,
+        fontSize: fontSize,
+        color: colorAnswer,
+      );
+  TextStyle get textStyleHeader => TextStyle(
+        fontWeight: FontWeight.normal,
+        fontSize: fontSizeHeader,
+        color: colorHeaderPrimary,
+      );
+  TextStyle get textStylePhase => TextStyle(
+        fontWeight: FontWeight.normal,
+        fontSize: fontSizePhaseName,
+      );
 }

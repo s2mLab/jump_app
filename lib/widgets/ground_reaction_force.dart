@@ -50,11 +50,8 @@ class GroundReactionForce extends StatelessWidget {
               child: TextWithIndex(
                 'F',
                 'max',
-                textStyle: TextStyle(
-                  color: theme.colorParametersGroundReactionForce,
-                  fontWeight: FontWeight.bold,
-                  fontSize: theme.arrowHeadSize,
-                ),
+                textStyle: theme.textStyle
+                    .copyWith(color: theme.colorParametersGroundReactionForce),
               ),
             ),
           ),
@@ -65,7 +62,7 @@ class GroundReactionForce extends StatelessWidget {
             position: sliderPosition,
             height: sliderHeight,
             color: theme.colorParametersGroundReactionForce,
-            fontSize: theme.arrowHeadSize,
+            textStyle: theme.textStyle,
             unit: 'N',
             precision: 0,
             onValueChanged: (value) => _updateGrf(context, value),

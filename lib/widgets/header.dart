@@ -56,10 +56,11 @@ class _ChoseLevel extends StatelessWidget {
             Icon(
               Icons.stacked_line_chart_sharp,
               size: theme.iconSizeHeader,
+              color: theme.colorHeaderPrimary,
             ),
             Text(
               appParameters.level.asText(context),
-              style: TextStyle(fontSize: theme.fontSizeHeader),
+              style: theme.textStyleHeader,
             ),
           ],
         ),
@@ -87,10 +88,7 @@ class _ChoseType extends StatelessWidget {
 
     return Row(
       children: [
-        Text(
-          'Translation',
-          style: TextStyle(fontSize: theme.fontSizeHeader),
-        ),
+        Text('Translation', style: theme.textStyleHeader),
         SizedBox(
           width: deviceSize.width * 0.07,
           child: SfSliderTheme(
@@ -112,10 +110,7 @@ class _ChoseType extends StatelessWidget {
             ),
           ),
         ),
-        Text(
-          'Rotation',
-          style: TextStyle(fontSize: theme.fontSizeHeader),
-        ),
+        Text('Rotation', style: theme.textStyleHeader),
       ],
     );
   }
@@ -170,10 +165,8 @@ class _Help extends StatelessWidget {
             onPressed: () => _swapLanguage(context),
             child: Text(
               theme.texts.language == 'Fr' ? 'En' : 'Fr',
-              style: TextStyle(
-                color: theme.colorHeaderPrimary,
-                fontSize: theme.fontSizeLanguageSelection,
-              ),
+              style: theme.textStyleHeader
+                  .copyWith(fontSize: theme.fontSizeLanguageSelection),
             ),
           ),
         ),

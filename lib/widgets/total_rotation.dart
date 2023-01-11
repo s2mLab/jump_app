@@ -28,11 +28,7 @@ class TotalRotation extends StatelessWidget {
         padding: const EdgeInsets.all(2),
         child: Text(
           '${theme.texts.rotation} = ${(biomechanics.finalRotation * 180 / pi).toStringAsFixed(0)}°',
-          style: TextStyle(
-            color: theme.colorAnswer,
-            fontWeight: FontWeight.bold,
-            fontSize: theme.fontSize,
-          ),
+          style: theme.textStyleAnswer,
         ),
       ),
     );

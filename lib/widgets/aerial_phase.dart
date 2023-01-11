@@ -20,7 +20,6 @@ class AerialPhase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final biomechanics = Biomechanics.of(context, listen: true);
-    const color = Color.fromARGB(255, 31, 120, 165);
     final deviceSize = MediaQuery.of(context).size;
     final theme = JumpAppTheme.of(context);
 
@@ -32,7 +31,7 @@ class AerialPhase extends StatelessWidget {
           right: deviceSize.width - comFinal.dx + deviceSize.width * 0.17,
           bottom: -arrowsBelow - deviceSize.width * 0.05,
           child: Container(
-            decoration: BoxDecoration(color: color.withAlpha(30)),
+            decoration: BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
             padding: const EdgeInsets.all(2),
             child: Tooltip(
               message: theme.texts.computedAerialPhaseTooltip,
@@ -41,18 +40,10 @@ class AerialPhase extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextWithIndex('T', theme.texts.flight,
-                      textStyle: TextStyle(
-                        color: color,
-                        fontWeight: FontWeight.bold,
-                        fontSize: theme.fontSize,
-                      )),
+                      textStyle: theme.textStyleAnswer),
                   Text(
                     ' = ${biomechanics.flightTime.toStringAsFixed(3)} s',
-                    style: TextStyle(
-                      color: color,
-                      fontWeight: FontWeight.bold,
-                      fontSize: theme.fontSize,
-                    ),
+                    style: theme.textStyleAnswer,
                   ),
                 ],
               ),
@@ -63,14 +54,11 @@ class AerialPhase extends StatelessWidget {
           start: Offset(comStart.dx, arrowsBelow),
           end: Offset(comFinal.dx, arrowsBelow),
           headSize: theme.arrowHeadSize,
-          color: color,
+          color: theme.colorPhaseAerial,
           child: Text(
             theme.texts.aerialPhase,
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: color,
-                fontSize: theme.fontSizePhaseName),
+            style: theme.textStylePhase.copyWith(color: theme.colorPhaseAerial),
           ),
         )
       ],

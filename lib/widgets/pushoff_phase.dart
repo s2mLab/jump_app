@@ -41,10 +41,8 @@ class PushoffPhase extends StatelessWidget {
           child: Text(
             theme.texts.pushoffPhase,
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: theme.colorParametersPushoff,
-                fontSize: theme.fontSizePhaseName),
+            style:
+                theme.textStylePhase.copyWith(color: theme.colorPhasePushoff),
           ),
         ),
       ],

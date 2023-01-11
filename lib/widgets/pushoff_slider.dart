@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/providers/locale_text.dart';
+import '/providers/jump_app_theme.dart';
 import '/providers/biomechanics.dart';
 import 'value_picker.dart';
 
@@ -25,7 +25,7 @@ class PushoffSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final texts = LocaleText.of(context);
+    final theme = JumpAppTheme.of(context);
     final biomechanics = Biomechanics.of(context);
 
     return ValuePicker.horizontal(
@@ -34,12 +34,12 @@ class PushoffSlider extends StatelessWidget {
       initial: biomechanics.pushoffTime * 1000,
       position: position,
       width: width,
-      color: color,
-      fontSize: fontSize,
+      color: theme.colorParametersPushoff,
+      textStyle: theme.textStyle,
       unit: 'ms',
       precision: 0,
       onValueChanged: (value) => _updatePushoffTime(context, value),
-      tooltip: texts.pushoffPhaseLengthTooltip,
+      tooltip: theme.texts.pushoffPhaseLengthTooltip,
     );
   }
 }

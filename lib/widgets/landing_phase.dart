@@ -27,10 +27,7 @@ class LandingPhase extends StatelessWidget {
       child: Text(
         theme.texts.landing,
         textAlign: TextAlign.center,
-        style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: theme.colorPhaseLanding,
-            fontSize: theme.fontSizePhaseName),
+        style: theme.textStylePhase.copyWith(color: theme.colorPhaseLanding),
       ),
     );
   }

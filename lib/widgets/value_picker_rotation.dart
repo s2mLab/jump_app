@@ -9,7 +9,7 @@ class ValuePickerRotation extends StatefulWidget {
     required this.precision,
     required this.position,
     required this.size,
-    required this.fontSize,
+    required this.textStyle,
     required this.min,
     required this.max,
     required this.initial,
@@ -28,7 +28,7 @@ class ValuePickerRotation extends StatefulWidget {
   final double initial;
   final Offset position;
   final double size;
-  final double fontSize;
+  final TextStyle textStyle;
   final Function(double)? onChange;
 
   @override
@@ -66,10 +66,7 @@ class _ValuePickerRotationState extends State<ValuePickerRotation> {
               child: Text(
                 '${widget.title} = ${_currentValue.toStringAsFixed(widget.precision)}${widget.units}',
                 textAlign: TextAlign.right,
-                style: TextStyle(
-                    color: widget.color,
-                    fontWeight: FontWeight.bold,
-                    fontSize: widget.fontSize),
+                style: widget.textStyle,
               ),
             ),
           ),
