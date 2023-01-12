@@ -6,8 +6,9 @@ import '/providers/app_parameters.dart';
 import '/providers/biomechanics.dart';
 import '/providers/jump_app_theme.dart';
 
-class TotalRotation extends StatelessWidget {
-  const TotalRotation({Key? key, required this.position}) : super(key: key);
+class MaximalRotationVelocity extends StatelessWidget {
+  const MaximalRotationVelocity({Key? key, required this.position})
+      : super(key: key);
 
   final Offset position;
 
@@ -27,7 +28,7 @@ class TotalRotation extends StatelessWidget {
               decoration: BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
               padding: const EdgeInsets.all(2),
               child: Text(
-                '${theme.texts.rotation} = ${(biomechanics.finalRotation * 180 / pi).toStringAsFixed(0)}°',
+                '${theme.texts.maxRotationVelocity} = ${(biomechanics.finalRotation * 180 / pi).toStringAsFixed(0)}°/s',
                 style: theme.textStyleAnswer,
               ),
             ),

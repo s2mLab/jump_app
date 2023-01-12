@@ -10,7 +10,9 @@ import 'flight_inertia.dart';
 import 'floor.dart';
 import 'ground_reaction_force.dart';
 import 'header.dart';
+import 'initial_velocity.dart';
 import 'landing_phase.dart';
+import 'maximal_rotation_velocity.dart';
 import 'pre_jump_rotation.dart';
 import 'pushoff_phase.dart';
 import 'total_rotation.dart';
@@ -50,6 +52,8 @@ class _SkaterImageState extends State<SkaterImage> {
     final comSize = 0.011 * w;
     final rotationPosition =
         Offset(comFinal.dx - 0.1 * w, comFinal.dy - 0.1 * w);
+    final maximalRotationPosition =
+        Offset(comMid.dx - 0.07 * w, comFinal.dy - 0.15 * w);
 
     final initialRotationSliderPosition = Offset(0.17 * w, 0.15 * w + floor);
     final initialRotationSliderSize = 0.20 * w;
@@ -73,7 +77,6 @@ class _SkaterImageState extends State<SkaterImage> {
     final pushoffSliderWidth = 0.25 * w;
     final land = 0.95 * w;
 
-    final arrowsHeadSize = 0.023 * w;
     final arrowsBelow = -floor + 0.033 * w;
 
     return SizedBox(
@@ -92,6 +95,7 @@ class _SkaterImageState extends State<SkaterImage> {
               sliderHeight: grfSliderHeight,
               floor: floor,
             ),
+          if (isTranslation) InitialVelocity(position: comStart, norm: w * 0.1),
           if (isTranslation)
             CenterOfMass(
               comStart,
@@ -113,14 +117,11 @@ class _SkaterImageState extends State<SkaterImage> {
               pickerHeight: comSliderHeight,
             ),
           AirboneTrajectory(start: comStart, end: comFinal, height: jumpHeigh),
+          if (isRotation)
+            MaximalRotationVelocity(position: maximalRotationPosition),
           FlightApex(
-            apex: Offset(comMid.dx, comMid.dy - jumpHeigh),
-            floor: floor,
-          ),
-          TotalRotation(
-            position: rotationPosition,
-            fontSize: arrowsHeadSize,
-          ),
+              apex: Offset(comMid.dx, comMid.dy - jumpHeigh), floor: floor),
+          TotalRotation(position: rotationPosition),
           if (isRotation)
             FlightInertia(
               inertiaSliderPosition: minimumInertiaSliderPosition,

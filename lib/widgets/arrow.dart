@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'helpers.dart';
 
-class Arrows extends StatelessWidget {
-  const Arrows({
+class Arrow extends StatelessWidget {
+  const Arrow({
     required this.start,
     required this.end,
     required this.headSize,
@@ -18,7 +18,17 @@ class Arrows extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(painter: _ArrowsPainting(start, end, headSize, color));
+    final deviceSize = MediaQuery.of(context).size;
+    return SizedBox(
+      width: deviceSize.width,
+      height: deviceSize.height,
+      child: Stack(
+        alignment: Alignment.bottomLeft,
+        children: [
+          CustomPaint(painter: _ArrowsPainting(start, end, headSize, color))
+        ],
+      ),
+    );
   }
 }
 

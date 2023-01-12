@@ -25,6 +25,8 @@ class LocaleText with ChangeNotifier {
   String get landing => {'En': 'Landing', 'Fr': 'Atterrissage'}[language]!;
   String get flight => {'En': 'Flight', 'Fr': 'Vol'}[language]!;
   String get rotation => {'En': 'Rotation', 'Fr': 'Rotation'}[language]!;
+  String get maxRotationVelocity =>
+      {'En': 'Max. rot. vel', 'Fr': 'Vit. rot. max.'}[language]!;
   String get preRotation =>
       {'En': 'Prerotation', 'Fr': 'Prérotation'}[language]!;
   String get angularVelocity =>

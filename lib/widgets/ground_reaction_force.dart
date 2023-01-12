@@ -37,7 +37,7 @@ class GroundReactionForce extends StatelessWidget {
       child: Stack(
         alignment: Alignment.bottomLeft,
         children: [
-          Arrows(
+          Arrow(
             start: Offset(arrowHead.dx, -floor),
             end: arrowHead,
             headSize: theme.arrowHeadSize,
