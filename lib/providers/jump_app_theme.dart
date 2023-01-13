@@ -50,13 +50,23 @@ class JumpAppTheme with ChangeNotifier {
         fontSize: fontSize,
         color: colorAnswer,
       );
+  TextStyle get textStylePhase => TextStyle(
+        fontWeight: FontWeight.normal,
+        fontSize: fontSizePhaseName,
+      );
   TextStyle get textStyleHeader => TextStyle(
         fontWeight: FontWeight.normal,
         fontSize: fontSizeHeader,
         color: colorHeaderPrimary,
       );
-  TextStyle get textStylePhase => TextStyle(
+  TextStyle get textStyleDrawerTitle => TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
+        color: colorHeaderPrimary,
+      );
+  TextStyle get textStyleDrawerTile => TextStyle(
         fontWeight: FontWeight.normal,
-        fontSize: fontSizePhaseName,
+        fontSize: 14,
+        color: colorHeaderPrimary,
       );
 }

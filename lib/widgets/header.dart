@@ -24,11 +24,36 @@ class Header extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: const [
+            _Menu(),
             _ChoseLevel(),
             _ChoseType(),
             _Help(),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _Menu extends StatelessWidget {
+  const _Menu({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = JumpAppTheme.of(context);
+
+    return GestureDetector(
+      onTap: () => Scaffold.of(context).openDrawer(),
+      child: Column(
+        children: [
+          const Icon(Icons.menu),
+          Text(
+            'coucou',
+            style: theme.textStyleHeader,
+          )
+        ],
       ),
     );
   }

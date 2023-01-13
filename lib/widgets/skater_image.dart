@@ -18,11 +18,13 @@ import 'pushoff_phase.dart';
 import 'total_rotation.dart';
 
 class SkaterImage extends StatefulWidget {
-  const SkaterImage({
+  const SkaterImage(
+    this.backgroundPath, {
     Key? key,
     this.width,
   }) : super(key: key);
 
+  final String backgroundPath;
   final double? width;
 
   @override
@@ -87,8 +89,7 @@ class _SkaterImageState extends State<SkaterImage> {
         alignment: Alignment.bottomLeft,
         children: [
           const Header(),
-          BackgoundImage(
-              floor: floor, imagePath: 'assets/images/key_frames_axel.png'),
+          BackgoundImage(floor: floor, imagePath: widget.backgroundPath),
           if (isTranslation)
             GroundReactionForce(
               arrowHead: grfArrow,
