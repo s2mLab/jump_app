@@ -30,7 +30,7 @@ extension JumpDescriptionExtension on JumpDescription {
         return BiomechanicsBounds(
           minimal: const BiomechanicsValue(
             initialHeight: 1,
-            finalHeight: 0,
+            finalHeight: 1,
             initialInertia: 0,
             minimumInertia: 0,
             timeToMinimumInertia: 0,
@@ -41,8 +41,8 @@ extension JumpDescriptionExtension on JumpDescription {
             pushoffTime: 0,
           ),
           maximal: const BiomechanicsValue(
-            initialHeight: 2,
-            finalHeight: 0,
+            initialHeight: 1.5,
+            finalHeight: 1.5,
             initialInertia: 0,
             minimumInertia: 0,
             timeToMinimumInertia: 0,
@@ -53,8 +53,8 @@ extension JumpDescriptionExtension on JumpDescription {
             pushoffTime: 0,
           ),
           initial: const BiomechanicsValue(
-            initialHeight: 1.5,
-            finalHeight: 0,
+            initialHeight: 1.15,
+            finalHeight: 1.15,
             initialInertia: 0,
             minimumInertia: 0,
             timeToMinimumInertia: 0,
@@ -68,8 +68,8 @@ extension JumpDescriptionExtension on JumpDescription {
       case (JumpDescription.lutz):
         return BiomechanicsBounds(
           minimal: const BiomechanicsValue(
-            initialHeight: 10,
-            finalHeight: 0,
+            initialHeight: 1,
+            finalHeight: 1,
             initialInertia: 0,
             minimumInertia: 0,
             timeToMinimumInertia: 0,
@@ -80,8 +80,8 @@ extension JumpDescriptionExtension on JumpDescription {
             pushoffTime: 0,
           ),
           maximal: const BiomechanicsValue(
-            initialHeight: 11,
-            finalHeight: 0,
+            initialHeight: 1.5,
+            finalHeight: 1.5,
             initialInertia: 0,
             minimumInertia: 0,
             timeToMinimumInertia: 0,
@@ -92,8 +92,8 @@ extension JumpDescriptionExtension on JumpDescription {
             pushoffTime: 0,
           ),
           initial: const BiomechanicsValue(
-            initialHeight: 10.5,
-            finalHeight: 0,
+            initialHeight: 1.15,
+            finalHeight: 1.15,
             initialInertia: 0,
             minimumInertia: 0,
             timeToMinimumInertia: 0,

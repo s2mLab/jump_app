@@ -29,7 +29,7 @@ class AppParameters with ChangeNotifier {
   JumpDescription get jumpDescription => _jumpDescription;
   void setJumpDescription(BuildContext context, value) {
     _jumpDescription = value;
-    Biomechanics.of(context).resetValues(jumpDescription.bounds.initial);
+    Biomechanics.of(context).setValues(jumpDescription.bounds.initial);
     notifyListeners();
   }
 

@@ -93,7 +93,7 @@ class ValuePicker extends StatefulWidget {
 }
 
 class _ValuePickerState extends State<ValuePicker> {
-  late double _currentValue = widget.initial;
+  late double _currentValue;
 
   void _onChanged(value) {
     if (widget.onValueChanged != null) widget.onValueChanged!(value);
@@ -110,6 +110,7 @@ class _ValuePickerState extends State<ValuePicker> {
     }
 
     final deviceSize = MediaQuery.of(context).size;
+    _currentValue = widget.initial;
 
     late final List<Widget> children;
     switch (widget._direction) {

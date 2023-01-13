@@ -44,7 +44,7 @@ class ValuePickerRotation extends StatefulWidget {
 }
 
 class _ValuePickerRotationState extends State<ValuePickerRotation> {
-  late double _currentValue = widget.initial;
+  late double _currentValue;
 
   void _changeValue(valueChanging) {
     if (widget.onChange != null) widget.onChange!(valueChanging.value);
@@ -58,6 +58,7 @@ class _ValuePickerRotationState extends State<ValuePickerRotation> {
     final deviceSize = MediaQuery.of(context).size;
     final trackWidth = deviceSize.width * 0.01;
     final markerSize = deviceSize.width * 0.03;
+    _currentValue = widget.initial;
 
     return SizedBox(
       width: deviceSize.width,

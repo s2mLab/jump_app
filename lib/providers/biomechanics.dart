@@ -10,7 +10,7 @@ class Biomechanics with ChangeNotifier {
   static Biomechanics of(BuildContext context, {bool listen = false}) =>
       Provider.of<Biomechanics>(context, listen: listen);
 
-  void resetValues(BiomechanicsValue initialValues) {
+  void setValues(BiomechanicsValue initialValues, {notify = true}) {
     _initialHeight = initialValues.initialHeight;
     _finalHeight = initialValues.finalHeight;
     _initialInertia = initialValues.initialInertia;
@@ -21,7 +21,7 @@ class Biomechanics with ChangeNotifier {
     _initialAngularVelocity = initialValues.initialAngularVelocity;
     _groundReactionForce = initialValues.groundReactionForce;
     _pushoffTime = initialValues.pushoffTime;
-    notifyListeners();
+    if (notify) notifyListeners();
   }
 
   DetailLevel _level = DetailLevel.medium;
@@ -31,7 +31,7 @@ class Biomechanics with ChangeNotifier {
   double get g => -9.81;
   double get bodyWeight => bodyMass * g;
 
-  double _initialHeight = 1.15; // m
+  late double _initialHeight; // m
   double get initialHeight => _initialHeight;
   set initialHeigh(value) {
     _initialHeight = value;
