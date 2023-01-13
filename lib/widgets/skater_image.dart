@@ -10,10 +10,10 @@ import 'flight_inertia.dart';
 import 'floor.dart';
 import 'ground_reaction_force.dart';
 import 'header.dart';
-import 'initial_velocity.dart';
+import 'initial_state_translation.dart';
 import 'landing_phase.dart';
 import 'maximal_rotation_velocity.dart';
-import 'pre_jump_rotation.dart';
+import 'initial_state_rotation.dart';
 import 'pushoff_phase.dart';
 import 'total_rotation.dart';
 

@@ -38,7 +38,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  double _minimumInertia = 2.1; // kg.m^2
+  double _minimumInertia = 1; // kg.m^2
   double get minimumInertia => _minimumInertia;
   set minimumInertia(value) {
     _minimumInertia = value;
@@ -52,6 +52,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
+  //todo: add a slider at one point
   double _timeToFinalInertia = 0.200; // s
   double get timeToFinalInertia => _timeToFinalInertia;
   set timeToFinalInertia(value) {
@@ -59,7 +60,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  double _initialRotation = 100 * pi / 180; // rad
+  double _initialRotation = 90 * pi / 180; // rad
   double get initialRotation => _initialRotation;
   set initialRotation(value) {
     _initialRotation = value;
@@ -73,7 +74,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  double _groundReactionForce = 3000; // N
+  double _groundReactionForce = 1500; // N
   double get groundReactionForce => _groundReactionForce;
   set groundReactionForce(value) {
     _groundReactionForce = value;
@@ -91,7 +92,7 @@ class Biomechanics with ChangeNotifier {
 
   double get initialVerticalVelocity => impulse / bodyMass;
   double get angularMomentum => initialAngularVelocity * initialInertia;
-  double get maximumAngularVelocity => angularMomentum * minimumInertia;
+  double get maximumAngularVelocity => angularMomentum / minimumInertia;
 
   double get airborneRotation =>
       angularMomentum /

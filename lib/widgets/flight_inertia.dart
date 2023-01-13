@@ -44,8 +44,8 @@ class FlightInertia extends StatelessWidget {
       children: [
         if (appParameters.level != DetailLevel.easy)
           ValuePicker.diagonal(
-            title: Text(theme.texts.minimumInertia,
-                style: theme.textStyle
+            title: TextWithSubscript('I', 'min',
+                textStyle: theme.textStyle
                     .copyWith(color: theme.colorParametersInertia)),
             textOffset:
                 Offset(deviceSize.width * 0.02, deviceSize.width * 0.015),

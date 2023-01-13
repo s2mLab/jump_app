@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '/providers/app_parameters.dart';
 import '/providers/biomechanics.dart';
 import '/providers/jump_app_theme.dart';
+import 'text_with_subscript.dart';
 
 class MaximalRotationVelocity extends StatelessWidget {
   const MaximalRotationVelocity({Key? key, required this.position})
@@ -27,9 +28,15 @@ class MaximalRotationVelocity extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
               padding: const EdgeInsets.all(2),
-              child: Text(
-                '${theme.texts.maxRotationVelocity} = ${(biomechanics.finalRotation * 180 / pi).toStringAsFixed(0)}°/s',
-                style: theme.textStyleAnswer,
+              child: Row(
+                children: [
+                  TextWithSubscript('\u{03C9}', 'max',
+                      textStyle: theme.textStyleAnswer),
+                  Text(
+                    ' = ${(biomechanics.maximumAngularVelocity * 180 / pi).toStringAsFixed(0)}°/s',
+                    style: theme.textStyleAnswer,
+                  ),
+                ],
               ),
             ),
           );

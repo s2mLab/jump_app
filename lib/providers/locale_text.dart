@@ -24,24 +24,15 @@ class LocaleText with ChangeNotifier {
       {'En': 'Aerial phase', 'Fr': 'Phase aérienne'}[language]!;
   String get landing => {'En': 'Landing', 'Fr': 'Atterrissage'}[language]!;
   String get flight => {'En': 'Flight', 'Fr': 'Vol'}[language]!;
-  String get rotation => {'En': 'Rotation', 'Fr': 'Rotation'}[language]!;
-  String get maxRotationVelocity =>
-      {'En': 'Max. rot. vel', 'Fr': 'Vit. rot. max.'}[language]!;
-  String get preRotation =>
-      {'En': 'Prerotation', 'Fr': 'Prérotation'}[language]!;
-  String get angularVelocity =>
-      {'En': 'Ang. vel.', 'Fr': 'Vit. ang.'}[language]!;
   String get inertia => {'En': 'Inertia', 'Fr': 'Inertie'}[language]!;
-  String get minimumInertia =>
-      {'En': 'Min. inertia', 'Fr': 'Inertie min.'}[language]!;
 
   String get aerialPhaseTooltip => {
         'En': 'Duration of the aerial phase',
         'Fr': 'Durée de la phase aérienne',
       }[language]!;
   String get angularVelocityTooltip => {
-        'En': 'Initial angular velocity',
-        'Fr': 'Vitesse de rotation initial',
+        'En': 'Angular velocity at takeoff',
+        'Fr': 'Vitesse de rotation au décollage',
       }[language]!;
   String get computedAerialPhaseTooltip => {
         'En': 'Computed duration of the aerial phase',
@@ -60,12 +51,12 @@ class LocaleText with ChangeNotifier {
         'Fr': 'Force maximale exercée lors de la phase de propulsion',
       }[language]!;
   String get inertiaTooltip => {
-        'En': 'Initial moment of inertia',
-        'Fr': 'Moment d\'inertie initial',
+        'En': 'Moment of inertia at takeoff',
+        'Fr': 'Moment d\'inertie au décollage',
       }[language]!;
   String get initialRotationTooltip => {
-        'En': 'Initial body rotation',
-        'Fr': 'Rotation initial du corps',
+        'En': 'Body rotation achieved during propulsion on the ice ',
+        'Fr': 'Rotation du corps réalisée pendant la propulsion sur la glace',
       }[language]!;
   String get h0Tooltip => {
         'En': 'Height of the center of mass when flight phase starts',

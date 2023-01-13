@@ -36,7 +36,7 @@ class InitialVelocity extends StatelessWidget {
                 children: [
                   TextWithSubscript('V', '0', textStyle: theme.textStyleAnswer),
                   Text(
-                    ' = ${biomechanics.apex.toStringAsFixed(2)} m/s',
+                    ' = ${biomechanics.initialVerticalVelocity.toStringAsFixed(2)} m/s',
                     style: theme.textStyleAnswer,
                   ),
                 ],

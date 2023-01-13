@@ -8,6 +8,7 @@ import '/providers/jump_app_theme.dart';
 import 'text_with_superscript.dart';
 import 'value_picker.dart';
 import 'value_picker_rotation.dart';
+import 'text_with_subscript.dart';
 
 class PreJumpRotation extends StatelessWidget {
   const PreJumpRotation({
@@ -52,8 +53,8 @@ class PreJumpRotation extends StatelessWidget {
       alignment: Alignment.bottomLeft,
       children: [
         ValuePicker.diagonal(
-          title: Text(theme.texts.inertia,
-              style: theme.textStyle
+          title: TextWithSubscript('I', '0',
+              textStyle: theme.textStyle
                   .copyWith(color: theme.colorParametersPreJump)),
           unit: TextWithSuperscript(
             'kgm',
@@ -73,8 +74,8 @@ class PreJumpRotation extends StatelessWidget {
           tooltip: theme.texts.inertiaTooltip,
         ),
         ValuePickerRotation(
-          title: Text(theme.texts.angularVelocity,
-              style: theme.textStyle
+          title: TextWithSubscript('\u{03C9}', '0',
+              textStyle: theme.textStyleAnswer
                   .copyWith(color: theme.colorParametersPreJump)),
           units: Text('°/s',
               style: theme.textStyle
@@ -93,8 +94,8 @@ class PreJumpRotation extends StatelessWidget {
         ),
         if (appParameters.level != DetailLevel.easy)
           ValuePickerRotation(
-            title: Text(theme.texts.preRotation,
-                style: theme.textStyle
+            title: TextWithSubscript('\u{03B8}', '0',
+                textStyle: theme.textStyle
                     .copyWith(color: theme.colorParametersPreJump)),
             units: Text('°',
                 style: theme.textStyle
