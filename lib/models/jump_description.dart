@@ -39,7 +39,7 @@ extension JumpDescriptionExtension on JumpDescription {
             timeToFinalInertia: 100 / 1000,
             initialRotation: 0,
             initialAngularVelocity: 100 * pi / 180,
-            groundReactionForce: 0,
+            groundReactionForce: 1000,
             pushoffTime: 0,
           ),
           maximal: const BiomechanicsValue(
@@ -51,7 +51,7 @@ extension JumpDescriptionExtension on JumpDescription {
             timeToFinalInertia: 300 / 1000,
             initialRotation: 0,
             initialAngularVelocity: 1000 * pi / 180,
-            groundReactionForce: 0,
+            groundReactionForce: 5000,
             pushoffTime: 0,
           ),
           initial: const BiomechanicsValue(
@@ -63,7 +63,7 @@ extension JumpDescriptionExtension on JumpDescription {
             timeToFinalInertia: 200 / 1000,
             initialRotation: 0,
             initialAngularVelocity: 500 * pi / 180,
-            groundReactionForce: 0,
+            groundReactionForce: 1500,
             pushoffTime: 0,
           ),
         );
@@ -78,7 +78,7 @@ extension JumpDescriptionExtension on JumpDescription {
             timeToFinalInertia: 100 / 1000,
             initialRotation: 0,
             initialAngularVelocity: 100 * pi / 180,
-            groundReactionForce: 0,
+            groundReactionForce: 1000,
             pushoffTime: 0,
           ),
           maximal: const BiomechanicsValue(
@@ -90,7 +90,7 @@ extension JumpDescriptionExtension on JumpDescription {
             timeToFinalInertia: 300 / 1000,
             initialRotation: 0,
             initialAngularVelocity: 1000 * pi / 180,
-            groundReactionForce: 0,
+            groundReactionForce: 5000,
             pushoffTime: 0,
           ),
           initial: const BiomechanicsValue(
@@ -102,7 +102,7 @@ extension JumpDescriptionExtension on JumpDescription {
             timeToFinalInertia: 200 / 1000,
             initialRotation: 0,
             initialAngularVelocity: 500 * pi / 180,
-            groundReactionForce: 0,
+            groundReactionForce: 1500,
             pushoffTime: 0,
           ),
         );

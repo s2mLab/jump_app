@@ -89,7 +89,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  double _groundReactionForce = 1500; // N
+  late double _groundReactionForce; // N
   double get groundReactionForce => _groundReactionForce;
   set groundReactionForce(value) {
     _groundReactionForce = value;

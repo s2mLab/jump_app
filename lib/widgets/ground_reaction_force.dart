@@ -27,7 +27,7 @@ class GroundReactionForce extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final biomechanics = Biomechanics.of(context);
+    final biomechanics = Biomechanics.of(context, listen: true);
     final app = AppParameters.of(context);
     final deviceSize = MediaQuery.of(context).size;
 
@@ -44,8 +44,8 @@ class GroundReactionForce extends StatelessWidget {
             color: app.theme.colorParametersGroundReactionForce,
           ),
           ValuePicker.vertical(
-            min: 1000,
-            max: 5000,
+            min: app.jumpDescription.bounds.minimal.groundReactionForce,
+            max: app.jumpDescription.bounds.maximal.groundReactionForce,
             value: biomechanics.groundReactionForce,
             position: sliderPosition,
             height: sliderHeight,
