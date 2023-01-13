@@ -45,7 +45,7 @@ class PreJumpRotation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final app = AppParameters.of(context);
-    final biomechanics = Biomechanics.of(context);
+    final biomechanics = Biomechanics.of(context, listen: true);
 
     return Stack(
       alignment: Alignment.bottomLeft,
@@ -63,8 +63,8 @@ class PreJumpRotation extends StatelessWidget {
           color: app.theme.colorParametersPreJump,
           width: inertiaSliderSize,
           value: biomechanics.initialInertia,
-          min: 1,
-          max: 4,
+          min: app.jumpDescription.bounds.minimal.initialInertia,
+          max: app.jumpDescription.bounds.maximal.initialInertia,
           position: inertiaSliderPosition,
           precision: 1,
           textStyle: app.theme.textStyle,

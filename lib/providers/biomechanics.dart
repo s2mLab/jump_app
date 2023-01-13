@@ -46,7 +46,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  double _initialInertia = 2.1; // kg.m^2
+  late double _initialInertia; // kg.m^2
   double get initialInertia => _initialInertia;
   set initialInertia(value) {
     _initialInertia = value;

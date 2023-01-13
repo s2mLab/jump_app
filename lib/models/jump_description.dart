@@ -31,7 +31,7 @@ extension JumpDescriptionExtension on JumpDescription {
           minimal: const BiomechanicsValue(
             initialHeight: 1,
             finalHeight: 1,
-            initialInertia: 0,
+            initialInertia: 1,
             minimumInertia: 1,
             timeToMinimumInertia: 0,
             timeToFinalInertia: 0,
@@ -43,7 +43,7 @@ extension JumpDescriptionExtension on JumpDescription {
           maximal: const BiomechanicsValue(
             initialHeight: 1.5,
             finalHeight: 1.5,
-            initialInertia: 0,
+            initialInertia: 4,
             minimumInertia: 4,
             timeToMinimumInertia: 0,
             timeToFinalInertia: 0,
@@ -55,7 +55,7 @@ extension JumpDescriptionExtension on JumpDescription {
           initial: const BiomechanicsValue(
             initialHeight: 1.15,
             finalHeight: 1.15,
-            initialInertia: 0,
+            initialInertia: 2.1,
             minimumInertia: 1,
             timeToMinimumInertia: 0,
             timeToFinalInertia: 0,
@@ -70,7 +70,7 @@ extension JumpDescriptionExtension on JumpDescription {
           minimal: const BiomechanicsValue(
             initialHeight: 1,
             finalHeight: 1,
-            initialInertia: 0,
+            initialInertia: 1,
             minimumInertia: 1,
             timeToMinimumInertia: 0,
             timeToFinalInertia: 0,
@@ -82,7 +82,7 @@ extension JumpDescriptionExtension on JumpDescription {
           maximal: const BiomechanicsValue(
             initialHeight: 1.5,
             finalHeight: 1.5,
-            initialInertia: 0,
+            initialInertia: 4,
             minimumInertia: 4,
             timeToMinimumInertia: 0,
             timeToFinalInertia: 0,
@@ -94,7 +94,7 @@ extension JumpDescriptionExtension on JumpDescription {
           initial: const BiomechanicsValue(
             initialHeight: 1.15,
             finalHeight: 1.15,
-            initialInertia: 0,
+            initialInertia: 2.1,
             minimumInertia: 1,
             timeToMinimumInertia: 0,
             timeToFinalInertia: 0,
