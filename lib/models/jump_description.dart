@@ -40,7 +40,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialRotation: 0,
             initialAngularVelocity: 100 * pi / 180,
             groundReactionForce: 1000,
-            pushoffTime: 0,
+            pushoffTime: 150 / 1000,
           ),
           maximal: const BiomechanicsValue(
             initialHeight: 1.5,
@@ -52,7 +52,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialRotation: 0,
             initialAngularVelocity: 1000 * pi / 180,
             groundReactionForce: 5000,
-            pushoffTime: 0,
+            pushoffTime: 450 / 1000,
           ),
           initial: const BiomechanicsValue(
             initialHeight: 1.15,
@@ -64,7 +64,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialRotation: 0,
             initialAngularVelocity: 500 * pi / 180,
             groundReactionForce: 1500,
-            pushoffTime: 0,
+            pushoffTime: 300 / 1000,
           ),
         );
       case (JumpDescription.lutz):
@@ -79,7 +79,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialRotation: 0,
             initialAngularVelocity: 100 * pi / 180,
             groundReactionForce: 1000,
-            pushoffTime: 0,
+            pushoffTime: 150 / 1000,
           ),
           maximal: const BiomechanicsValue(
             initialHeight: 1.5,
@@ -91,7 +91,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialRotation: 0,
             initialAngularVelocity: 1000 * pi / 180,
             groundReactionForce: 5000,
-            pushoffTime: 0,
+            pushoffTime: 450 / 1000,
           ),
           initial: const BiomechanicsValue(
             initialHeight: 1.15,
@@ -103,7 +103,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialRotation: 0,
             initialAngularVelocity: 500 * pi / 180,
             groundReactionForce: 1500,
-            pushoffTime: 0,
+            pushoffTime: 300 / 1000,
           ),
         );
     }

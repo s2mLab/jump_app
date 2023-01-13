@@ -26,12 +26,12 @@ class PushoffSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final app = AppParameters.of(context);
-    final biomechanics = Biomechanics.of(context);
+    final biomechanics = Biomechanics.of(context, listen: true);
     final deviceSize = MediaQuery.of(context).size;
 
     return ValuePicker.horizontal(
-      min: 150,
-      max: 450,
+      min: app.jumpDescription.bounds.minimal.pushoffTime * 1000,
+      max: app.jumpDescription.bounds.maximal.pushoffTime * 1000,
       value: biomechanics.pushoffTime * 1000,
       position: position,
       width: width,

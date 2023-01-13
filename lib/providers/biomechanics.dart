@@ -96,7 +96,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  double _pushoffTime = 0.3; // s
+  late double _pushoffTime; // s
   double get pushoffTime => _pushoffTime;
   set pushoffTime(value) {
     _pushoffTime = value;
