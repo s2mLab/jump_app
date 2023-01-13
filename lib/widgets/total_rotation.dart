@@ -27,15 +27,18 @@ class TotalRotation extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
               padding: const EdgeInsets.all(2),
-              child: Row(
-                children: [
-                  TextWithSubscript('\u{03B8}', 'F',
-                      textStyle: theme.textStyleAnswer),
-                  Text(
-                    ' = ${(biomechanics.finalRotation * 180 / pi).toStringAsFixed(0)}°',
-                    style: theme.textStyleAnswer,
-                  ),
-                ],
+              child: Tooltip(
+                message: theme.texts.computedFinalRotation,
+                child: Row(
+                  children: [
+                    TextWithSubscript('\u{03B8}', 'F',
+                        textStyle: theme.textStyleAnswer),
+                    Text(
+                      ' = ${(biomechanics.finalRotation * 180 / pi).toStringAsFixed(0)}°',
+                      style: theme.textStyleAnswer,
+                    ),
+                  ],
+                ),
               ),
             ),
           );
