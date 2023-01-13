@@ -52,7 +52,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  //todo: add a slider at one point
+  // TODO: add a slider at one point
   double _timeToFinalInertia = 0.200; // s
   double get timeToFinalInertia => _timeToFinalInertia;
   set timeToFinalInertia(value) {

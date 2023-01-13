@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '/providers/biomechanics.dart';
 import '/providers/jump_app_theme.dart';
+import 'mixed_tooptip.dart';
 import 'text_with_subscript.dart';
 import 'value_picker.dart';
 
@@ -106,7 +107,7 @@ class CenterOfMass extends StatelessWidget {
                 decoration:
                     BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
                 padding: const EdgeInsets.all(2),
-                child: Tooltip(
+                child: MixedTooltip(
                   message: tooltip,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,

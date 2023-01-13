@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
+import 'mixed_tooptip.dart';
+
 class ValuePickerRotation extends StatefulWidget {
   const ValuePickerRotation({
     super.key,
@@ -17,11 +19,15 @@ class ValuePickerRotation extends StatefulWidget {
     required this.color,
     this.onChange,
     this.tooltip,
+    this.helpTitle,
+    this.helpText,
   });
 
   final Widget? title;
   final Widget? units;
   final String? tooltip;
+  final String? helpTitle;
+  final String? helpText;
   final int precision;
   final Color color;
   final double min;
@@ -65,8 +71,10 @@ class _ValuePickerRotationState extends State<ValuePickerRotation> {
                 deviceSize.width * 0.04 -
                 widget.textOffset.dx,
             bottom: widget.position.dy + widget.size / 3 + widget.textOffset.dy,
-            child: Tooltip(
+            child: MixedTooltip(
               message: widget.tooltip ?? '',
+              helpTitle: widget.helpTitle,
+              helpText: widget.helpText,
               child: Row(
                 children: [
                   if (widget.title != null) widget.title!,

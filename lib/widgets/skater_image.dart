@@ -10,7 +10,7 @@ import 'flight_inertia.dart';
 import 'floor.dart';
 import 'ground_reaction_force.dart';
 import 'header.dart';
-import 'initial_state_translation.dart';
+import 'initial_velocity.dart';
 import 'landing_phase.dart';
 import 'maximal_rotation_velocity.dart';
 import 'initial_state_rotation.dart';
@@ -59,6 +59,7 @@ class _SkaterImageState extends State<SkaterImage> {
     final initialRotationSliderSize = 0.20 * w;
     final initialVelocitySliderPosition = Offset(0.17 * w, 0.2 * w + floor);
     final initialVelocitySliderSize = 0.20 * w;
+    final initialVelocityPosition = Offset(0.265 * w, -floor - 0.100 * w);
     final inertiaSliderPosition = Offset(0.3 * w, 0.30 * w + floor);
     final inertiaSliderSize = 0.10 * w;
 
@@ -95,7 +96,8 @@ class _SkaterImageState extends State<SkaterImage> {
               sliderHeight: grfSliderHeight,
               floor: floor,
             ),
-          if (isTranslation) InitialVelocity(position: comStart, norm: w * 0.1),
+          if (isTranslation)
+            InitialVelocity(position: initialVelocityPosition, norm: w * 0.1),
           if (isTranslation)
             CenterOfMass(
               comStart,

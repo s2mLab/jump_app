@@ -16,3 +16,15 @@ Path arrowHeadPath(Offset p1, Offset p2, double headSize) {
   path.close();
   return path;
 }
+
+void showHelp(BuildContext context, {String? title, String? content}) async {
+  await showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: title != null ? Text(title) : null,
+        content: content != null ? Text(content) : null,
+      );
+    },
+  );
+}

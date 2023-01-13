@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 
 import '/providers/biomechanics.dart';
 import '/providers/jump_app_theme.dart';
-import 'double_heads_arrow.dart';
+import 'arrow.dart';
 import 'mixed_tooptip.dart';
 import 'text_with_subscript.dart';
 
-class FlightApex extends StatelessWidget {
-  const FlightApex({
+class InitialVelocity extends StatelessWidget {
+  const InitialVelocity({
     super.key,
-    required this.apex,
-    required this.floor,
+    required this.position,
+    required this.norm,
   });
 
-  final Offset apex;
-  final double floor;
+  final Offset position;
+  final double norm;
 
   @override
   Widget build(BuildContext context) {
@@ -32,22 +32,22 @@ class FlightApex extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             children: [
               Positioned(
-                left: apex.dx + deviceSize.width * 0.01,
-                bottom: -apex.dy - deviceSize.width * 0.06,
+                right: deviceSize.width - position.dx + deviceSize.width * 0.02,
+                bottom: -position.dy + deviceSize.width * 0.06,
                 child: Container(
                   decoration:
                       BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
                   padding: const EdgeInsets.all(2),
                   child: MixedTooltip(
-                    message: theme.texts.computedMaximalHeight,
-                    helpTitle: theme.texts.computedMaximalHeightHelpTitle,
-                    helpText: theme.texts.computedMaximalHeightHelp,
+                    message: theme.texts.computedInitialVelocity,
+                    helpTitle: theme.texts.computedInitialVelocityHelpTitle,
+                    helpText: theme.texts.computedInitialVelocityHelp,
                     child: Row(
                       children: [
-                        TextWithSubscript('H', 'max',
+                        TextWithSubscript('V', '0',
                             textStyle: theme.textStyleAnswer),
                         Text(
-                          ' = ${biomechanics.apex.toStringAsFixed(2)} m',
+                          ' = ${biomechanics.initialVerticalVelocity.toStringAsFixed(2)} m/s',
                           style: theme.textStyleAnswer,
                         ),
                       ],
@@ -58,9 +58,9 @@ class FlightApex extends StatelessWidget {
             ],
           ),
         ),
-        DoubleHeadsArrow(
-          start: Offset(apex.dx, -floor),
-          end: apex,
+        Arrow(
+          start: Offset(position.dx, position.dy),
+          end: Offset(position.dx, position.dy - norm),
           headSize: theme.arrowHeadSize,
           color: theme.colorAnswer,
         ),

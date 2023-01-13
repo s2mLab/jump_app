@@ -2,6 +2,8 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:flutter/material.dart';
 
+import 'mixed_tooptip.dart';
+
 enum _Direction { horizontal, vertical, diagonal }
 
 class ValuePicker extends StatefulWidget {
@@ -21,6 +23,8 @@ class ValuePicker extends StatefulWidget {
     this.color = Colors.black,
     this.onValueChanged,
     this.tooltip,
+    this.helpTitle,
+    this.helpText,
   }) : _direction = _Direction.horizontal;
 
   const ValuePicker.vertical({
@@ -39,6 +43,8 @@ class ValuePicker extends StatefulWidget {
     this.color = Colors.black,
     this.onValueChanged,
     this.tooltip,
+    this.helpTitle,
+    this.helpText,
   }) : _direction = _Direction.vertical;
 
   const ValuePicker.diagonal({
@@ -57,6 +63,8 @@ class ValuePicker extends StatefulWidget {
     this.color = Colors.black,
     this.onValueChanged,
     this.tooltip,
+    this.helpTitle,
+    this.helpText,
   }) : _direction = _Direction.diagonal;
 
   final _Direction _direction;
@@ -75,6 +83,8 @@ class ValuePicker extends StatefulWidget {
   final Widget? unit;
   final Widget? title;
   final String? tooltip;
+  final String? helpTitle;
+  final String? helpText;
 
   final Function(double)? onValueChanged;
 
@@ -238,8 +248,10 @@ class _ValuePickerState extends State<ValuePicker> {
   }
 
   Widget _buildText() {
-    return Tooltip(
+    return MixedTooltip(
       message: widget.tooltip ?? '',
+      helpTitle: widget.helpTitle,
+      helpText: widget.helpText,
       child: Row(
         children: [
           if (widget.title != null) widget.title!,

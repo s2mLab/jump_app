@@ -6,6 +6,7 @@ import '/providers/app_parameters.dart';
 import '/providers/biomechanics.dart';
 import '/providers/jump_app_theme.dart';
 import 'text_with_subscript.dart';
+import 'mixed_tooptip.dart';
 
 class TotalRotation extends StatelessWidget {
   const TotalRotation({Key? key, required this.position}) : super(key: key);
@@ -27,8 +28,10 @@ class TotalRotation extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
               padding: const EdgeInsets.all(2),
-              child: Tooltip(
+              child: MixedTooltip(
                 message: theme.texts.computedFinalRotation,
+                helpTitle: theme.texts.computedFinalRotationHelpTitle,
+                helpText: theme.texts.computedFinaleRotationHelp,
                 child: Row(
                   children: [
                     TextWithSubscript('\u{03B8}', 'F',

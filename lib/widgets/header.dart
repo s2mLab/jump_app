@@ -4,6 +4,7 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '/providers/app_parameters.dart';
 import '/providers/jump_app_theme.dart';
+import 'helpers.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
@@ -119,20 +120,6 @@ class _ChoseType extends StatelessWidget {
 class _Help extends StatelessWidget {
   const _Help();
 
-  void _showHelp(BuildContext context) async {
-    final theme = JumpAppTheme.of(context, listen: false);
-
-    await showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(theme.texts.helpTitle),
-          content: Text(theme.texts.help),
-        );
-      },
-    );
-  }
-
   void _swapLanguage(BuildContext context) {
     final theme = JumpAppTheme.of(context, listen: false);
     theme.texts.language = theme.texts.language == 'Fr' ? 'En' : 'Fr';
@@ -157,7 +144,8 @@ class _Help extends StatelessWidget {
               size: 3 / 4 * theme.iconSizeHeader,
             ),
           ),
-          onPressed: () => _showHelp(context),
+          onPressed: () => showHelp(context,
+              title: theme.texts.helpTitle, content: theme.texts.help),
         ),
         SizedBox(
           width: 3 * theme.fontSizeLanguageSelection,

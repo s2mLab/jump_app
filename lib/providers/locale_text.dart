@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+String get _tab => '\t\t\t\t';
+
 class LocaleText with ChangeNotifier {
   LocaleText({required language}) : _language = language;
 
@@ -26,10 +28,6 @@ class LocaleText with ChangeNotifier {
   String get flight => {'En': 'Flight', 'Fr': 'Vol'}[language]!;
   String get inertia => {'En': 'Inertia', 'Fr': 'Inertie'}[language]!;
 
-  String get aerialPhaseTooltip => {
-        'En': 'Duration of the aerial phase',
-        'Fr': 'Durée de la phase aérienne',
-      }[language]!;
   String get angularVelocityTooltip => {
         'En': 'Angular velocity at takeoff',
         'Fr': 'Vitesse de rotation au décollage',
@@ -42,9 +40,17 @@ class LocaleText with ChangeNotifier {
         'En': 'Computed rotation at landing in degrees',
         'Fr': 'Rotation calculée à l\'atterissage',
       }[language]!;
+  String get computedInitialVelocity => {
+        'En': 'Computed initial velocity',
+        'Fr': 'Vitesse d\'éjection calculée',
+      }[language]!;
   String get computedMaximalHeight => {
         'En': 'Computed maximal height (apex) of the jump',
         'Fr': 'Hauteur maximale (apex) calculée du saut',
+      }[language]!;
+  String get flightTimeTooltip => {
+        'En': 'Duration of the aerial phase',
+        'Fr': 'Durée de la phase aérienne',
       }[language]!;
   String get fmaxTooltip => {
         'En': 'Maximal force exerted during the pushoff phase',
@@ -81,6 +87,47 @@ class LocaleText with ChangeNotifier {
   String get timeToMinimumInertiaTooltip => {
         'En': 'Time to get to minimum moment of inertia',
         'Fr': 'Temps pour atteindre le moment d\'inertie minimum',
+      }[language]!;
+
+  String get flightTimeHelpTitle => {
+        'En': 'Improve aerial phase',
+        'Fr': 'Améliorer la phase aérienne',
+      }[language]!;
+  String get flightTimePhaseHelp => {
+        'En': 'To improve the aerial phase duration time, you can:\n'
+            '$_tab- Increase ...',
+        'Fr': 'Pour augmener la durée de la phase aérienne, vous pouvez :\n'
+            '$_tab- Augmenter ...',
+      }[language]!;
+  String get computedFinalRotationHelpTitle => {
+        'En': 'Impove total rotation',
+        'Fr': 'Améliorer la rotation totale',
+      }[language]!;
+  String get computedFinaleRotationHelp => {
+        'En': 'To improve the total rotation of the jump, you can:\n'
+            '$_tab- Increase ...',
+        'Fr': 'Pour augmenter la rotation totale du saut, vous pouvez :\n'
+            '$_tab- Augmenter ...',
+      }[language]!;
+  String get computedInitialVelocityHelpTitle => {
+        'En': 'Impove initial velocity',
+        'Fr': 'Améliorer la vitesse d\'éjection',
+      }[language]!;
+  String get computedInitialVelocityHelp => {
+        'En': 'To improve the initial velocity, you can:\n'
+            '$_tab- Increase ...',
+        'Fr': 'Pour augmenter la vitesse d\'éjection, vous pouvez :\n'
+            '$_tab- Augmenter ...',
+      }[language]!;
+  String get computedMaximalHeightHelpTitle => {
+        'En': 'Impove maximal height',
+        'Fr': 'Améliorer la hauteur du saut',
+      }[language]!;
+  String get computedMaximalHeightHelp => {
+        'En': 'To improve the maximal jump height, you can:\n'
+            '$_tab- Increase ...',
+        'Fr': 'Pour augmenter la hauteur maximale du saut, vous pouvez :\n'
+            '$_tab- Augmenter ...',
       }[language]!;
 
   String get easy => {

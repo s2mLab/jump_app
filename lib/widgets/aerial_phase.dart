@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '/providers/biomechanics.dart';
 import '/providers/jump_app_theme.dart';
 import 'double_heads_arrow.dart';
+import 'mixed_tooptip.dart';
 import 'text_with_subscript.dart';
 
 class AerialPhase extends StatelessWidget {
@@ -33,8 +34,10 @@ class AerialPhase extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
             padding: const EdgeInsets.all(2),
-            child: Tooltip(
+            child: MixedTooltip(
               message: theme.texts.computedAerialPhaseTooltip,
+              helpTitle: theme.texts.flightTimeHelpTitle,
+              helpText: theme.texts.flightTimePhaseHelp,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
