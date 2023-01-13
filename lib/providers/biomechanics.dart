@@ -82,7 +82,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  double _initialAngularVelocity = 500 * pi / 180; // rad/s
+  late double _initialAngularVelocity; // rad/s
   double get initialAngularVelocity => _initialAngularVelocity;
   set initialAngularVelocity(value) {
     _initialAngularVelocity = value;

@@ -3,7 +3,7 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 import 'mixed_tooptip.dart';
 
-class ValuePickerRotation extends StatefulWidget {
+class ValuePickerRotation extends StatelessWidget {
   const ValuePickerRotation({
     super.key,
     required this.title,
@@ -15,7 +15,7 @@ class ValuePickerRotation extends StatefulWidget {
     required this.textStyle,
     required this.min,
     required this.max,
-    required this.initial,
+    required this.value,
     required this.color,
     this.onChange,
     this.tooltip,
@@ -32,25 +32,15 @@ class ValuePickerRotation extends StatefulWidget {
   final Color color;
   final double min;
   final double max;
-  final double initial;
+  final double value;
   final Offset position;
   final double size;
   final Offset textOffset;
   final TextStyle textStyle;
   final Function(double)? onChange;
 
-  @override
-  State<ValuePickerRotation> createState() => _ValuePickerRotationState();
-}
-
-class _ValuePickerRotationState extends State<ValuePickerRotation> {
-  late double _currentValue;
-
   void _changeValue(valueChanging) {
-    if (widget.onChange != null) widget.onChange!(valueChanging.value);
-
-    _currentValue = valueChanging.value;
-    setState(() {});
+    if (onChange != null) onChange!(valueChanging.value);
   }
 
   @override
@@ -58,7 +48,6 @@ class _ValuePickerRotationState extends State<ValuePickerRotation> {
     final deviceSize = MediaQuery.of(context).size;
     final trackWidth = deviceSize.width * 0.01;
     final markerSize = deviceSize.width * 0.03;
-    _currentValue = widget.initial;
 
     return SizedBox(
       width: deviceSize.width,
@@ -68,34 +57,34 @@ class _ValuePickerRotationState extends State<ValuePickerRotation> {
         children: [
           Positioned(
             right: deviceSize.width -
-                widget.position.dx -
+                position.dx -
                 deviceSize.width * 0.04 -
-                widget.textOffset.dx,
-            bottom: widget.position.dy + widget.size / 3 + widget.textOffset.dy,
+                textOffset.dx,
+            bottom: position.dy + size / 3 + textOffset.dy,
             child: MixedTooltip(
-              message: widget.tooltip ?? '',
-              helpTitle: widget.helpTitle,
-              helpText: widget.helpText,
+              message: tooltip ?? '',
+              helpTitle: helpTitle,
+              helpText: helpText,
               child: Row(
                 children: [
-                  if (widget.title != null) widget.title!,
+                  if (title != null) title!,
                   Text(
-                    '${widget.title != null ? ' = ' : ''}'
-                    '${_currentValue.toStringAsFixed(widget.precision)}',
+                    '${title != null ? ' = ' : ''}'
+                    '${value.toStringAsFixed(precision)}',
                     textAlign: TextAlign.right,
-                    style: widget.textStyle,
+                    style: textStyle,
                   ),
-                  if (widget.units != null) widget.units!,
+                  if (units != null) units!,
                 ],
               ),
             ),
           ),
           Positioned(
-            left: widget.position.dx,
-            bottom: widget.position.dy,
+            left: position.dx,
+            bottom: position.dy,
             child: SizedBox(
-              width: widget.size,
-              height: widget.size / 2,
+              width: size,
+              height: size / 2,
               child: SfRadialGauge(
                 axes: [
                   RadialAxis(
@@ -105,18 +94,17 @@ class _ValuePickerRotationState extends State<ValuePickerRotation> {
                     showTicks: false,
                     radiusFactor: 1,
                     axisLineStyle: AxisLineStyle(
-                        thickness: trackWidth,
-                        color: widget.color.withAlpha(50)),
-                    minimum: widget.min,
-                    maximum: widget.max,
+                        thickness: trackWidth, color: color.withAlpha(50)),
+                    minimum: min,
+                    maximum: max,
                     onAxisTapped: _changeValue,
                     pointers: [
                       MarkerPointer(
                         markerHeight: markerSize,
                         markerWidth: markerSize,
-                        color: widget.color,
+                        color: color,
                         markerType: MarkerType.circle,
-                        value: _currentValue,
+                        value: value,
                         onValueChanging: _changeValue,
                         enableDragging: true,
                       )
@@ -124,8 +112,8 @@ class _ValuePickerRotationState extends State<ValuePickerRotation> {
                     ranges: [
                       GaugeRange(
                         startValue: 0,
-                        endValue: _currentValue,
-                        color: widget.color,
+                        endValue: value,
+                        color: color,
                         startWidth: trackWidth,
                         endWidth: trackWidth,
                       ),

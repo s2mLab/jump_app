@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import '/models/biomechanics_bounds.dart';
 
 enum JumpDescription {
@@ -36,7 +38,7 @@ extension JumpDescriptionExtension on JumpDescription {
             timeToMinimumInertia: 0,
             timeToFinalInertia: 0,
             initialRotation: 0,
-            initialAngularVelocity: 0,
+            initialAngularVelocity: 100 * pi / 180,
             groundReactionForce: 0,
             pushoffTime: 0,
           ),
@@ -48,7 +50,7 @@ extension JumpDescriptionExtension on JumpDescription {
             timeToMinimumInertia: 0,
             timeToFinalInertia: 0,
             initialRotation: 0,
-            initialAngularVelocity: 0,
+            initialAngularVelocity: 1000 * pi / 180,
             groundReactionForce: 0,
             pushoffTime: 0,
           ),
@@ -60,7 +62,7 @@ extension JumpDescriptionExtension on JumpDescription {
             timeToMinimumInertia: 0,
             timeToFinalInertia: 0,
             initialRotation: 0,
-            initialAngularVelocity: 0,
+            initialAngularVelocity: 500 * pi / 180,
             groundReactionForce: 0,
             pushoffTime: 0,
           ),
@@ -75,7 +77,7 @@ extension JumpDescriptionExtension on JumpDescription {
             timeToMinimumInertia: 0,
             timeToFinalInertia: 0,
             initialRotation: 0,
-            initialAngularVelocity: 0,
+            initialAngularVelocity: 100 * pi / 180,
             groundReactionForce: 0,
             pushoffTime: 0,
           ),
@@ -87,7 +89,7 @@ extension JumpDescriptionExtension on JumpDescription {
             timeToMinimumInertia: 0,
             timeToFinalInertia: 0,
             initialRotation: 0,
-            initialAngularVelocity: 0,
+            initialAngularVelocity: 1000 * pi / 180,
             groundReactionForce: 0,
             pushoffTime: 0,
           ),
@@ -99,7 +101,7 @@ extension JumpDescriptionExtension on JumpDescription {
             timeToMinimumInertia: 0,
             timeToFinalInertia: 0,
             initialRotation: 0,
-            initialAngularVelocity: 0,
+            initialAngularVelocity: 500 * pi / 180,
             groundReactionForce: 0,
             pushoffTime: 0,
           ),

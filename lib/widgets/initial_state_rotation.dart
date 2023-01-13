@@ -79,9 +79,13 @@ class PreJumpRotation extends StatelessWidget {
               style: app.theme.textStyle
                   .copyWith(color: app.theme.colorParametersPreJump)),
           precision: 0,
-          initial: biomechanics.initialAngularVelocity * 180 / pi,
-          min: 100,
-          max: 1000,
+          value: biomechanics.initialAngularVelocity * 180 / pi,
+          min: app.jumpDescription.bounds.minimal.initialAngularVelocity *
+              180 /
+              pi,
+          max: app.jumpDescription.bounds.maximal.initialAngularVelocity *
+              180 /
+              pi,
           position: initialVelocitySliderPosition,
           size: initialVelocitySliderSize,
           textStyle: app.theme.textStyle
@@ -99,7 +103,7 @@ class PreJumpRotation extends StatelessWidget {
                 style: app.theme.textStyle
                     .copyWith(color: app.theme.colorParametersPreJump)),
             precision: 0,
-            initial: biomechanics.initialRotation * 180 / pi,
+            value: biomechanics.initialRotation * 180 / pi,
             min: 0,
             max: 180,
             position: initialRotationSliderPosition,
