@@ -50,6 +50,10 @@ class LocaleText with ChangeNotifier {
         'En': 'Computed maximal height (apex) of the jump',
         'Fr': 'Hauteur maximale (apex) calculée du saut',
       }[language]!;
+  String get computedMaximalAngularVelocity => {
+        'En': 'Computed maximal angular velocity of the jump',
+        'Fr': 'Vitesse de rotation maximale du saut',
+      }[language]!;
   String get flightTimeTooltip => {
         'En': 'Duration of the aerial phase',
         'Fr': 'Durée de la phase aérienne',
@@ -102,7 +106,7 @@ class LocaleText with ChangeNotifier {
             '$_tab- Augmenter ...',
       }[language]!;
   String get computedFinalRotationHelpTitle => {
-        'En': 'Impove total rotation',
+        'En': 'Improve total rotation',
         'Fr': 'Améliorer la rotation totale',
       }[language]!;
   String get computedFinaleRotationHelp => {
@@ -112,7 +116,7 @@ class LocaleText with ChangeNotifier {
             '$_tab- Augmenter ...',
       }[language]!;
   String get computedInitialVelocityHelpTitle => {
-        'En': 'Impove initial velocity',
+        'En': 'Improve initial velocity',
         'Fr': 'Améliorer la vitesse d\'éjection',
       }[language]!;
   String get computedInitialVelocityHelp => {
@@ -122,7 +126,7 @@ class LocaleText with ChangeNotifier {
             '$_tab- Augmenter ...',
       }[language]!;
   String get computedMaximalHeightHelpTitle => {
-        'En': 'Impove maximal height',
+        'En': 'Improve maximal height',
         'Fr': 'Améliorer la hauteur du saut',
       }[language]!;
   String get computedMaximalHeightHelp => {
@@ -130,6 +134,17 @@ class LocaleText with ChangeNotifier {
             '$_tab- Increase ...',
         'Fr': 'Pour augmenter la hauteur maximale du saut, vous pouvez :\n'
             '$_tab- Augmenter ...',
+      }[language]!;
+  String get computedMaximalAngularVelocityHelpTitle => {
+        'En': 'Improve maximal angular velocity',
+        'Fr': 'Augmenter la vitesse maximale de rotation',
+      }[language]!;
+  String get computedMaximalAngularVelocityHelp => {
+        'En': 'To improve the maximal angular velocity, you can:\n'
+            '$_tab- Increase ...',
+        'Fr':
+            'Pour augmenter la vitesse maximale de rotation du saut, vous pouvez :\n'
+                '$_tab- Augmenter ...',
       }[language]!;
 
   String get easy => {

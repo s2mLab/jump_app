@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '/providers/app_parameters.dart';
 import '/providers/biomechanics.dart';
+import 'mixed_tooptip.dart';
 import 'text_with_subscript.dart';
 
 class MaximalRotationVelocity extends StatelessWidget {
@@ -26,15 +27,20 @@ class MaximalRotationVelocity extends StatelessWidget {
               decoration:
                   BoxDecoration(color: app.theme.colorAnswer.withAlpha(30)),
               padding: const EdgeInsets.all(2),
-              child: Row(
-                children: [
-                  TextWithSubscript('\u{03C9}', 'max',
-                      textStyle: app.theme.textStyleAnswer),
-                  Text(
-                    ' = ${(biomechanics.maximumAngularVelocity * 180 / pi).toStringAsFixed(0)}°/s',
-                    style: app.theme.textStyleAnswer,
-                  ),
-                ],
+              child: MixedTooltip(
+                message: app.texts.computedMaximalAngularVelocity,
+                helpTitle: app.texts.computedMaximalAngularVelocityHelpTitle,
+                helpText: app.texts.computedMaximalAngularVelocityHelp,
+                child: Row(
+                  children: [
+                    TextWithSubscript('\u{03C9}', 'max',
+                        textStyle: app.theme.textStyleAnswer),
+                    Text(
+                      ' = ${(biomechanics.maximumAngularVelocity * 180 / pi).toStringAsFixed(0)}°/s',
+                      style: app.theme.textStyleAnswer,
+                    ),
+                  ],
+                ),
               ),
             ),
           );
