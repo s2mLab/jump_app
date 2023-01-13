@@ -32,7 +32,7 @@ class PushoffSlider extends StatelessWidget {
     return ValuePicker.horizontal(
       min: 150,
       max: 450,
-      initial: biomechanics.pushoffTime * 1000,
+      value: biomechanics.pushoffTime * 1000,
       position: position,
       width: width,
       color: app.theme.colorParametersPushoff,

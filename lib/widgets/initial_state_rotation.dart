@@ -62,7 +62,7 @@ class PreJumpRotation extends StatelessWidget {
           ),
           color: app.theme.colorParametersPreJump,
           width: inertiaSliderSize,
-          initial: biomechanics.initialInertia,
+          value: biomechanics.initialInertia,
           min: 1,
           max: 4,
           position: inertiaSliderPosition,

@@ -38,7 +38,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  double _finalHeight = 1.15; // m
+  late double _finalHeight; // m
   double get finalHeight =>
       _level == DetailLevel.easy ? initialHeight : _finalHeight;
   set finalHeight(value) {
@@ -53,7 +53,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  double _minimumInertia = 1; // kg.m^2
+  late double _minimumInertia; // kg.m^2
   double get minimumInertia => _minimumInertia;
   set minimumInertia(value) {
     _minimumInertia = value;

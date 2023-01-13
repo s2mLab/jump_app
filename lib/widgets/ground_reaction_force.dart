@@ -46,7 +46,7 @@ class GroundReactionForce extends StatelessWidget {
           ValuePicker.vertical(
             min: 1000,
             max: 5000,
-            initial: biomechanics.groundReactionForce,
+            value: biomechanics.groundReactionForce,
             position: sliderPosition,
             height: sliderHeight,
             color: app.theme.colorParametersGroundReactionForce,

@@ -80,7 +80,7 @@ class CenterOfMass extends StatelessWidget {
             ValuePicker.vertical(
               min: min,
               max: max,
-              initial: type == CenterOfMassType.start
+              value: type == CenterOfMassType.start
                   ? biomechanics.initialHeight
                   : biomechanics.finalHeight,
               position: pickerPosition!,

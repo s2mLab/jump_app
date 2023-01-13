@@ -6,13 +6,13 @@ import 'mixed_tooptip.dart';
 
 enum _Direction { horizontal, vertical, diagonal }
 
-class ValuePicker extends StatefulWidget {
+class ValuePicker extends StatelessWidget {
   const ValuePicker.horizontal({
     super.key,
     this.title,
     required this.min,
     required this.max,
-    required this.initial,
+    required this.value,
     required this.position,
     this.height,
     this.width,
@@ -32,7 +32,7 @@ class ValuePicker extends StatefulWidget {
     this.title,
     required this.min,
     required this.max,
-    required this.initial,
+    required this.value,
     required this.position,
     this.height,
     this.width,
@@ -52,7 +52,7 @@ class ValuePicker extends StatefulWidget {
     this.title,
     required this.min,
     required this.max,
-    required this.initial,
+    required this.value,
     required this.position,
     this.height,
     this.width,
@@ -70,7 +70,7 @@ class ValuePicker extends StatefulWidget {
   final _Direction _direction;
   final double min;
   final double max;
-  final double initial;
+  final double value;
 
   final TextStyle textStyle;
   final Offset textOffset;
@@ -88,42 +88,31 @@ class ValuePicker extends StatefulWidget {
 
   final Function(double)? onValueChanged;
 
-  @override
-  State<ValuePicker> createState() => _ValuePickerState();
-}
-
-class _ValuePickerState extends State<ValuePicker> {
-  late double _currentValue;
-
   void _onChanged(value) {
-    if (widget.onValueChanged != null) widget.onValueChanged!(value);
-
-    _currentValue = value;
-    setState(() {});
+    if (onValueChanged != null) onValueChanged!(value);
   }
 
   @override
   Widget build(BuildContext context) {
-    if ((widget.width == null && widget.height == null) ||
-        (widget.width != null && widget.height != null)) {
+    if ((width == null && height == null) ||
+        (width != null && height != null)) {
       throw '[width] or [height] must be provided';
     }
 
     final deviceSize = MediaQuery.of(context).size;
-    _currentValue = widget.initial;
 
     late final List<Widget> children;
-    switch (widget._direction) {
+    switch (_direction) {
       case (_Direction.horizontal):
-        children = _buildHorizontal(deviceSize);
+        children = _buildHorizontal(context, deviceSize);
         break;
 
       case (_Direction.vertical):
-        children = _buildVertical(deviceSize);
+        children = _buildVertical(context, deviceSize);
         break;
 
       case (_Direction.diagonal):
-        children = _buildDiagonal(deviceSize);
+        children = _buildDiagonal(context, deviceSize);
         break;
     }
 
@@ -140,86 +129,71 @@ class _ValuePickerState extends State<ValuePicker> {
         ));
   }
 
-  List<Widget> _buildHorizontal(Size deviceSize) {
-    final fontSize = widget.textStyle.fontSize!;
+  List<Widget> _buildHorizontal(BuildContext context, Size deviceSize) {
+    final fontSize = textStyle.fontSize!;
 
     return [
       Positioned(
-          left: widget.position.dx + widget.textOffset.dx,
-          right: deviceSize.width -
-              widget.width! -
-              widget.position.dx -
-              widget.textOffset.dx,
-          bottom: widget.position.dy + widget.textOffset.dy,
-          top: deviceSize.height -
-              widget.position.dy -
-              fontSize * 2.3 -
-              widget.textOffset.dy,
+          left: position.dx + textOffset.dx,
+          right: deviceSize.width - width! - position.dx - textOffset.dx,
+          bottom: position.dy + textOffset.dy,
+          top: deviceSize.height - position.dy - fontSize * 2.3 - textOffset.dy,
           child: _buildText()),
       Positioned(
-          left: widget.position.dx,
-          right: deviceSize.width - widget.width! - widget.position.dx,
-          bottom: widget.position.dy,
-          top:
-              deviceSize.height - widget.position.dy - deviceSize.width * 0.010,
-          child: _buildSlider()),
+          left: position.dx,
+          right: deviceSize.width - width! - position.dx,
+          bottom: position.dy,
+          top: deviceSize.height - position.dy - deviceSize.width * 0.010,
+          child: _buildSlider(context)),
     ];
   }
 
-  List<Widget> _buildVertical(Size deviceSize) {
-    final fontSize = widget.textStyle.fontSize!;
+  List<Widget> _buildVertical(BuildContext context, Size deviceSize) {
+    final fontSize = textStyle.fontSize!;
 
     return [
       Positioned(
-        left: widget.position.dx + widget.textOffset.dx,
-        bottom: widget.position.dy +
-            widget.height! -
-            fontSize * 2 -
-            widget.textOffset.dy,
-        top: deviceSize.height - widget.height! - widget.position.dy,
+        left: position.dx + textOffset.dx,
+        bottom: position.dy + height! - fontSize * 2 - textOffset.dy,
+        top: deviceSize.height - height! - position.dy,
         child: _buildText(),
       ),
       Positioned(
-        left: widget.position.dx,
-        bottom: widget.position.dy,
-        top: deviceSize.height - widget.height! - widget.position.dy + fontSize,
-        child: _buildSlider(),
+        left: position.dx,
+        bottom: position.dy,
+        top: deviceSize.height - height! - position.dy + fontSize,
+        child: _buildSlider(context),
       ),
     ];
   }
 
-  List<Widget> _buildDiagonal(Size deviceSize) {
-    final length = widget.width ?? widget.height!;
-    final fontSize = widget.textStyle.fontSize!;
+  List<Widget> _buildDiagonal(BuildContext context, Size deviceSize) {
+    final length = width ?? height!;
+    final fontSize = textStyle.fontSize!;
 
     return [
       Positioned(
-        right: deviceSize.width - widget.position.dx - widget.textOffset.dx,
-        bottom: widget.position.dy +
-            fontSize -
-            deviceSize.width * 0.01 +
-            widget.textOffset.dy,
-        top: deviceSize.height -
-            length / 2 -
-            widget.position.dy -
-            widget.textOffset.dy,
+        right: deviceSize.width - position.dx - textOffset.dx,
+        bottom:
+            position.dy + fontSize - deviceSize.width * 0.01 + textOffset.dy,
+        top: deviceSize.height - length / 2 - position.dy - textOffset.dy,
         child: _buildText(),
       ),
       Positioned(
-        left: widget.position.dx,
-        bottom: widget.position.dy,
-        top: deviceSize.height - length - widget.position.dy + fontSize,
-        child: Transform.rotate(angle: -45, child: _buildSlider()),
+        left: position.dx,
+        bottom: position.dy,
+        top: deviceSize.height - length - position.dy + fontSize,
+        child: Transform.rotate(angle: -45, child: _buildSlider(context)),
       ),
     ];
   }
 
-  SizedBox _buildSlider() {
+  SizedBox _buildSlider(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
 
     return SizedBox(
-      height: widget.height,
-      width: widget.width,
+      height: height,
+      width: width,
       child: SfSliderTheme(
         data: SfSliderThemeData(
           thumbRadius: deviceSize.width * 0.015,
@@ -227,21 +201,21 @@ class _ValuePickerState extends State<ValuePicker> {
           activeTrackHeight: deviceSize.width * 0.010,
           inactiveTrackHeight: deviceSize.width * 0.008,
         ),
-        child: widget.height != null
+        child: height != null
             ? SfSlider.vertical(
-                min: widget.min,
-                max: widget.max,
-                activeColor: widget.color,
-                inactiveColor: widget.color.withAlpha(50),
-                value: _currentValue,
+                min: min,
+                max: max,
+                activeColor: color,
+                inactiveColor: color.withAlpha(50),
+                value: value,
                 onChanged: _onChanged,
               )
             : SfSlider(
-                min: widget.min,
-                max: widget.max,
-                activeColor: widget.color,
-                inactiveColor: widget.color.withAlpha(50),
-                value: _currentValue,
+                min: min,
+                max: max,
+                activeColor: color,
+                inactiveColor: color.withAlpha(50),
+                value: value,
                 onChanged: _onChanged,
               ),
       ),
@@ -250,19 +224,19 @@ class _ValuePickerState extends State<ValuePicker> {
 
   Widget _buildText() {
     return MixedTooltip(
-      message: widget.tooltip ?? '',
-      helpTitle: widget.helpTitle,
-      helpText: widget.helpText,
+      message: tooltip ?? '',
+      helpTitle: helpTitle,
+      helpText: helpText,
       child: Row(
         children: [
-          if (widget.title != null) widget.title!,
+          if (title != null) title!,
           Text(
-            '${widget.title != null ? ' = ' : ''}'
-            '${_currentValue.toStringAsFixed(widget.precision)} ',
+            '${title != null ? ' = ' : ''}'
+            '${value.toStringAsFixed(precision)} ',
             textAlign: TextAlign.center,
-            style: widget.textStyle.copyWith(color: widget.color),
+            style: textStyle.copyWith(color: color),
           ),
-          if (widget.unit != null) widget.unit!,
+          if (unit != null) unit!,
         ],
       ),
     );

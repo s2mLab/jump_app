@@ -35,7 +35,7 @@ class FlightInertia extends StatelessWidget {
   Widget build(BuildContext context) {
     final app = AppParameters.of(context);
     final deviceSize = MediaQuery.of(context).size;
-    final biomechanics = Biomechanics.of(context);
+    final biomechanics = Biomechanics.of(context, listen: true);
 
     return Stack(
       alignment: Alignment.bottomLeft,
@@ -55,9 +55,9 @@ class FlightInertia extends StatelessWidget {
             ),
             color: app.theme.colorParametersInertia,
             width: inertiaSliderSize,
-            initial: biomechanics.minimumInertia,
-            min: 1,
-            max: 4,
+            value: biomechanics.minimumInertia,
+            min: app.jumpDescription.bounds.minimal.minimumInertia,
+            max: app.jumpDescription.bounds.maximal.minimumInertia,
             position: inertiaSliderPosition,
             precision: 1,
             textStyle: app.theme.textStyle,
@@ -91,7 +91,7 @@ class FlightInertia extends StatelessWidget {
                   .copyWith(color: app.theme.colorParametersInertia)),
           color: app.theme.colorParametersInertia,
           width: timeToInertiaSliderSize,
-          initial: biomechanics.timeToMinimumInertia * 1000,
+          value: biomechanics.timeToMinimumInertia * 1000,
           min: 100,
           max: 300,
           position: timeToInertiaSliderPosition,
