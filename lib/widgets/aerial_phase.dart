@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '/providers/app_parameters.dart';
 import '/providers/biomechanics.dart';
-import '/providers/jump_app_theme.dart';
 import 'double_heads_arrow.dart';
 import 'mixed_tooptip.dart';
 import 'text_with_subscript.dart';
@@ -22,7 +22,7 @@ class AerialPhase extends StatelessWidget {
   Widget build(BuildContext context) {
     final biomechanics = Biomechanics.of(context, listen: true);
     final deviceSize = MediaQuery.of(context).size;
-    final theme = JumpAppTheme.of(context);
+    final app = AppParameters.of(context);
 
     return Stack(
       alignment: Alignment.bottomLeft,
@@ -32,21 +32,22 @@ class AerialPhase extends StatelessWidget {
           right: deviceSize.width - comFinal.dx + deviceSize.width * 0.17,
           bottom: -arrowsBelow - deviceSize.width * 0.05,
           child: Container(
-            decoration: BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
+            decoration:
+                BoxDecoration(color: app.theme.colorAnswer.withAlpha(30)),
             padding: const EdgeInsets.all(2),
             child: MixedTooltip(
-              message: theme.texts.computedAerialPhaseTooltip,
-              helpTitle: theme.texts.flightTimeHelpTitle,
-              helpText: theme.texts.flightTimePhaseHelp,
+              message: app.texts.computedAerialPhaseTooltip,
+              helpTitle: app.texts.flightTimeHelpTitle,
+              helpText: app.texts.flightTimePhaseHelp,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextWithSubscript('T', theme.texts.flight,
-                      textStyle: theme.textStyleAnswer),
+                  TextWithSubscript('T', app.texts.flight,
+                      textStyle: app.theme.textStyleAnswer),
                   Text(
                     ' = ${biomechanics.flightTime.toStringAsFixed(3)} s',
-                    style: theme.textStyleAnswer,
+                    style: app.theme.textStyleAnswer,
                   ),
                 ],
               ),
@@ -56,12 +57,13 @@ class AerialPhase extends StatelessWidget {
         DoubleHeadsArrow(
           start: Offset(comStart.dx, arrowsBelow),
           end: Offset(comFinal.dx, arrowsBelow),
-          headSize: theme.arrowHeadSize,
-          color: theme.colorPhaseAerial,
+          headSize: app.theme.arrowHeadSize,
+          color: app.theme.colorPhaseAerial,
           child: Text(
-            theme.texts.aerialPhase,
+            app.texts.aerialPhase,
             textAlign: TextAlign.center,
-            style: theme.textStylePhase.copyWith(color: theme.colorPhaseAerial),
+            style: app.theme.textStylePhase
+                .copyWith(color: app.theme.colorPhaseAerial),
           ),
         )
       ],

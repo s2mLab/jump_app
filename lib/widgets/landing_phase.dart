@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/providers/jump_app_theme.dart';
+import '/providers/app_parameters.dart';
 import 'double_heads_arrow.dart';
 
 class LandingPhase extends StatelessWidget {
@@ -17,17 +17,18 @@ class LandingPhase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = JumpAppTheme.of(context);
+    final app = AppParameters.of(context);
 
     return DoubleHeadsArrow(
       start: Offset(comFinal.dx, arrowsBelow),
       end: Offset(land, arrowsBelow),
-      headSize: theme.arrowHeadSize,
-      color: theme.colorPhaseLanding,
+      headSize: app.theme.arrowHeadSize,
+      color: app.theme.colorPhaseLanding,
       child: Text(
-        theme.texts.landing,
+        app.texts.landing,
         textAlign: TextAlign.center,
-        style: theme.textStylePhase.copyWith(color: theme.colorPhaseLanding),
+        style: app.theme.textStylePhase
+            .copyWith(color: app.theme.colorPhaseLanding),
       ),
     );
   }

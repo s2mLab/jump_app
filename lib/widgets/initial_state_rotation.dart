@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 
 import '/providers/app_parameters.dart';
 import '/providers/biomechanics.dart';
-import '/providers/jump_app_theme.dart';
+import 'text_with_subscript.dart';
 import 'text_with_superscript.dart';
 import 'value_picker.dart';
 import 'value_picker_rotation.dart';
-import 'text_with_subscript.dart';
 
 class PreJumpRotation extends StatelessWidget {
   const PreJumpRotation({
@@ -45,8 +44,7 @@ class PreJumpRotation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appParameters = AppParameters.of(context);
-    final theme = JumpAppTheme.of(context);
+    final app = AppParameters.of(context);
     final biomechanics = Biomechanics.of(context);
 
     return Stack(
@@ -54,63 +52,63 @@ class PreJumpRotation extends StatelessWidget {
       children: [
         ValuePicker.diagonal(
           title: TextWithSubscript('I', '0',
-              textStyle: theme.textStyle
-                  .copyWith(color: theme.colorParametersPreJump)),
+              textStyle: app.theme.textStyle
+                  .copyWith(color: app.theme.colorParametersPreJump)),
           unit: TextWithSuperscript(
             'kgm',
             '2',
-            textStyle:
-                theme.textStyle.copyWith(color: theme.colorParametersPreJump),
+            textStyle: app.theme.textStyle
+                .copyWith(color: app.theme.colorParametersPreJump),
           ),
-          color: theme.colorParametersPreJump,
+          color: app.theme.colorParametersPreJump,
           width: inertiaSliderSize,
           initial: biomechanics.initialInertia,
           min: 1,
           max: 4,
           position: inertiaSliderPosition,
           precision: 1,
-          textStyle: theme.textStyle,
+          textStyle: app.theme.textStyle,
           onValueChanged: (value) => _onInertiaChanged(context, value),
-          tooltip: theme.texts.inertiaTooltip,
+          tooltip: app.texts.inertiaTooltip,
         ),
         ValuePickerRotation(
           title: TextWithSubscript('\u{03C9}', '0',
-              textStyle: theme.textStyleAnswer
-                  .copyWith(color: theme.colorParametersPreJump)),
+              textStyle: app.theme.textStyleAnswer
+                  .copyWith(color: app.theme.colorParametersPreJump)),
           units: Text('°/s',
-              style: theme.textStyle
-                  .copyWith(color: theme.colorParametersPreJump)),
+              style: app.theme.textStyle
+                  .copyWith(color: app.theme.colorParametersPreJump)),
           precision: 0,
           initial: biomechanics.initialAngularVelocity * 180 / pi,
           min: 100,
           max: 1000,
           position: initialVelocitySliderPosition,
           size: initialVelocitySliderSize,
-          textStyle:
-              theme.textStyle.copyWith(color: theme.colorParametersPreJump),
+          textStyle: app.theme.textStyle
+              .copyWith(color: app.theme.colorParametersPreJump),
           onChange: (value) => _onInitialVelocityChanged(context, value),
-          color: theme.colorParametersPreJump,
-          tooltip: theme.texts.angularVelocityTooltip,
+          color: app.theme.colorParametersPreJump,
+          tooltip: app.texts.angularVelocityTooltip,
         ),
-        if (appParameters.level != DetailLevel.easy)
+        if (app.level != DetailLevel.easy)
           ValuePickerRotation(
             title: TextWithSubscript('\u{03B8}', '0',
-                textStyle: theme.textStyle
-                    .copyWith(color: theme.colorParametersPreJump)),
+                textStyle: app.theme.textStyle
+                    .copyWith(color: app.theme.colorParametersPreJump)),
             units: Text('°',
-                style: theme.textStyle
-                    .copyWith(color: theme.colorParametersPreJump)),
+                style: app.theme.textStyle
+                    .copyWith(color: app.theme.colorParametersPreJump)),
             precision: 0,
             initial: biomechanics.initialRotation * 180 / pi,
             min: 0,
             max: 180,
             position: initialRotationSliderPosition,
             size: initialRotationSliderSize,
-            textStyle:
-                theme.textStyle.copyWith(color: theme.colorParametersPreJump),
+            textStyle: app.theme.textStyle
+                .copyWith(color: app.theme.colorParametersPreJump),
             onChange: (value) => _onInitialRotationChanged(context, value),
-            color: theme.colorParametersPreJump,
-            tooltip: theme.texts.initialRotationTooltip,
+            color: app.theme.colorParametersPreJump,
+            tooltip: app.texts.initialRotationTooltip,
           ),
       ],
     );

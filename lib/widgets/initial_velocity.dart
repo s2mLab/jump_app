@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '/providers/app_parameters.dart';
 import '/providers/biomechanics.dart';
-import '/providers/jump_app_theme.dart';
 import 'arrow.dart';
 import 'mixed_tooptip.dart';
 import 'text_with_subscript.dart';
@@ -20,7 +20,7 @@ class InitialVelocity extends StatelessWidget {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     final biomechanics = Biomechanics.of(context, listen: true);
-    final theme = JumpAppTheme.of(context);
+    final app = AppParameters.of(context);
 
     return Stack(
       alignment: Alignment.bottomLeft,
@@ -36,19 +36,19 @@ class InitialVelocity extends StatelessWidget {
                 bottom: -position.dy + deviceSize.width * 0.06,
                 child: Container(
                   decoration:
-                      BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
+                      BoxDecoration(color: app.theme.colorAnswer.withAlpha(30)),
                   padding: const EdgeInsets.all(2),
                   child: MixedTooltip(
-                    message: theme.texts.computedInitialVelocity,
-                    helpTitle: theme.texts.computedInitialVelocityHelpTitle,
-                    helpText: theme.texts.computedInitialVelocityHelp,
+                    message: app.texts.computedInitialVelocity,
+                    helpTitle: app.texts.computedInitialVelocityHelpTitle,
+                    helpText: app.texts.computedInitialVelocityHelp,
                     child: Row(
                       children: [
                         TextWithSubscript('V', '0',
-                            textStyle: theme.textStyleAnswer),
+                            textStyle: app.theme.textStyleAnswer),
                         Text(
                           ' = ${biomechanics.initialVerticalVelocity.toStringAsFixed(2)} m/s',
-                          style: theme.textStyleAnswer,
+                          style: app.theme.textStyleAnswer,
                         ),
                       ],
                     ),
@@ -61,8 +61,8 @@ class InitialVelocity extends StatelessWidget {
         Arrow(
           start: Offset(position.dx, position.dy),
           end: Offset(position.dx, position.dy - norm),
-          headSize: theme.arrowHeadSize,
-          color: theme.colorAnswer,
+          headSize: app.theme.arrowHeadSize,
+          color: app.theme.colorAnswer,
         ),
       ],
     );

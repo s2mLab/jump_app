@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '/providers/app_parameters.dart';
 import '/providers/biomechanics.dart';
-import '/providers/jump_app_theme.dart';
 import 'mixed_tooptip.dart';
 import 'text_with_subscript.dart';
 import 'value_picker.dart';
@@ -57,11 +57,11 @@ class CenterOfMass extends StatelessWidget {
     }
 
     final biomechanics = Biomechanics.of(context, listen: true);
-    final theme = JumpAppTheme.of(context);
+    final app = AppParameters.of(context);
     final deviceSize = MediaQuery.of(context).size;
     final tooltip = type == CenterOfMassType.start
-        ? theme.texts.h0Tooltip
-        : theme.texts.hfTooltip;
+        ? app.texts.h0Tooltip
+        : app.texts.hfTooltip;
 
     return SizedBox(
       width: deviceSize.width,
@@ -78,8 +78,8 @@ class CenterOfMass extends StatelessWidget {
                   : biomechanics.finalHeight,
               position: pickerPosition!,
               height: pickerHeight!,
-              color: theme.colorParametersCenterOfMass,
-              textStyle: theme.textStyle,
+              color: app.theme.colorParametersCenterOfMass,
+              textStyle: app.theme.textStyle,
               textOffset: Offset(-deviceSize.width * 0.05, 0),
               title: type == CenterOfMassType.any
                   ? null
@@ -87,12 +87,12 @@ class CenterOfMass extends StatelessWidget {
                       'H',
                       type == CenterOfMassType.start ? '0' : 'F',
                       textAlign: TextAlign.end,
-                      textStyle: theme.textStyle
-                          .copyWith(color: theme.colorParametersCenterOfMass),
+                      textStyle: app.theme.textStyle.copyWith(
+                          color: app.theme.colorParametersCenterOfMass),
                     ),
               unit: Text('m',
-                  style: theme.textStyle
-                      .copyWith(color: theme.colorParametersCenterOfMass)),
+                  style: app.theme.textStyle
+                      .copyWith(color: app.theme.colorParametersCenterOfMass)),
               precision: 2,
               onValueChanged: type != CenterOfMassType.any
                   ? (value) => _updateHeight(context, value)
@@ -105,7 +105,7 @@ class CenterOfMass extends StatelessWidget {
               bottom: -position.dy,
               child: Container(
                 decoration:
-                    BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
+                    BoxDecoration(color: app.theme.colorAnswer.withAlpha(30)),
                 padding: const EdgeInsets.all(2),
                 child: MixedTooltip(
                   message: tooltip,
@@ -116,11 +116,11 @@ class CenterOfMass extends StatelessWidget {
                         'H',
                         type == CenterOfMassType.start ? '0' : 'F',
                         textAlign: TextAlign.end,
-                        textStyle: theme.textStyleAnswer,
+                        textStyle: app.theme.textStyleAnswer,
                       ),
                       Text(
                           ' = ${biomechanics.finalHeight.toStringAsFixed(2)} m',
-                          style: theme.textStyleAnswer),
+                          style: app.theme.textStyleAnswer),
                     ],
                   ),
                 ),
@@ -131,7 +131,7 @@ class CenterOfMass extends StatelessWidget {
               position,
               radius,
               floor,
-              theme.colorParametersCenterOfMass,
+              app.theme.colorParametersCenterOfMass,
             ),
           ),
         ],

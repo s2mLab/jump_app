@@ -3,7 +3,6 @@ import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '/providers/app_parameters.dart';
-import '/providers/jump_app_theme.dart';
 import 'helpers.dart';
 
 class Header extends StatelessWidget {
@@ -42,17 +41,14 @@ class _Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = JumpAppTheme.of(context);
+    final app = AppParameters.of(context);
 
     return GestureDetector(
       onTap: () => Scaffold.of(context).openDrawer(),
       child: Column(
         children: [
-          const Icon(Icons.menu),
-          Text(
-            'coucou',
-            style: theme.textStyleHeader,
-          )
+          Icon(Icons.menu, size: app.theme.iconSizeHeader),
+          Text(app.texts.menu, style: app.theme.textStyleHeader)
         ],
       ),
     );
@@ -71,22 +67,21 @@ class _ChoseLevel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appParameters = AppParameters.of(context);
-    final theme = JumpAppTheme.of(context);
+    final app = AppParameters.of(context);
 
     return SizedBox(
-      width: theme.iconSizeHeader * 2,
+      width: app.theme.iconSizeHeader * 2,
       child: GestureDetector(
         child: Column(
           children: [
             Icon(
               Icons.stacked_line_chart_sharp,
-              size: theme.iconSizeHeader,
-              color: theme.colorHeaderPrimary,
+              size: app.theme.iconSizeHeader,
+              color: app.theme.colorHeaderPrimary,
             ),
             Text(
-              appParameters.level.asText(context),
-              style: theme.textStyleHeader,
+              app.level.asText(context),
+              style: app.theme.textStyleHeader,
             ),
           ],
         ),
@@ -108,27 +103,26 @@ class _ChoseType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appParameters = AppParameters.of(context);
+    final app = AppParameters.of(context);
     final deviceSize = MediaQuery.of(context).size;
-    final theme = JumpAppTheme.of(context, listen: false);
 
     return Row(
       children: [
-        Text('Translation', style: theme.textStyleHeader),
+        Text('Translation', style: app.theme.textStyleHeader),
         SizedBox(
           width: deviceSize.width * 0.07,
           child: SfSliderTheme(
             data: SfSliderThemeData(
-              activeTrackColor: theme.colorHeaderPrimary,
-              inactiveTrackColor: theme.colorHeaderPrimary,
+              activeTrackColor: app.theme.colorHeaderPrimary,
+              inactiveTrackColor: app.theme.colorHeaderPrimary,
               inactiveTrackHeight: deviceSize.width * 0.023,
               activeTrackHeight: deviceSize.width * 0.023,
-              thumbColor: theme.colorHeaderSecondary,
+              thumbColor: app.theme.colorHeaderSecondary,
               thumbRadius: deviceSize.width * 0.008,
               overlayRadius: 0,
             ),
             child: SfSlider(
-              value: appParameters.type == AppType.rotation ? 1 : 0,
+              value: app.type == AppType.rotation ? 1 : 0,
               min: 0 - deviceSize.width * 0.0005,
               max: 1 + deviceSize.width * 0.0005,
               onChanged: (value) => {},
@@ -136,7 +130,7 @@ class _ChoseType extends StatelessWidget {
             ),
           ),
         ),
-        Text('Rotation', style: theme.textStyleHeader),
+        Text('Rotation', style: app.theme.textStyleHeader),
       ],
     );
   }
@@ -146,40 +140,40 @@ class _Help extends StatelessWidget {
   const _Help();
 
   void _swapLanguage(BuildContext context) {
-    final theme = JumpAppTheme.of(context, listen: false);
-    theme.texts.language = theme.texts.language == 'Fr' ? 'En' : 'Fr';
+    final app = AppParameters.of(context, listen: false);
+    app.texts.language = app.texts.language == 'Fr' ? 'En' : 'Fr';
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = JumpAppTheme.of(context);
+    final app = AppParameters.of(context);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
-          iconSize: theme.iconSizeHeader,
-          color: theme.colorHeaderPrimary,
+          iconSize: app.theme.iconSizeHeader,
+          color: app.theme.colorHeaderPrimary,
           icon: CircleAvatar(
-            backgroundColor: theme.colorHeaderPrimary,
-            foregroundColor: theme.colorHeaderSecondary,
-            radius: 3 / 4 * theme.iconSizeHeader,
+            backgroundColor: app.theme.colorHeaderPrimary,
+            foregroundColor: app.theme.colorHeaderSecondary,
+            radius: 3 / 4 * app.theme.iconSizeHeader,
             child: Icon(
               Icons.question_mark,
-              size: 3 / 4 * theme.iconSizeHeader,
+              size: 3 / 4 * app.theme.iconSizeHeader,
             ),
           ),
           onPressed: () => showHelp(context,
-              title: theme.texts.helpTitle, content: theme.texts.help),
+              title: app.texts.helpTitle, content: app.texts.help),
         ),
         SizedBox(
-          width: 3 * theme.fontSizeLanguageSelection,
+          width: 3 * app.theme.fontSizeLanguageSelection,
           child: TextButton(
             onPressed: () => _swapLanguage(context),
             child: Text(
-              theme.texts.language == 'Fr' ? 'En' : 'Fr',
-              style: theme.textStyleHeader
-                  .copyWith(fontSize: theme.fontSizeLanguageSelection),
+              app.texts.language == 'Fr' ? 'En' : 'Fr',
+              style: app.theme.textStyleHeader
+                  .copyWith(fontSize: app.theme.fontSizeLanguageSelection),
             ),
           ),
         ),

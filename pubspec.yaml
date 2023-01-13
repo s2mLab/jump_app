@@ -26,3 +26,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/key_frames_axel.png
+    - assets/images/key_frames_lutz.png

@@ -18,13 +18,11 @@ import 'pushoff_phase.dart';
 import 'total_rotation.dart';
 
 class SkaterImage extends StatefulWidget {
-  const SkaterImage(
-    this.backgroundPath, {
+  const SkaterImage({
     Key? key,
     this.width,
   }) : super(key: key);
 
-  final String backgroundPath;
   final double? width;
 
   @override
@@ -35,10 +33,10 @@ class _SkaterImageState extends State<SkaterImage> {
   @override
   Widget build(BuildContext context) {
     final w = widget.width ?? MediaQuery.of(context).size.width;
-    final appParameters = AppParameters.of(context);
-    final isRotation = appParameters.type == AppType.rotation;
+    final app = AppParameters.of(context);
+    final isRotation = app.type == AppType.rotation;
     final isTranslation = !isRotation;
-    final level = appParameters.level;
+    final level = app.level;
 
     // Precompute some widget positions on the screen
     final floor = 0.11 * w;
@@ -89,7 +87,7 @@ class _SkaterImageState extends State<SkaterImage> {
         alignment: Alignment.bottomLeft,
         children: [
           const Header(),
-          BackgoundImage(floor: floor, imagePath: widget.backgroundPath),
+          BackgoundImage(floor: floor, imagePath: app.jumpDescription.path),
           if (isTranslation)
             GroundReactionForce(
               arrowHead: grfArrow,

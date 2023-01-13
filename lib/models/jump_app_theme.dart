@@ -1,21 +1,11 @@
 import 'package:flutter/material.dart';
-import 'locale_text.dart';
-import 'package:provider/provider.dart';
 
-class JumpAppTheme with ChangeNotifier {
-  /// This is the entry point to use any of the Theme as all the values need to
-  /// be updated using the of(context)
-  static JumpAppTheme of(BuildContext context, {bool listen = true}) {
-    final instance = Provider.of<JumpAppTheme>(context, listen: listen);
-    instance._currentDeviceWidth = MediaQuery.of(context).size.width;
-    instance._currentLocale = LocaleText.of(context, listen: listen);
-    return instance;
-  }
-
-  late double _currentDeviceWidth;
+class JumpAppTheme {
+  /// This value must to get meaning full App dimensions
+  double windowWidth = 0;
 
   // Icons
-  double get iconSizeHeader => 0.04 * _currentDeviceWidth;
+  double get iconSizeHeader => 0.04 * windowWidth;
 
   // Colors
   Color colorAirborneTrajectory = Colors.black;
@@ -32,15 +22,13 @@ class JumpAppTheme with ChangeNotifier {
   Color colorPhasePushoff = const Color.fromARGB(255, 128, 8, 162);
 
   // Painting
-  double get arrowHeadSize => 0.03 * _currentDeviceWidth;
+  double get arrowHeadSize => 0.03 * windowWidth;
 
   // Text
-  late LocaleText _currentLocale;
-  LocaleText get texts => _currentLocale;
-  double get fontSize => 0.02 * _currentDeviceWidth;
+  double get fontSize => 0.02 * windowWidth;
   double get fontSizePhaseName => 3 / 4 * fontSize;
-  double get fontSizeHeader => 0.02 * _currentDeviceWidth;
-  double get fontSizeLanguageSelection => 0.02 * _currentDeviceWidth;
+  double get fontSizeHeader => 0.02 * windowWidth;
+  double get fontSizeLanguageSelection => 0.02 * windowWidth;
   TextStyle get textStyle => TextStyle(
         fontWeight: FontWeight.normal,
         fontSize: fontSize,

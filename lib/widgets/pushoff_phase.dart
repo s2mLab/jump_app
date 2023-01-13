@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/providers/jump_app_theme.dart';
+import '/providers/app_parameters.dart';
 import 'double_heads_arrow.dart';
 import 'pushoff_slider.dart';
 
@@ -22,27 +22,27 @@ class PushoffPhase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = JumpAppTheme.of(context);
+    final app = AppParameters.of(context);
 
     return Stack(
       alignment: Alignment.bottomLeft,
       children: [
         PushoffSlider(
-          color: theme.colorParametersPushoff,
+          color: app.theme.colorParametersPushoff,
           position: pushoffSliderPosition,
-          fontSize: theme.fontSize,
+          fontSize: app.theme.fontSize,
           width: pushoffSliderWidth,
         ),
         DoubleHeadsArrow(
           start: Offset(pushoff, arrowsBelow),
           end: Offset(comStart.dx, arrowsBelow),
-          headSize: theme.arrowHeadSize,
-          color: theme.colorPhasePushoff,
+          headSize: app.theme.arrowHeadSize,
+          color: app.theme.colorPhasePushoff,
           child: Text(
-            theme.texts.pushoffPhase,
+            app.texts.pushoffPhase,
             textAlign: TextAlign.center,
-            style:
-                theme.textStylePhase.copyWith(color: theme.colorPhasePushoff),
+            style: app.theme.textStylePhase
+                .copyWith(color: app.theme.colorPhasePushoff),
           ),
         ),
       ],

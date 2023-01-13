@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:path_drawing/path_drawing.dart';
 
-import '/providers/jump_app_theme.dart';
+import '/providers/app_parameters.dart';
 
 class AirboneTrajectory extends StatelessWidget {
   const AirboneTrajectory({
@@ -17,11 +17,11 @@ class AirboneTrajectory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = JumpAppTheme.of(context);
+    final app = AppParameters.of(context);
 
     return CustomPaint(
         painter: _AirboneTrajectoryPainting(
-            start, end, height, theme.colorAirborneTrajectory));
+            start, end, height, app.theme.colorAirborneTrajectory));
   }
 }
 

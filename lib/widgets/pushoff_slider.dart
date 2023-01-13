@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/providers/jump_app_theme.dart';
+import '/providers/app_parameters.dart';
 import '/providers/biomechanics.dart';
 import 'value_picker.dart';
 
@@ -25,7 +25,7 @@ class PushoffSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = JumpAppTheme.of(context);
+    final app = AppParameters.of(context);
     final biomechanics = Biomechanics.of(context);
     final deviceSize = MediaQuery.of(context).size;
 
@@ -35,16 +35,18 @@ class PushoffSlider extends StatelessWidget {
       initial: biomechanics.pushoffTime * 1000,
       position: position,
       width: width,
-      color: theme.colorParametersPushoff,
-      textStyle: theme.textStyle,
+      color: app.theme.colorParametersPushoff,
+      textStyle: app.theme.textStyle,
       title: Text('T',
-          style: theme.textStyle.copyWith(color: theme.colorParametersPushoff)),
+          style: app.theme.textStyle
+              .copyWith(color: app.theme.colorParametersPushoff)),
       unit: Text('ms',
-          style: theme.textStyle.copyWith(color: theme.colorParametersPushoff)),
+          style: app.theme.textStyle
+              .copyWith(color: app.theme.colorParametersPushoff)),
       textOffset: Offset(deviceSize.width * 0.08, deviceSize.width * 0.01),
       precision: 0,
       onValueChanged: (value) => _updatePushoffTime(context, value),
-      tooltip: theme.texts.pushoffPhaseLengthTooltip,
+      tooltip: app.texts.pushoffPhaseLengthTooltip,
     );
   }
 }

@@ -20,6 +20,7 @@ class LocaleText with ChangeNotifier {
 
   String get drawerTitle =>
       {'En': 'Choice of the jump', 'Fr': 'Choix du saut'}[language]!;
+  String get menu => {'En': 'Menu', 'Fr': 'Menu'}[language]!;
 
   String get pushoffPhase =>
       {'En': 'Pushoff phase', 'Fr': 'Phase de propulsion'}[language]!;

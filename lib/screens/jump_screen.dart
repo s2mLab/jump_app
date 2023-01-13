@@ -1,56 +1,23 @@
 import 'package:flutter/material.dart';
 
-import '/providers/jump_app_theme.dart';
+import '/providers/app_parameters.dart';
 import '/widgets/skater_image.dart';
 
-enum _JumperScreenChoices {
-  axel,
-  lutz,
-}
-
-extension _JumperScreenChoicesExtension on _JumperScreenChoices {
-  String get path {
-    switch (this) {
-      case (_JumperScreenChoices.axel):
-        return 'assets/images/key_frames_axel.png';
-      case (_JumperScreenChoices.lutz):
-        return 'assets/images/key_frames_lutz.png';
-    }
-  }
-
-  String get name {
-    switch (this) {
-      case (_JumperScreenChoices.axel):
-        return 'Axel';
-      case (_JumperScreenChoices.lutz):
-        return 'Lutz';
-    }
-  }
-}
-
-class JumpScreen extends StatefulWidget {
+class JumpScreen extends StatelessWidget {
   const JumpScreen({super.key});
 
-  @override
-  State<JumpScreen> createState() => _JumpScreenState();
-}
-
-class _JumpScreenState extends State<JumpScreen> {
-  _JumperScreenChoices _currentJump = _JumperScreenChoices.axel;
-
   void _chooseBackground(BuildContext context, choice) {
-    _currentJump = choice;
-    setState(() {});
-
+    AppParameters.of(context, listen: false)
+        .setJumpDescription(context, choice);
     Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = JumpAppTheme.of(context);
+    final app = AppParameters.of(context);
 
     return Scaffold(
-      body: Center(child: SkaterImage(_currentJump.path)),
+      body: const Center(child: SkaterImage()),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -60,25 +27,25 @@ class _JumpScreenState extends State<JumpScreen> {
               padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: Center(
                 child: Text(
-                  theme.texts.drawerTitle,
-                  style: theme.textStyleDrawerTitle,
+                  app.texts.drawerTitle,
+                  style: app.theme.textStyleDrawerTitle,
                 ),
               ),
             ),
-            ..._buildAllChoices(),
+            ..._buildAllChoices(context),
           ],
         ),
       ),
     );
   }
 
-  List<Widget> _buildAllChoices() {
-    final theme = JumpAppTheme.of(context);
+  List<Widget> _buildAllChoices(BuildContext context) {
+    final app = AppParameters.of(context);
 
     final out = <Widget>[];
-    for (final choice in _JumperScreenChoices.values) {
+    for (final choice in JumpDescription.values) {
       out.add(ListTile(
-        title: Text(choice.name, style: theme.textStyleDrawerTile),
+        title: Text(choice.name, style: app.theme.textStyleDrawerTile),
         onTap: () => _chooseBackground(context, choice),
       ));
     }

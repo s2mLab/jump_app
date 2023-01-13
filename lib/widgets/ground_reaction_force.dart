@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '/providers/app_parameters.dart';
 import '/providers/biomechanics.dart';
-import '/providers/jump_app_theme.dart';
 import 'arrow.dart';
 import 'text_with_subscript.dart';
 import 'value_picker.dart';
@@ -28,7 +28,7 @@ class GroundReactionForce extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final biomechanics = Biomechanics.of(context);
-    final theme = JumpAppTheme.of(context);
+    final app = AppParameters.of(context);
     final deviceSize = MediaQuery.of(context).size;
 
     return SizedBox(
@@ -40,8 +40,8 @@ class GroundReactionForce extends StatelessWidget {
           Arrow(
             start: Offset(arrowHead.dx, -floor),
             end: arrowHead,
-            headSize: theme.arrowHeadSize,
-            color: theme.colorParametersGroundReactionForce,
+            headSize: app.theme.arrowHeadSize,
+            color: app.theme.colorParametersGroundReactionForce,
           ),
           ValuePicker.vertical(
             min: 1000,
@@ -49,21 +49,21 @@ class GroundReactionForce extends StatelessWidget {
             initial: biomechanics.groundReactionForce,
             position: sliderPosition,
             height: sliderHeight,
-            color: theme.colorParametersGroundReactionForce,
-            textStyle: theme.textStyle,
+            color: app.theme.colorParametersGroundReactionForce,
+            textStyle: app.theme.textStyle,
             textOffset: Offset(-deviceSize.width * 0.03, 0),
             title: TextWithSubscript(
               'F',
               'max',
-              textStyle: theme.textStyle
-                  .copyWith(color: theme.colorParametersGroundReactionForce),
+              textStyle: app.theme.textStyle.copyWith(
+                  color: app.theme.colorParametersGroundReactionForce),
             ),
             unit: Text('N',
-                style: theme.textStyle
-                    .copyWith(color: theme.colorParametersGroundReactionForce)),
+                style: app.theme.textStyle.copyWith(
+                    color: app.theme.colorParametersGroundReactionForce)),
             precision: 0,
             onValueChanged: (value) => _updateGrf(context, value),
-            tooltip: theme.texts.fmaxTooltip,
+            tooltip: app.texts.fmaxTooltip,
           ),
         ],
       ),

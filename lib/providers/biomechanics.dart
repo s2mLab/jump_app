@@ -3,11 +3,26 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/models/detail_level.dart';
+import '/models/biomechanics_bounds.dart';
+import 'app_parameters.dart';
 
 class Biomechanics with ChangeNotifier {
   static Biomechanics of(BuildContext context, {bool listen = false}) =>
       Provider.of<Biomechanics>(context, listen: listen);
+
+  void resetValues(BiomechanicsValue initialValues) {
+    _initialHeight = initialValues.initialHeight;
+    _finalHeight = initialValues.finalHeight;
+    _initialInertia = initialValues.initialInertia;
+    _minimumInertia = initialValues.minimumInertia;
+    _timeToMinimumInertia = initialValues.timeToMinimumInertia;
+    _timeToFinalInertia = initialValues.timeToFinalInertia;
+    _initialRotation = initialValues.initialRotation;
+    _initialAngularVelocity = initialValues.initialAngularVelocity;
+    _groundReactionForce = initialValues.groundReactionForce;
+    _pushoffTime = initialValues.pushoffTime;
+    notifyListeners();
+  }
 
   DetailLevel _level = DetailLevel.medium;
   set level(value) => _level = value;
@@ -67,7 +82,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  double _initialAngularVelocity = 500 * pi / 180; // rad
+  double _initialAngularVelocity = 500 * pi / 180; // rad/s
   double get initialAngularVelocity => _initialAngularVelocity;
   set initialAngularVelocity(value) {
     _initialAngularVelocity = value;

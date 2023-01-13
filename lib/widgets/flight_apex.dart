@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '/providers/app_parameters.dart';
 import '/providers/biomechanics.dart';
-import '/providers/jump_app_theme.dart';
 import 'double_heads_arrow.dart';
 import 'mixed_tooptip.dart';
 import 'text_with_subscript.dart';
@@ -20,7 +20,7 @@ class FlightApex extends StatelessWidget {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     final biomechanics = Biomechanics.of(context, listen: true);
-    final theme = JumpAppTheme.of(context);
+    final app = AppParameters.of(context);
 
     return Stack(
       alignment: Alignment.bottomLeft,
@@ -36,19 +36,19 @@ class FlightApex extends StatelessWidget {
                 bottom: -apex.dy - deviceSize.width * 0.06,
                 child: Container(
                   decoration:
-                      BoxDecoration(color: theme.colorAnswer.withAlpha(30)),
+                      BoxDecoration(color: app.theme.colorAnswer.withAlpha(30)),
                   padding: const EdgeInsets.all(2),
                   child: MixedTooltip(
-                    message: theme.texts.computedMaximalHeight,
-                    helpTitle: theme.texts.computedMaximalHeightHelpTitle,
-                    helpText: theme.texts.computedMaximalHeightHelp,
+                    message: app.texts.computedMaximalHeight,
+                    helpTitle: app.texts.computedMaximalHeightHelpTitle,
+                    helpText: app.texts.computedMaximalHeightHelp,
                     child: Row(
                       children: [
                         TextWithSubscript('H', 'max',
-                            textStyle: theme.textStyleAnswer),
+                            textStyle: app.theme.textStyleAnswer),
                         Text(
                           ' = ${biomechanics.apex.toStringAsFixed(2)} m',
-                          style: theme.textStyleAnswer,
+                          style: app.theme.textStyleAnswer,
                         ),
                       ],
                     ),
@@ -61,8 +61,8 @@ class FlightApex extends StatelessWidget {
         DoubleHeadsArrow(
           start: Offset(apex.dx, -floor),
           end: apex,
-          headSize: theme.arrowHeadSize,
-          color: theme.colorAnswer,
+          headSize: app.theme.arrowHeadSize,
+          color: app.theme.colorAnswer,
         ),
       ],
     );
