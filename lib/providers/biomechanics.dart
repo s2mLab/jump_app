@@ -75,7 +75,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  double _initialRotation = 90 * pi / 180; // rad
+  late double _initialRotation; // rad
   double get initialRotation => _initialRotation;
   set initialRotation(value) {
     _initialRotation = value;

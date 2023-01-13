@@ -104,8 +104,8 @@ class PreJumpRotation extends StatelessWidget {
                     .copyWith(color: app.theme.colorParametersPreJump)),
             precision: 0,
             value: biomechanics.initialRotation * 180 / pi,
-            min: 0,
-            max: 180,
+            min: app.jumpDescription.bounds.minimal.initialRotation * 180 / pi,
+            max: app.jumpDescription.bounds.maximal.initialRotation * 180 / pi,
             position: initialRotationSliderPosition,
             size: initialRotationSliderSize,
             textStyle: app.theme.textStyle
