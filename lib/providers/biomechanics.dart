@@ -10,6 +10,18 @@ class Biomechanics with ChangeNotifier {
   static Biomechanics of(BuildContext context, {bool listen = false}) =>
       Provider.of<Biomechanics>(context, listen: listen);
 
+  Biomechanics(BiomechanicsValue initialValues)
+      : _initialHeight = initialValues.initialHeight,
+        _finalHeight = initialValues.finalHeight,
+        _initialInertia = initialValues.initialInertia,
+        _minimumInertia = initialValues.minimumInertia,
+        _timeToMinimumInertia = initialValues.timeToMinimumInertia,
+        _timeToFinalInertia = initialValues.timeToFinalInertia,
+        _initialRotation = initialValues.initialRotation,
+        _initialAngularVelocity = initialValues.initialAngularVelocity,
+        _groundReactionForce = initialValues.groundReactionForce,
+        _pushoffTime = initialValues.pushoffTime;
+
   void setValues(BiomechanicsValue initialValues, {notify = true}) {
     _initialHeight = initialValues.initialHeight;
     _finalHeight = initialValues.finalHeight;
@@ -31,14 +43,14 @@ class Biomechanics with ChangeNotifier {
   double get g => -9.81;
   double get bodyWeight => bodyMass * g;
 
-  late double _initialHeight; // m
+  double _initialHeight; // m
   double get initialHeight => _initialHeight;
   set initialHeigh(value) {
     _initialHeight = value;
     notifyListeners();
   }
 
-  late double _finalHeight; // m
+  double _finalHeight; // m
   double get finalHeight =>
       _level == DetailLevel.easy ? initialHeight : _finalHeight;
   set finalHeight(value) {
@@ -46,21 +58,21 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  late double _initialInertia; // kg.m^2
+  double _initialInertia; // kg.m^2
   double get initialInertia => _initialInertia;
   set initialInertia(value) {
     _initialInertia = value;
     notifyListeners();
   }
 
-  late double _minimumInertia; // kg.m^2
+  double _minimumInertia; // kg.m^2
   double get minimumInertia => _minimumInertia;
   set minimumInertia(value) {
     _minimumInertia = value;
     notifyListeners();
   }
 
-  late double _timeToMinimumInertia; // s
+  double _timeToMinimumInertia; // s
   double get timeToMinimumInertia => _timeToMinimumInertia;
   set timeToMinimumInertia(value) {
     _timeToMinimumInertia = value;
@@ -68,35 +80,35 @@ class Biomechanics with ChangeNotifier {
   }
 
   // TODO: add a slider at one point
-  late double _timeToFinalInertia; // s
+  double _timeToFinalInertia; // s
   double get timeToFinalInertia => _timeToFinalInertia;
   set timeToFinalInertia(value) {
     _timeToFinalInertia = value;
     notifyListeners();
   }
 
-  late double _initialRotation; // rad
+  double _initialRotation; // rad
   double get initialRotation => _initialRotation;
   set initialRotation(value) {
     _initialRotation = value;
     notifyListeners();
   }
 
-  late double _initialAngularVelocity; // rad/s
+  double _initialAngularVelocity; // rad/s
   double get initialAngularVelocity => _initialAngularVelocity;
   set initialAngularVelocity(value) {
     _initialAngularVelocity = value;
     notifyListeners();
   }
 
-  late double _groundReactionForce; // N
+  double _groundReactionForce; // N
   double get groundReactionForce => _groundReactionForce;
   set groundReactionForce(value) {
     _groundReactionForce = value;
     notifyListeners();
   }
 
-  late double _pushoffTime; // s
+  double _pushoffTime; // s
   double get pushoffTime => _pushoffTime;
   set pushoffTime(value) {
     _pushoffTime = value;

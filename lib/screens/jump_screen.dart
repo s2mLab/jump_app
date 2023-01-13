@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '/providers/app_parameters.dart';
-import '/providers/biomechanics.dart';
 import '/widgets/skater_image.dart';
 
 class JumpScreen extends StatelessWidget {
@@ -16,8 +15,6 @@ class JumpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final app = AppParameters.of(context);
-    Biomechanics.of(context, listen: false)
-        .setValues(app.jumpDescription.bounds.initial, notify: false);
 
     return Scaffold(
       body: const Center(child: SkaterImage()),
