@@ -231,7 +231,7 @@ class ValuePicker extends StatelessWidget {
         children: [
           if (title != null) title!,
           Text(
-            '${title != null ? ' = ' : ''}'
+            '${title != null ? ': ' : ''}'
             '${value.toStringAsFixed(precision)} ',
             textAlign: TextAlign.center,
             style: textStyle.copyWith(color: color),

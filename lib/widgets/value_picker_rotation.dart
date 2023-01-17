@@ -69,7 +69,7 @@ class ValuePickerRotation extends StatelessWidget {
                 children: [
                   if (title != null) title!,
                   Text(
-                    '${title != null ? ' = ' : ''}'
+                    '${title != null ? ': ' : ''}'
                     '${value.toStringAsFixed(precision)}',
                     textAlign: TextAlign.right,
                     style: textStyle,

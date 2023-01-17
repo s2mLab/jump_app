@@ -91,7 +91,7 @@ class CenterOfMass extends StatelessWidget {
               height: pickerHeight!,
               color: app.theme.colorParametersCenterOfMass,
               textStyle: app.theme.textStyle,
-              textOffset: Offset(-deviceSize.width * 0.05, 0),
+              textOffset: Offset(-deviceSize.width * 0.03, 0),
               title: type == CenterOfMassType.any
                   ? null
                   : TextWithSubscript(

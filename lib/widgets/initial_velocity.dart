@@ -33,7 +33,7 @@ class InitialVelocity extends StatelessWidget {
             children: [
               Positioned(
                 right: deviceSize.width - position.dx + deviceSize.width * 0.02,
-                bottom: -position.dy + deviceSize.width * 0.06,
+                bottom: -position.dy + deviceSize.width * 0.12,
                 child: Container(
                   decoration:
                       BoxDecoration(color: app.theme.colorAnswer.withAlpha(30)),
@@ -47,7 +47,7 @@ class InitialVelocity extends StatelessWidget {
                         TextWithSubscript('V', '0',
                             textStyle: app.theme.textStyleAnswer),
                         Text(
-                          ' = ${biomechanics.initialVerticalVelocity.toStringAsFixed(2)} m/s',
+                          ': ${biomechanics.initialVerticalVelocity.toStringAsFixed(2)} m/s',
                           style: app.theme.textStyleAnswer,
                         ),
                       ],

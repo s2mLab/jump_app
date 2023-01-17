@@ -17,31 +17,29 @@ class TotalRotation extends StatelessWidget {
     final biomechanics = Biomechanics.of(context, listen: true);
     final app = AppParameters.of(context);
 
-    return app.level == DetailLevel.easy && app.type != AppType.rotation
-        ? Container()
-        : Positioned(
-            left: position.dx,
-            bottom: -position.dy,
-            child: Container(
-              decoration:
-                  BoxDecoration(color: app.theme.colorAnswer.withAlpha(30)),
-              padding: const EdgeInsets.all(2),
-              child: MixedTooltip(
-                message: app.texts.computedFinalRotation,
-                helpTitle: app.texts.computedFinalRotationHelpTitle,
-                helpText: app.texts.computedFinalRotationHelp,
-                child: Row(
-                  children: [
-                    TextWithSubscript('\u{03B8}', 'F',
-                        textStyle: app.theme.textStyleAnswer),
-                    Text(
-                      ' = ${(biomechanics.finalRotation * 180 / pi).toStringAsFixed(0)}°',
-                      style: app.theme.textStyleAnswer,
-                    ),
-                  ],
-                ),
+    return //app.level == DetailLevel.easy && app.type != AppType.rotation ? Container():
+        Positioned(
+      left: position.dx,
+      bottom: -position.dy,
+      child: Container(
+        decoration: BoxDecoration(color: app.theme.colorAnswer.withAlpha(30)),
+        padding: const EdgeInsets.all(2),
+        child: MixedTooltip(
+          message: app.texts.computedFinalRotation,
+          helpTitle: app.texts.computedFinalRotationHelpTitle,
+          helpText: app.texts.computedFinalRotationHelp,
+          child: Row(
+            children: [
+              TextWithSubscript('\u{03B8}', 'F',
+                  textStyle: app.theme.textStyleAnswer),
+              Text(
+                ': ${(biomechanics.finalRotation * 180 / pi).toStringAsFixed(0)}°',
+                style: app.theme.textStyleAnswer,
               ),
-            ),
-          );
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
