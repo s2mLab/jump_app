@@ -62,7 +62,6 @@ class CenterOfMass extends StatelessWidget {
     final tooltip = type == CenterOfMassType.start
         ? app.texts.h0Tooltip
         : app.texts.hfTooltip;
-
     final min = type == CenterOfMassType.start
         ? app.jumpDescription.bounds.minimal.initialHeight
         : app.jumpDescription.bounds.minimal.finalHeight;

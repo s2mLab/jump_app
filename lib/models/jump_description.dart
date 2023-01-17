@@ -34,7 +34,8 @@ extension JumpDescriptionExtension on JumpDescription {
             initialHeight: 1,
             finalHeight: 1,
             initialInertia: 1,
-            minimumInertia: 1,
+            minimumInertia: 0.9,
+            finalInertia: 1,
             timeToMinimumInertia: 100 / 1000,
             timeToFinalInertia: 100 / 1000,
             initialRotation: 0 * pi / 180,
@@ -47,6 +48,7 @@ extension JumpDescriptionExtension on JumpDescription {
             finalHeight: 1.5,
             initialInertia: 4,
             minimumInertia: 4,
+            finalInertia: 4,
             timeToMinimumInertia: 300 / 1000,
             timeToFinalInertia: 300 / 1000,
             initialRotation: 180 * pi / 180,
@@ -59,6 +61,7 @@ extension JumpDescriptionExtension on JumpDescription {
             finalHeight: 1.15,
             initialInertia: 2.1,
             minimumInertia: 1,
+            finalInertia: 1.5,
             timeToMinimumInertia: 200 / 1000,
             timeToFinalInertia: 200 / 1000,
             initialRotation: 90 * pi / 180,
@@ -67,6 +70,7 @@ extension JumpDescriptionExtension on JumpDescription {
             pushoffTime: 300 / 1000,
           ),
         );
+
       case (JumpDescription.lutz):
         return BiomechanicsBounds(
           minimal: const BiomechanicsValue(
@@ -74,6 +78,7 @@ extension JumpDescriptionExtension on JumpDescription {
             finalHeight: 1,
             initialInertia: 1,
             minimumInertia: 1,
+            finalInertia: 1,
             timeToMinimumInertia: 100 / 1000,
             timeToFinalInertia: 100 / 1000,
             initialRotation: 0 * pi / 180,
@@ -86,6 +91,7 @@ extension JumpDescriptionExtension on JumpDescription {
             finalHeight: 1.5,
             initialInertia: 4,
             minimumInertia: 4,
+            finalInertia: 4,
             timeToMinimumInertia: 300 / 1000,
             timeToFinalInertia: 300 / 1000,
             initialRotation: 180 * pi / 180,
@@ -97,10 +103,11 @@ extension JumpDescriptionExtension on JumpDescription {
             initialHeight: 1.15,
             finalHeight: 1.15,
             initialInertia: 2.1,
+            finalInertia: 1.5,
             minimumInertia: 1,
             timeToMinimumInertia: 200 / 1000,
             timeToFinalInertia: 200 / 1000,
-            initialRotation: 90 * pi / 180,
+            initialRotation: 180 * pi / 180,
             initialAngularVelocity: 500 * pi / 180,
             groundReactionForce: 1500,
             pushoffTime: 300 / 1000,

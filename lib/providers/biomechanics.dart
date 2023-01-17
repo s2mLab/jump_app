@@ -15,6 +15,7 @@ class Biomechanics with ChangeNotifier {
         _finalHeight = initialValues.finalHeight,
         _initialInertia = initialValues.initialInertia,
         _minimumInertia = initialValues.minimumInertia,
+        _finalInertia = initialValues.finalInertia,
         _timeToMinimumInertia = initialValues.timeToMinimumInertia,
         _timeToFinalInertia = initialValues.timeToFinalInertia,
         _initialRotation = initialValues.initialRotation,
@@ -27,6 +28,7 @@ class Biomechanics with ChangeNotifier {
     _finalHeight = initialValues.finalHeight;
     _initialInertia = initialValues.initialInertia;
     _minimumInertia = initialValues.minimumInertia;
+    _finalInertia = initialValues.finalInertia;
     _timeToMinimumInertia = initialValues.timeToMinimumInertia;
     _timeToFinalInertia = initialValues.timeToFinalInertia;
     _initialRotation = initialValues.initialRotation;
@@ -39,7 +41,7 @@ class Biomechanics with ChangeNotifier {
   DetailLevel _level = DetailLevel.medium;
   set level(value) => _level = value;
 
-  double get bodyMass => 70; // kg
+  double get bodyMass => 60; // kg
   double get g => -9.81;
   double get bodyWeight => bodyMass * g;
 
@@ -72,6 +74,13 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
+  double _finalInertia; // kg.m^2
+  double get finalInertia => _finalInertia;
+  set finalInertia(value) {
+    _finalInertia = value;
+    notifyListeners();
+  }
+
   double _timeToMinimumInertia; // s
   double get timeToMinimumInertia => _timeToMinimumInertia;
   set timeToMinimumInertia(value) {
@@ -79,7 +88,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  // TODO: add a slider at one point
+  // TODO: add a slider for finalInertia in hardMode
   double _timeToFinalInertia; // s
   double get timeToFinalInertia => _timeToFinalInertia;
   set timeToFinalInertia(value) {
@@ -129,7 +138,7 @@ class Biomechanics with ChangeNotifier {
           minimumInertia *
           (flightTime - timeToMinimumInertia - timeToFinalInertia) +
       angularMomentum /
-          ((minimumInertia + initialInertia) / 2) *
+          ((minimumInertia + finalInertia) / 2) *
           timeToFinalInertia;
   double get finalRotation => initialRotation + airborneRotation;
 

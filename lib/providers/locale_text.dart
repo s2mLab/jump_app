@@ -81,7 +81,7 @@ class LocaleText with ChangeNotifier {
         'En': 'To increase maximum heightof the center of mass:\n'
             '$_tab\u{2799} Increase take-off vertical velocity\n'
             '$_tab\u{2799} Increase take-off vertical position',
-        'Fr': 'Pour augmenter la hauteur maximale du centre de masse:\n'
+        'Fr': 'Pour augmenter la hauteur maximale du centre de masse :\n'
             '$_tab\u{2799} Augmenter la vitesse verticale au décollage\n'
             '$_tab\u{2799} Augmenter la hauteur du centre de masse au décollage',
       }[language]!;
@@ -96,7 +96,7 @@ class LocaleText with ChangeNotifier {
       }[language]!;
   String get timeToMinimumInertiaHelp => {
         'En': 'To reduce time to reach the minimum moment of inertia,\n'
-            'work on your movement speed. \n
+            'work on your movement speed. \n'
             'Due to centrifugal effects, the athlete must force to keep this position closed',
         'Fr': 'Pour réduire le temps pour atteindre le moment d\'inertie minimal,\n'
             'il faut travailler sur la vitesse de mouvement\n'
@@ -133,7 +133,7 @@ class LocaleText with ChangeNotifier {
             'you can start in a deeper squat position:\n'
             '$_tab\u{2799} more hip and knee flexion\n$_tab\u{2799} arms down',
         'Fr': 'Pour augmenter la durée de la phase de propulsion, \n'
-            'il faut partir dans une position plus basse:\n'
+            'il faut partir dans une position plus basse :\n'
             '$_tab\u{2799} plus de flexion aux hanches et genoux\n'
             '$_tab\u{2799} et bras en bas',
       }[language]!;
@@ -150,7 +150,7 @@ class LocaleText with ChangeNotifier {
         'En': 'To reduce the moment of inertia in aerial phase: \n'
             '$_tab\u{2799} Extend the body and cross the legs, \n'
             '$_tab\u{2799} Put the arms on your chest or extended overhead',
-        'Fr': 'Pour réduire le moment d\'inertie en phase aérienne: \n'
+        'Fr': 'Pour réduire le moment d\'inertie en phase aérienne : \n'
             '$_tab\u{2799} Étendre le corps et croiser les jambes, \n'
             '$_tab\u{2799} Placer les bras contre la poitrine '
             'ou les mettre tendus au-dessus de la tête',
@@ -191,7 +191,7 @@ class LocaleText with ChangeNotifier {
             '$_tab\u{2799} Reduce minimum moment of inertia in aerial phase \n'
             '$_tab$_tab and time to reach this position',
         'Fr': 'Pour augmenter la vitesse maximale de rotation du saut, vous pouvez :\n'
-            '$_tab\u{2799} Augmenter le moment cinéatique initial: I\u{2080} x \u{03B8}\u{2080}\n'
+            '$_tab\u{2799} Augmenter le moment cinétique initial : I\u{2080} x \u{03B8}\u{2080}\n'
             '$_tab\u{2799} Réduire le moment d\'inertie mininal en phase aérienne et \n'
             '$_tab$_tab le temps pour attenidre cette position',
       }[language]!;
@@ -209,7 +209,7 @@ class LocaleText with ChangeNotifier {
             '$_tab\u{2799} Increase takeoff vertical velocity\n'
             '$_tab\u{2799} Increase height of the center of mass at takeoff\n'
             '$_tab\u{2799} Decrease height of the center of mass at landing',
-        'Fr': 'Pour augmenter la durée de la phase aérienne:\n'
+        'Fr': 'Pour augmenter la durée de la phase aérienne :\n'
             '$_tab\u{2799} Augmenter la vitesse verticale au décollage\n'
             '$_tab\u{2799} Augmenter la hauteur du centre de masse au décollage\n'
             '$_tab\u{2799} Réduire la hauteur du centre de masse à l\'atterrisage',
@@ -244,14 +244,14 @@ class LocaleText with ChangeNotifier {
         'En': 'To increase height of the center of mass at takeoff:\n'
             '$_tab\u{2799} Fully extend the support leg,\n'
             '$_tab\u{2799} Rise your arms and free leg',
-        'Fr': 'Pour augmenter la hauteur du centre de masse au décollage:\n'
+        'Fr': 'Pour augmenter la hauteur du centre de masse au décollage :\n'
             '$_tab\u{2799} Extension complète de la jambe d\'appui\n'
             '$_tab\u{2799} Lever les bras et la jambe libre',
       }[language]!;
 
   String get initialRotationTooltip => {
-        'En': 'Body rotation achieved during propulsion on the ice ',
-        'Fr': 'Rotation du corps réalisée pendant la propulsion sur la glace',
+        'En': 'Body rotation achieved during propulsion',
+        'Fr': 'Rotation du corps réalisée pendant la propulsion',
       }[language]!;
   String get initialRotationHelpTitle => {
         'En': 'Body rotation during pushoff',
