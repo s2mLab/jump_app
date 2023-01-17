@@ -64,6 +64,8 @@ class GroundReactionForce extends StatelessWidget {
             precision: 0,
             onValueChanged: (value) => _updateGrf(context, value),
             tooltip: app.texts.fmaxTooltip,
+            helpTitle: app.texts.fmaxHelpTitle,
+            helpText: app.texts.fmaxHelp,
           ),
         ],
       ),

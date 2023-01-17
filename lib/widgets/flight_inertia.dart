@@ -59,10 +59,12 @@ class FlightInertia extends StatelessWidget {
             min: app.jumpDescription.bounds.minimal.minimumInertia,
             max: app.jumpDescription.bounds.maximal.minimumInertia,
             position: inertiaSliderPosition,
-            precision: 1,
+            precision: 2,
             textStyle: app.theme.textStyle,
             onValueChanged: (value) => _onInertiaChanged(context, value),
             tooltip: app.texts.minimumInertiaTooltip,
+            helpTitle: app.texts.minimumInertiaHelpTitle,
+            helpText: app.texts.minimumInertiaHelp,
           ),
         DoubleHeadsArrow(
           start: Offset(
@@ -99,6 +101,8 @@ class FlightInertia extends StatelessWidget {
           textStyle: app.theme.textStyle,
           onValueChanged: (value) => _onTimeToInertiaChanged(context, value),
           tooltip: app.texts.timeToMinimumInertiaTooltip,
+          helpTitle: app.texts.timeToMinimumInertiaHelpTitle,
+          helpText: app.texts.timeToMinimumInertiaHelp,
         )
       ],
     );

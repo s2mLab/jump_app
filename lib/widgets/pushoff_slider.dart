@@ -47,6 +47,8 @@ class PushoffSlider extends StatelessWidget {
       precision: 0,
       onValueChanged: (value) => _updatePushoffTime(context, value),
       tooltip: app.texts.pushoffPhaseLengthTooltip,
+      helpTitle: app.texts.pushoffPhaseLengthHelpTitle,
+      helpText: app.texts.pushoffPhaseLengthHelp,
     );
   }
 }

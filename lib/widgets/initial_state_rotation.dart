@@ -66,10 +66,12 @@ class PreJumpRotation extends StatelessWidget {
           min: app.jumpDescription.bounds.minimal.initialInertia,
           max: app.jumpDescription.bounds.maximal.initialInertia,
           position: inertiaSliderPosition,
-          precision: 1,
+          precision: 2,
           textStyle: app.theme.textStyle,
           onValueChanged: (value) => _onInertiaChanged(context, value),
           tooltip: app.texts.inertiaTooltip,
+          helpTitle: app.texts.inertiaHelpTitle,
+          helpText: app.texts.inertiaHelp,
         ),
         ValuePickerRotation(
           title: TextWithSubscript('\u{03C9}', '0',
@@ -93,6 +95,8 @@ class PreJumpRotation extends StatelessWidget {
           onChange: (value) => _onInitialVelocityChanged(context, value),
           color: app.theme.colorParametersPreJump,
           tooltip: app.texts.angularVelocityTooltip,
+          helpTitle: app.texts.angularVelocityHelpTitle,
+          helpText: app.texts.angularVelocityHelp,
         ),
         if (app.level != DetailLevel.easy)
           ValuePickerRotation(
@@ -113,6 +117,8 @@ class PreJumpRotation extends StatelessWidget {
             onChange: (value) => _onInitialRotationChanged(context, value),
             color: app.theme.colorParametersPreJump,
             tooltip: app.texts.initialRotationTooltip,
+            helpTitle: app.texts.initialRotationHelpTitle,
+            helpText: app.texts.initialRotationHelp,
           ),
       ],
     );

@@ -37,8 +37,8 @@ class AerialPhase extends StatelessWidget {
             padding: const EdgeInsets.all(2),
             child: MixedTooltip(
               message: app.texts.computedAerialPhaseTooltip,
-              helpTitle: app.texts.flightTimeHelpTitle,
-              helpText: app.texts.flightTimePhaseHelp,
+              helpTitle: app.texts.computedAerialPhaseHelpTitle,
+              helpText: app.texts.computedAerialPhaseHelp,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,

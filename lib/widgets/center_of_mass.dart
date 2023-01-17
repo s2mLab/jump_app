@@ -69,6 +69,11 @@ class CenterOfMass extends StatelessWidget {
     final max = type == CenterOfMassType.start
         ? app.jumpDescription.bounds.maximal.initialHeight
         : app.jumpDescription.bounds.maximal.finalHeight;
+    final helpTitle = type == CenterOfMassType.start
+        ? app.texts.h0HelpTitle
+        : app.texts.hfHelpTitle;
+    final helpText =
+        type == CenterOfMassType.start ? app.texts.h0Help : app.texts.hfHelp;
 
     return SizedBox(
       width: deviceSize.width,
@@ -105,6 +110,8 @@ class CenterOfMass extends StatelessWidget {
                   ? (value) => _updateHeight(context, value)
                   : null,
               tooltip: tooltip,
+              helpTitle: helpTitle,
+              helpText: helpText,
             ),
           if (!withPicker)
             Positioned(

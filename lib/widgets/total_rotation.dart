@@ -29,7 +29,7 @@ class TotalRotation extends StatelessWidget {
               child: MixedTooltip(
                 message: app.texts.computedFinalRotation,
                 helpTitle: app.texts.computedFinalRotationHelpTitle,
-                helpText: app.texts.computedFinaleRotationHelp,
+                helpText: app.texts.computedFinalRotationHelp,
                 child: Row(
                   children: [
                     TextWithSubscript('\u{03B8}', 'F',
