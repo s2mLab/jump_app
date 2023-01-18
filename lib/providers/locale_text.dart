@@ -315,12 +315,18 @@ class LocaleText with ChangeNotifier {
             '$_tab\u{2022} and  total rotation.\n'
             'Switch between translation and rotation to have access to all parameters\n'
             'Use tooltips and helps to learn more about each parameter',
-        'Fr': 'Choisir son saut dans le menu à gauche\n'
-            'Changez les valeurs en utilisant les curseurs et voyez les performances de :\n'
-            '$_tab\u{2022} vitesse vertical de décollage,\n$_tab\u{2022} hauteur maximale,\n'
-            '$_tab\u{2022} temps de vol, \n$_tab\u{2022} vitesse maximale de rotation\n'
-            '$_tab\u{2022} et rotation totale.\n'
+        'Fr': 'Choisir son saut dans le menu à gauche, '
+            'changer les valeurs avec les curseurs et observer les performances de :\n'
+            '$_tab\u{2022} vitesse vertical de décollage, hauteur maximale, temps de vol,\n'
+            '$_tab\u{2022} vitesse maximale de rotation et rotation totale.\n'
             'Utiliser l\'interrupteur pour passer des paramètres en translation à ceux en rotation\n'
-            'Utiliser les info-bulles et les aides pour en apprendre plus sur chaque paramètre',
+            'Utiliser les info-bulles et les aides pour en apprendre plus sur chaque paramètre\n\n\n'
+            'Crédits : \n'
+            '$_tab\u{2022} App développée par Benjamin Michaud et Mickael Begon '
+            'du Laboratoire S2M\n $_tab$_tab en collaboration avec Patinage Québec '
+            '(projet Synergie 2022-2023)\n'
+            '$_tab\u{2022} Axel : xxxx YYY, champion Canadien ... \n'
+            '$_tab\u{2022} Toe Loop : xxxxx\n'
+            '$_tab\u{2022} Salto arrière : xxxxx\n',
       }[language]!;
 }
