@@ -104,7 +104,7 @@ class LocaleText with ChangeNotifier {
       }[language]!;
 
   String get computedFinalRotation => {
-        'En': 'Computed rotation at landing in degrees',
+        'En': 'Computed rotation at landing in rotations',
         'Fr': 'Rotation calculée à l\'atterissage',
       }[language]!;
   String get computedFinalRotationHelpTitle => {

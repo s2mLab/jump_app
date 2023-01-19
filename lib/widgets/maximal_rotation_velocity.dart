@@ -34,7 +34,7 @@ class MaximalRotationVelocity extends StatelessWidget {
               TextWithSubscript('\u{03C9}', 'max',
                   textStyle: app.theme.textStyleAnswer),
               Text(
-                ': ${(biomechanics.maximumAngularVelocity * 180 / pi).toStringAsFixed(0)}°/s',
+                ': ${(biomechanics.maximumAngularVelocity / 2 / pi).toStringAsFixed(2)} rev/s',
                 style: app.theme.textStyleAnswer,
               ),
             ],

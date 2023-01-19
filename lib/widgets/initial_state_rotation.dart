@@ -77,16 +77,16 @@ class PreJumpRotation extends StatelessWidget {
           title: TextWithSubscript('\u{03C9}', '0',
               textStyle: app.theme.textStyleAnswer
                   .copyWith(color: app.theme.colorParametersPreJump)),
-          units: Text('°/s',
+          units: Text(' rev/s',
               style: app.theme.textStyle
                   .copyWith(color: app.theme.colorParametersPreJump)),
-          precision: 0,
-          value: biomechanics.initialAngularVelocity * 180 / pi,
-          min: app.jumpDescription.bounds.minimal.initialAngularVelocity *
-              180 /
+          precision: 2,
+          value: biomechanics.initialAngularVelocity / 2 / pi,
+          min: app.jumpDescription.bounds.minimal.initialAngularVelocity /
+              2 /
               pi,
-          max: app.jumpDescription.bounds.maximal.initialAngularVelocity *
-              180 /
+          max: app.jumpDescription.bounds.maximal.initialAngularVelocity /
+              2 /
               pi,
           position: initialVelocitySliderPosition,
           size: initialVelocitySliderSize,
@@ -103,13 +103,13 @@ class PreJumpRotation extends StatelessWidget {
             title: TextWithSubscript('\u{03B8}', '0',
                 textStyle: app.theme.textStyle
                     .copyWith(color: app.theme.colorParametersPreJump)),
-            units: Text('°',
+            units: Text(' rev',
                 style: app.theme.textStyle
                     .copyWith(color: app.theme.colorParametersPreJump)),
-            precision: 0,
-            value: biomechanics.initialRotation * 180 / pi,
-            min: app.jumpDescription.bounds.minimal.initialRotation * 180 / pi,
-            max: app.jumpDescription.bounds.maximal.initialRotation * 180 / pi,
+            precision: 2,
+            value: biomechanics.initialRotation / 2 / pi,
+            min: app.jumpDescription.bounds.minimal.initialRotation / 2 / pi,
+            max: app.jumpDescription.bounds.maximal.initialRotation / 2 / pi,
             position: initialRotationSliderPosition,
             size: initialRotationSliderSize,
             textStyle: app.theme.textStyle
