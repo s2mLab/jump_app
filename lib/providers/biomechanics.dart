@@ -22,7 +22,7 @@ class Biomechanics with ChangeNotifier {
         _initialAngularVelocity = initialValues.initialAngularVelocity,
         _groundReactionForce = initialValues.groundReactionForce,
         _pushoffTime = initialValues.pushoffTime,
-        _bodyWeight = initialValues.bodyWeight;
+        _bodyMass = initialValues.bodyMass;
 
   void setValues(BiomechanicsValue initialValues, {notify = true}) {
     _initialHeight = initialValues.initialHeight;
@@ -36,7 +36,7 @@ class Biomechanics with ChangeNotifier {
     _initialAngularVelocity = initialValues.initialAngularVelocity;
     _groundReactionForce = initialValues.groundReactionForce;
     _pushoffTime = initialValues.pushoffTime;
-    _bodyWeight = initialValues.bodyWeight;
+    _bodyMass = initialValues.bodyMass;
     if (notify) notifyListeners();
   }
 
@@ -45,14 +45,14 @@ class Biomechanics with ChangeNotifier {
 
   double get g => 9.81;
 
-  double _bodyWeight; // N
-  double get bodyWeight => _bodyWeight;
+  double _bodyMass; // kg
+  double get bodyMass => _bodyMass;
   set bodyWeight(value) {
-    _bodyWeight = value;
+    _bodyMass = value;
     notifyListeners();
   }
 
-  double get bodyMass => _bodyWeight / g; // kg
+  double get bodyWeight => bodyMass * g; // N
 
   double _initialHeight; // m
   double get initialHeight => _initialHeight;
@@ -119,7 +119,8 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-//TODO: expression max force in BW
+//TODO: expression max force in BW.
+//TODO: Reponse to previous comment: I disagree, as in this file all the values are in SI units, it should remain as is
   double _groundReactionForce; // N
   double get groundReactionForce => _groundReactionForce;
   set groundReactionForce(value) {

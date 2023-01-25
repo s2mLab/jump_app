@@ -47,11 +47,10 @@ class GroundReactionForce extends StatelessWidget {
           ),
           ValuePicker.vertical(
             min: app.jumpDescription.bounds.minimal.groundReactionForce /
-                app.jumpDescription.bounds.initial.bodyWeight,
+                biomechanics.bodyWeight,
             max: app.jumpDescription.bounds.maximal.groundReactionForce /
-                app.jumpDescription.bounds.initial.bodyWeight,
-            value: biomechanics.groundReactionForce /
-                app.jumpDescription.bounds.initial.bodyWeight,
+                biomechanics.bodyWeight,
+            value: biomechanics.groundReactionForce / biomechanics.bodyWeight,
             position: sliderPosition,
             height: sliderHeight,
             color: app.theme.colorParametersGroundReactionForce,
