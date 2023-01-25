@@ -219,8 +219,9 @@ class LocaleText with ChangeNotifier {
       }[language]!;
 
   String get fmaxTooltip => {
-        'En': 'Maximal force exerted during the pushoff phase',
-        'Fr': 'Force maximale exercée lors de la phase de propulsion',
+        'En': 'Maximal force (in bodyweight) exerted during the pushoff phase',
+        'Fr':
+            'Force maximale (en poids de corps) exercée lors de la phase de propulsion',
       }[language]!;
   String get fmaxHelpTitle => {
         'En': 'Increase the maximal vertical force ',

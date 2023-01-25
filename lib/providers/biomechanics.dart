@@ -21,7 +21,8 @@ class Biomechanics with ChangeNotifier {
         _initialRotation = initialValues.initialRotation,
         _initialAngularVelocity = initialValues.initialAngularVelocity,
         _groundReactionForce = initialValues.groundReactionForce,
-        _pushoffTime = initialValues.pushoffTime;
+        _pushoffTime = initialValues.pushoffTime,
+        _bodyWeight = initialValues.bodyWeight;
 
   void setValues(BiomechanicsValue initialValues, {notify = true}) {
     _initialHeight = initialValues.initialHeight;
@@ -35,15 +36,23 @@ class Biomechanics with ChangeNotifier {
     _initialAngularVelocity = initialValues.initialAngularVelocity;
     _groundReactionForce = initialValues.groundReactionForce;
     _pushoffTime = initialValues.pushoffTime;
+    _bodyWeight = initialValues.bodyWeight;
     if (notify) notifyListeners();
   }
 
   DetailLevel _level = DetailLevel.medium;
   set level(value) => _level = value;
 
-  double get bodyMass => 60; // kg
-  double get g => -9.81;
-  double get bodyWeight => bodyMass * g;
+  double get g => 9.81;
+
+  double _bodyWeight; // N
+  double get bodyWeight => _bodyWeight;
+  set bodyWeight(value) {
+    _bodyWeight = value;
+    notifyListeners();
+  }
+
+  double get bodyMass => _bodyWeight / g; // kg
 
   double _initialHeight; // m
   double get initialHeight => _initialHeight;
@@ -110,6 +119,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
+//TODO: expression max force in BW
   double _groundReactionForce; // N
   double get groundReactionForce => _groundReactionForce;
   set groundReactionForce(value) {
@@ -124,7 +134,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  double get impulse => (groundReactionForce + bodyWeight) / 2 * pushoffTime;
+  double get impulse => (groundReactionForce - bodyWeight) / 2 * pushoffTime;
 
   double get initialVerticalVelocity => impulse / bodyMass;
   double get angularMomentum => initialAngularVelocity * initialInertia;
@@ -142,12 +152,12 @@ class Biomechanics with ChangeNotifier {
           timeToFinalInertia;
   double get finalRotation => initialRotation + airborneRotation;
 
-  double get ascendingTime => initialVerticalVelocity / -g;
-  double get descendingTime => sqrt((apex - finalHeight) / (-0.5 * g));
+  double get ascendingTime => initialVerticalVelocity / g;
+  double get descendingTime => sqrt((apex - finalHeight) / (0.5 * g));
   double get flightTime => ascendingTime + descendingTime;
 
   double get apex {
-    return initialHeight +
+    return initialHeight -
         0.5 * g * ascendingTime * ascendingTime +
         initialVerticalVelocity * ascendingTime;
   }

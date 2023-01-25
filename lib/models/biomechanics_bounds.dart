@@ -11,6 +11,7 @@ class BiomechanicsValue {
     required this.initialAngularVelocity,
     required this.groundReactionForce,
     required this.pushoffTime,
+    required this.bodyWeight,
   });
 
   final double initialHeight; // m
@@ -27,6 +28,8 @@ class BiomechanicsValue {
 
   final double groundReactionForce; // N
   final double pushoffTime; // s
+
+  final double bodyWeight; // N
 }
 
 class BiomechanicsBounds {

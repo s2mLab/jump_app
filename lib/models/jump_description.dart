@@ -47,6 +47,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialAngularVelocity: .3 * 2 * pi,
             groundReactionForce: 1000,
             pushoffTime: 150 / 1000,
+            bodyWeight: double.nan,
           ),
           maximal: const BiomechanicsValue(
             initialHeight: 1.5,
@@ -60,6 +61,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialAngularVelocity: 3 * 3 * pi,
             groundReactionForce: 2500,
             pushoffTime: 450 / 1000,
+            bodyWeight: double.nan,
           ),
           initial: const BiomechanicsValue(
             initialHeight: 1.15,
@@ -73,6 +75,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialAngularVelocity: 1.5 * 2 * pi,
             groundReactionForce: 1500,
             pushoffTime: 300 / 1000,
+            bodyWeight: 60 * 9.81,
           ),
         );
 
@@ -90,6 +93,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialAngularVelocity: 0.3 * 2 * pi,
             groundReactionForce: 1000,
             pushoffTime: 150 / 1000,
+            bodyWeight: double.nan,
           ),
           maximal: const BiomechanicsValue(
             initialHeight: 1.5,
@@ -103,6 +107,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialAngularVelocity: 3 * pi * 2,
             groundReactionForce: 2500,
             pushoffTime: 450 / 1000,
+            bodyWeight: double.nan,
           ),
           initial: const BiomechanicsValue(
             initialHeight: 1.15,
@@ -116,6 +121,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialAngularVelocity: 1.5 * pi * 2,
             groundReactionForce: 1500,
             pushoffTime: 300 / 1000,
+            bodyWeight: 60 * 9.81,
           ),
         );
 
@@ -133,6 +139,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialAngularVelocity: 0.1 * 2 * pi,
             groundReactionForce: 1000,
             pushoffTime: 150 / 1000,
+            bodyWeight: double.nan,
           ),
           maximal: const BiomechanicsValue(
             initialHeight: 1.5,
@@ -146,6 +153,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialAngularVelocity: 0.8 * 2 * pi,
             groundReactionForce: 2500,
             pushoffTime: 450 / 1000,
+            bodyWeight: double.nan,
           ),
           initial: const BiomechanicsValue(
             initialHeight: 1.15,
@@ -159,6 +167,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialAngularVelocity: 0.3 * 2 * pi,
             groundReactionForce: 1500,
             pushoffTime: 300 / 1000,
+            bodyWeight: 60 * 9.81,
           ),
         );
     }

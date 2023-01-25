@@ -29,12 +29,12 @@ class PreJumpRotation extends StatelessWidget {
 
   void _onInitialRotationChanged(BuildContext context, value) {
     final biomechanics = Biomechanics.of(context);
-    biomechanics.initialRotation = value * pi / 180;
+    biomechanics.initialRotation = value * 2 * pi;
   }
 
   void _onInitialVelocityChanged(BuildContext context, value) {
     final biomechanics = Biomechanics.of(context);
-    biomechanics.initialAngularVelocity = value * pi / 180;
+    biomechanics.initialAngularVelocity = value * 2 * pi;
   }
 
   void _onInertiaChanged(BuildContext context, value) {
