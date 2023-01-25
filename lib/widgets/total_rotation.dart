@@ -33,7 +33,7 @@ class TotalRotation extends StatelessWidget {
               TextWithSubscript('\u{03B8}', 'F',
                   textStyle: app.theme.textStyleAnswer),
               Text(
-                ': ${(biomechanics.finalRotation / 2 / pi).toStringAsFixed(2)} rev',
+                '${app.texts.colon} ${(biomechanics.finalRotation / 2 / pi).toStringAsFixed(2)} rev',
                 style: app.theme.textStyleAnswer,
               ),
             ],

@@ -47,7 +47,7 @@ class FlightApex extends StatelessWidget {
                         TextWithSubscript('H', 'max',
                             textStyle: app.theme.textStyleAnswer),
                         Text(
-                          ': ${biomechanics.apex.toStringAsFixed(2)} m',
+                          '${app.texts.colon} ${biomechanics.apex.toStringAsFixed(2)} m',
                           style: app.theme.textStyleAnswer,
                         ),
                       ],

@@ -47,7 +47,7 @@ class InitialVelocity extends StatelessWidget {
                         TextWithSubscript('V', '0',
                             textStyle: app.theme.textStyleAnswer),
                         Text(
-                          ': ${biomechanics.initialVerticalVelocity.toStringAsFixed(2)} m/s',
+                          '${app.texts.colon} ${biomechanics.initialVerticalVelocity.toStringAsFixed(2)} m/s',
                           style: app.theme.textStyleAnswer,
                         ),
                       ],

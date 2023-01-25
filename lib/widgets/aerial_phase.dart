@@ -46,7 +46,7 @@ class AerialPhase extends StatelessWidget {
                   TextWithSubscript('T', app.texts.flight,
                       textStyle: app.theme.textStyleAnswer),
                   Text(
-                    ': ${biomechanics.flightTime.toStringAsFixed(3)} s',
+                    '${app.texts.colon} ${biomechanics.flightTime.toStringAsFixed(3)} s',
                     style: app.theme.textStyleAnswer,
                   ),
                 ],

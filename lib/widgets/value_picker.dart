@@ -1,7 +1,8 @@
-import 'package:syncfusion_flutter_sliders/sliders.dart';
-import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
+import '/providers/app_parameters.dart';
 import 'mixed_tooptip.dart';
 
 enum _Direction { horizontal, vertical, diagonal }
@@ -138,7 +139,7 @@ class ValuePicker extends StatelessWidget {
           right: deviceSize.width - width! - position.dx - textOffset.dx,
           bottom: position.dy + textOffset.dy,
           top: deviceSize.height - position.dy - fontSize * 2.3 - textOffset.dy,
-          child: _buildText()),
+          child: _buildText(context)),
       Positioned(
           left: position.dx,
           right: deviceSize.width - width! - position.dx,
@@ -156,7 +157,7 @@ class ValuePicker extends StatelessWidget {
         left: position.dx + textOffset.dx,
         bottom: position.dy + height! - fontSize * 2 - textOffset.dy,
         top: deviceSize.height - height! - position.dy,
-        child: _buildText(),
+        child: _buildText(context),
       ),
       Positioned(
         left: position.dx,
@@ -177,7 +178,7 @@ class ValuePicker extends StatelessWidget {
         bottom:
             position.dy + fontSize - deviceSize.width * 0.01 + textOffset.dy,
         top: deviceSize.height - length / 2 - position.dy - textOffset.dy,
-        child: _buildText(),
+        child: _buildText(context),
       ),
       Positioned(
         left: position.dx,
@@ -222,7 +223,8 @@ class ValuePicker extends StatelessWidget {
     );
   }
 
-  Widget _buildText() {
+  Widget _buildText(BuildContext context) {
+    final app = AppParameters.of(context);
     return MixedTooltip(
       message: tooltip ?? '',
       helpTitle: helpTitle,
@@ -231,7 +233,7 @@ class ValuePicker extends StatelessWidget {
         children: [
           if (title != null) title!,
           Text(
-            '${title != null ? ': ' : ''}'
+            '${title != null ? '${app.texts.colon} ' : ''}'
             '${value.toStringAsFixed(precision)} ',
             textAlign: TextAlign.center,
             style: textStyle.copyWith(color: color),

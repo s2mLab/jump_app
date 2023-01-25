@@ -18,6 +18,8 @@ class LocaleText with ChangeNotifier {
     return Provider.of<LocaleText>(context, listen: listen);
   }
 
+  String get colon => {'En': ':', 'Fr': ' :'}[language]!;
+
   String get drawerTitle =>
       {'En': 'Choice of the jump', 'Fr': 'Choix du saut'}[language]!;
   String get menu => {'En': 'Jumps', 'Fr': 'Sauts'}[language]!;
