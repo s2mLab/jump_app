@@ -131,7 +131,7 @@ class FlightInertia extends StatelessWidget {
           ValuePicker.horizontal(
             title: TextWithSubscript(
               'T',
-              'open', //TODO: FR|EN
+              app.texts.open,
               textStyle: app.theme.textStyle
                   .copyWith(color: app.theme.colorParametersInertia),
             ),

@@ -105,6 +105,10 @@ class LocaleText with ChangeNotifier {
             'À cause des efforts centrifuges, l\'athlète doit continuer de force pour garder la position fermée',
       }[language]!;
 
+  String get open => {
+        'En': 'open',
+        'Fr': 'ouvert', // TODO: Find a better word
+      }[language]!;
   String get timeToFinalInertiaTooltip => {
         'En': 'Time to reach the landing moment of inertia',
         'Fr': 'Temps pour atteindre le moment d\'inertie d\'atterrissage',
