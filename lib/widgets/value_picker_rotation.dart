@@ -99,7 +99,6 @@ class ValuePickerRotation extends StatelessWidget {
                         thickness: trackWidth, color: color.withAlpha(50)),
                     minimum: min,
                     maximum: max,
-                    onAxisTapped: _changeValue,
                     pointers: [
                       MarkerPointer(
                         markerHeight: markerSize,
