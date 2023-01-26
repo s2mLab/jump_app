@@ -97,7 +97,6 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  // TODO: add a slider for finalInertia in hardMode
   double _timeToFinalInertia; // s
   double get timeToFinalInertia => _timeToFinalInertia;
   set timeToFinalInertia(value) {
@@ -119,8 +118,6 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-//TODO: expression max force in BW.
-//TODO: Reponse to previous comment: I disagree, as in this file all the values are in SI units, it should remain as is
   double _groundReactionForce; // N
   double get groundReactionForce => _groundReactionForce;
   set groundReactionForce(value) {

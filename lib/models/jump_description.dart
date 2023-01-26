@@ -173,3 +173,17 @@ extension JumpDescriptionExtension on JumpDescription {
     }
   }
 }
+
+/*
+Impulsion
+Axel = 0.29-0.36s (0.44s)
+Toe loop = 0.2-0.33s
+
+Décollage —> position la plus fermé 
+Axel = 0.2-0.34s
+Toe loop = 0.2-0.3s
+
+Début d’ouverture —> atterissage (premier moment où le pied touche la glace)
+Axel = 0.04-0.08s
+Toe loop = 0.03-0.04s
+*/

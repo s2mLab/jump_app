@@ -105,6 +105,24 @@ class LocaleText with ChangeNotifier {
             'À cause des efforts centrifuges, l\'athlète doit continuer de force pour garder la position fermée',
       }[language]!;
 
+  String get timeToFinalInertiaTooltip => {
+        'En': 'Time to reach the landing moment of inertia',
+        'Fr': 'Temps pour atteindre le moment d\'inertie d\'atterrissage',
+      }[language]!;
+  String get timeToFinalInertiaHelpTitle => {
+        'En': 'Reduce time to Reach the landing moment of inertia',
+        'Fr':
+            'Réduire le temps pour atteindre le moment d\'inertie d\'atterrissage',
+      }[language]!;
+  String get timeToFinalInertiaHelp => {
+        'En': 'To reduce time to reach the landing moment of inertia,\n'
+            'TODO.',
+        'Fr':
+            'Pour réduire le temps pour atteindre le moment d\'inertie d\'atterrissage,\n'
+                'il faut TODO.',
+      }[language]!;
+  //TODO: text final inertia: how to improve??
+
   String get computedFinalRotation => {
         'En': 'Computed rotation at landing in rotations',
         'Fr': 'Rotation calculée à l\'atterissage',
