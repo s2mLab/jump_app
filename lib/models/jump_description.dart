@@ -25,7 +25,7 @@ extension JumpDescriptionExtension on JumpDescription {
       case (JumpDescription.axel):
         return 'Axel';
       case (JumpDescription.lutz):
-        return 'Lutz';
+        return 'Lutz'; //TODO replace by toeloop
       case (JumpDescription.somersault):
         return 'Somersault';
     }
@@ -41,12 +41,12 @@ extension JumpDescriptionExtension on JumpDescription {
             initialInertia: 1,
             minimumInertia: 0.9,
             finalInertia: 1,
-            timeToMinimumInertia: 100 / 1000,
+            timeToMinimumInertia: 150 / 1000,
             timeToFinalInertia: 100 / 1000,
-            initialRotation: 0 * 2 * pi,
+            initialRotation: 0.15 * 2 * pi,
             initialAngularVelocity: .3 * 2 * pi,
             groundReactionForce: 1000,
-            pushoffTime: 150 / 1000,
+            pushoffTime: 200 / 1000,
             bodyMass: 40,
           ),
           maximal: const BiomechanicsValue(
@@ -55,12 +55,12 @@ extension JumpDescriptionExtension on JumpDescription {
             initialInertia: 4,
             minimumInertia: 4,
             finalInertia: 4,
-            timeToMinimumInertia: 300 / 1000,
+            timeToMinimumInertia: 350 / 1000,
             timeToFinalInertia: 300 / 1000,
-            initialRotation: 0.5 * 2 * pi,
+            initialRotation: 0.35 * 2 * pi,
             initialAngularVelocity: 3 * 3 * pi,
             groundReactionForce: 2500,
-            pushoffTime: 450 / 1000,
+            pushoffTime: 460 / 1000,
             bodyMass: 200,
           ),
           initial: const BiomechanicsValue(
@@ -79,7 +79,7 @@ extension JumpDescriptionExtension on JumpDescription {
           ),
         );
 
-      case (JumpDescription.lutz):
+      case (JumpDescription.lutz): //TODO put values for toeloop and then switch
         return BiomechanicsBounds(
           minimal: const BiomechanicsValue(
             initialHeight: 1,
@@ -88,8 +88,8 @@ extension JumpDescriptionExtension on JumpDescription {
             minimumInertia: 1,
             finalInertia: 1,
             timeToMinimumInertia: 100 / 1000,
-            timeToFinalInertia: 100 / 1000,
-            initialRotation: 0 * 2 * pi,
+            timeToFinalInertia: 20 / 1000,
+            initialRotation: .3 * 2 * pi,
             initialAngularVelocity: 0.3 * 2 * pi,
             groundReactionForce: 1000,
             pushoffTime: 150 / 1000,
@@ -101,12 +101,12 @@ extension JumpDescriptionExtension on JumpDescription {
             initialInertia: 4,
             minimumInertia: 4,
             finalInertia: 4,
-            timeToMinimumInertia: 300 / 1000,
+            timeToMinimumInertia: 350 / 1000,
             timeToFinalInertia: 300 / 1000,
             initialRotation: 0.7 * 2 * pi,
             initialAngularVelocity: 3 * pi * 2,
-            groundReactionForce: 2500,
-            pushoffTime: 450 / 1000,
+            groundReactionForce: 2000,
+            pushoffTime: 400 / 1000,
             bodyMass: 200,
           ),
           initial: const BiomechanicsValue(
@@ -115,13 +115,13 @@ extension JumpDescriptionExtension on JumpDescription {
             initialInertia: 2.1,
             finalInertia: 1.5,
             minimumInertia: 1,
-            timeToMinimumInertia: 200 / 1000,
-            timeToFinalInertia: 200 / 1000,
+            timeToMinimumInertia: 250 / 1000,
+            timeToFinalInertia: 60 / 1000,
             initialRotation: 0.5 * 2 * pi,
             initialAngularVelocity: 1.5 * pi * 2,
             groundReactionForce: 1500,
             pushoffTime: 300 / 1000,
-            bodyMass: 60,
+            bodyMass: 57,
           ),
         );
 
@@ -151,7 +151,7 @@ extension JumpDescriptionExtension on JumpDescription {
             timeToFinalInertia: 300 / 1000,
             initialRotation: 0.2 * 2 * pi,
             initialAngularVelocity: 0.8 * 2 * pi,
-            groundReactionForce: 2500,
+            groundReactionForce: 2000,
             pushoffTime: 450 / 1000,
             bodyMass: 200,
           ),
@@ -167,7 +167,7 @@ extension JumpDescriptionExtension on JumpDescription {
             initialAngularVelocity: 0.3 * 2 * pi,
             groundReactionForce: 1500,
             pushoffTime: 300 / 1000,
-            bodyMass: 60,
+            bodyMass: 57,
           ),
         );
     }

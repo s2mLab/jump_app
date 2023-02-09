@@ -24,6 +24,8 @@ class LocaleText with ChangeNotifier {
       {'En': 'Choice of the jump', 'Fr': 'Choix du saut'}[language]!;
   String get menu => {'En': 'Jumps', 'Fr': 'Sauts'}[language]!;
 
+//TODO: add tooltip about exercises
+
   String get pushoffPhase =>
       {'En': 'Pushoff phase', 'Fr': 'Phase de propulsion'}[language]!;
   String get aerialPhase =>
@@ -340,13 +342,17 @@ class LocaleText with ChangeNotifier {
             '$_tab\u{2022} and  total rotation.\n'
             'Switch between translation and rotation to have access to all parameters\n'
             'Use tooltips and helps to learn more about each parameter',
-        'Fr': 'Choisir son saut dans le menu à gauche, '
-            'changer les valeurs avec les curseurs et observer les performances de :\n'
+        'Fr': 'Choisir un saut dans le menu à gauche; '
+            'changer les valeurs avec les curseurs et observer les performances :\n'
             '$_tab\u{2022} vitesse vertical de décollage, hauteur maximale, temps de vol,\n'
             '$_tab\u{2022} vitesse maximale de rotation et rotation totale.\n'
             'Utiliser l\'interrupteur pour passer des paramètres en translation à ceux en rotation\n'
-            'Utiliser les info-bulles et les aides pour en apprendre plus sur chaque paramètre\n\n\n'
-            'Crédits : \n'
+            'Utiliser les info-bulles et les aides pour en apprendre plus sur chaque paramètre\n\n'
+            'Modèle bioméanique: '
+            '[Translation] Impulsion = (poids + Force_max)/ 2 * Temps de propulsion;'
+            ' V = Impulsion/Masse; Temps de vol selon les équation parabolique\n'
+            '[Rotation]'
+            '\n\nCrédits : \n'
             '$_tab\u{2022} App développée par Benjamin Michaud et Mickael Begon '
             'du Laboratoire S2M\n $_tab$_tab en collaboration avec Patinage Québec '
             '(projet Synergie 2022-2023)\n'
