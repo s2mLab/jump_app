@@ -15,33 +15,44 @@ class Biomechanics with ChangeNotifier {
         _finalHeight = initialValues.finalHeight,
         _initialInertia = initialValues.initialInertia,
         _minimumInertia = initialValues.minimumInertia,
+        _finalInertia = initialValues.finalInertia,
         _timeToMinimumInertia = initialValues.timeToMinimumInertia,
         _timeToFinalInertia = initialValues.timeToFinalInertia,
         _initialRotation = initialValues.initialRotation,
         _initialAngularVelocity = initialValues.initialAngularVelocity,
         _groundReactionForce = initialValues.groundReactionForce,
-        _pushoffTime = initialValues.pushoffTime;
+        _pushoffTime = initialValues.pushoffTime,
+        _bodyMass = initialValues.bodyMass;
 
   void setValues(BiomechanicsValue initialValues, {notify = true}) {
     _initialHeight = initialValues.initialHeight;
     _finalHeight = initialValues.finalHeight;
     _initialInertia = initialValues.initialInertia;
     _minimumInertia = initialValues.minimumInertia;
+    _finalInertia = initialValues.finalInertia;
     _timeToMinimumInertia = initialValues.timeToMinimumInertia;
     _timeToFinalInertia = initialValues.timeToFinalInertia;
     _initialRotation = initialValues.initialRotation;
     _initialAngularVelocity = initialValues.initialAngularVelocity;
     _groundReactionForce = initialValues.groundReactionForce;
     _pushoffTime = initialValues.pushoffTime;
+    _bodyMass = initialValues.bodyMass;
     if (notify) notifyListeners();
   }
 
   DetailLevel _level = DetailLevel.medium;
   set level(value) => _level = value;
 
-  double get bodyMass => 70; // kg
-  double get g => -9.81;
-  double get bodyWeight => bodyMass * g;
+  double get g => 9.81;
+
+  double _bodyMass; // kg
+  double get bodyMass => _bodyMass;
+  set bodyWeight(value) {
+    _bodyMass = value;
+    notifyListeners();
+  }
+
+  double get bodyWeight => bodyMass * g; // N
 
   double _initialHeight; // m
   double get initialHeight => _initialHeight;
@@ -72,6 +83,13 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
+  double _finalInertia; // kg.m^2
+  double get finalInertia => _finalInertia;
+  set finalInertia(value) {
+    _finalInertia = value;
+    notifyListeners();
+  }
+
   double _timeToMinimumInertia; // s
   double get timeToMinimumInertia => _timeToMinimumInertia;
   set timeToMinimumInertia(value) {
@@ -79,7 +97,6 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  // TODO: add a slider at one point
   double _timeToFinalInertia; // s
   double get timeToFinalInertia => _timeToFinalInertia;
   set timeToFinalInertia(value) {
@@ -115,7 +132,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  double get impulse => (groundReactionForce + bodyWeight) / 2 * pushoffTime;
+  double get impulse => (groundReactionForce - bodyWeight) / 2 * pushoffTime;
 
   double get initialVerticalVelocity => impulse / bodyMass;
   double get angularMomentum => initialAngularVelocity * initialInertia;
@@ -129,16 +146,16 @@ class Biomechanics with ChangeNotifier {
           minimumInertia *
           (flightTime - timeToMinimumInertia - timeToFinalInertia) +
       angularMomentum /
-          ((minimumInertia + initialInertia) / 2) *
+          ((minimumInertia + finalInertia) / 2) *
           timeToFinalInertia;
   double get finalRotation => initialRotation + airborneRotation;
 
-  double get ascendingTime => initialVerticalVelocity / -g;
-  double get descendingTime => sqrt((apex - finalHeight) / (-0.5 * g));
+  double get ascendingTime => initialVerticalVelocity / g;
+  double get descendingTime => sqrt((apex - finalHeight) / (0.5 * g));
   double get flightTime => ascendingTime + descendingTime;
 
   double get apex {
-    return initialHeight +
+    return initialHeight -
         0.5 * g * ascendingTime * ascendingTime +
         initialVerticalVelocity * ascendingTime;
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
+import '/providers/app_parameters.dart';
 import 'mixed_tooptip.dart';
 
 class ValuePickerRotation extends StatelessWidget {
@@ -45,6 +46,7 @@ class ValuePickerRotation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final app = AppParameters.of(context);
     final deviceSize = MediaQuery.of(context).size;
     final trackWidth = deviceSize.width * 0.01;
     final markerSize = deviceSize.width * 0.03;
@@ -69,7 +71,7 @@ class ValuePickerRotation extends StatelessWidget {
                 children: [
                   if (title != null) title!,
                   Text(
-                    '${title != null ? ' = ' : ''}'
+                    '${title != null ? '${app.texts.colon} ' : ''}'
                     '${value.toStringAsFixed(precision)}',
                     textAlign: TextAlign.right,
                     style: textStyle,
@@ -97,7 +99,6 @@ class ValuePickerRotation extends StatelessWidget {
                         thickness: trackWidth, color: color.withAlpha(50)),
                     minimum: min,
                     maximum: max,
-                    onAxisTapped: _changeValue,
                     pointers: [
                       MarkerPointer(
                         markerHeight: markerSize,

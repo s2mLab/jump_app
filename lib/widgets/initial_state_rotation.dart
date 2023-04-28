@@ -29,12 +29,12 @@ class PreJumpRotation extends StatelessWidget {
 
   void _onInitialRotationChanged(BuildContext context, value) {
     final biomechanics = Biomechanics.of(context);
-    biomechanics.initialRotation = value * pi / 180;
+    biomechanics.initialRotation = value * 2 * pi;
   }
 
   void _onInitialVelocityChanged(BuildContext context, value) {
     final biomechanics = Biomechanics.of(context);
-    biomechanics.initialAngularVelocity = value * pi / 180;
+    biomechanics.initialAngularVelocity = value * 2 * pi;
   }
 
   void _onInertiaChanged(BuildContext context, value) {
@@ -66,25 +66,27 @@ class PreJumpRotation extends StatelessWidget {
           min: app.jumpDescription.bounds.minimal.initialInertia,
           max: app.jumpDescription.bounds.maximal.initialInertia,
           position: inertiaSliderPosition,
-          precision: 1,
+          precision: 2,
           textStyle: app.theme.textStyle,
           onValueChanged: (value) => _onInertiaChanged(context, value),
           tooltip: app.texts.inertiaTooltip,
+          helpTitle: app.texts.inertiaHelpTitle,
+          helpText: app.texts.inertiaHelp,
         ),
         ValuePickerRotation(
           title: TextWithSubscript('\u{03C9}', '0',
               textStyle: app.theme.textStyleAnswer
                   .copyWith(color: app.theme.colorParametersPreJump)),
-          units: Text('°/s',
+          units: Text(' rev/s',
               style: app.theme.textStyle
                   .copyWith(color: app.theme.colorParametersPreJump)),
-          precision: 0,
-          value: biomechanics.initialAngularVelocity * 180 / pi,
-          min: app.jumpDescription.bounds.minimal.initialAngularVelocity *
-              180 /
+          precision: 2,
+          value: biomechanics.initialAngularVelocity / 2 / pi,
+          min: app.jumpDescription.bounds.minimal.initialAngularVelocity /
+              2 /
               pi,
-          max: app.jumpDescription.bounds.maximal.initialAngularVelocity *
-              180 /
+          max: app.jumpDescription.bounds.maximal.initialAngularVelocity /
+              2 /
               pi,
           position: initialVelocitySliderPosition,
           size: initialVelocitySliderSize,
@@ -93,19 +95,21 @@ class PreJumpRotation extends StatelessWidget {
           onChange: (value) => _onInitialVelocityChanged(context, value),
           color: app.theme.colorParametersPreJump,
           tooltip: app.texts.angularVelocityTooltip,
+          helpTitle: app.texts.angularVelocityHelpTitle,
+          helpText: app.texts.angularVelocityHelp,
         ),
         if (app.level != DetailLevel.easy)
           ValuePickerRotation(
             title: TextWithSubscript('\u{03B8}', '0',
                 textStyle: app.theme.textStyle
                     .copyWith(color: app.theme.colorParametersPreJump)),
-            units: Text('°',
+            units: Text(' rev',
                 style: app.theme.textStyle
                     .copyWith(color: app.theme.colorParametersPreJump)),
-            precision: 0,
-            value: biomechanics.initialRotation * 180 / pi,
-            min: app.jumpDescription.bounds.minimal.initialRotation * 180 / pi,
-            max: app.jumpDescription.bounds.maximal.initialRotation * 180 / pi,
+            precision: 2,
+            value: biomechanics.initialRotation / 2 / pi,
+            min: app.jumpDescription.bounds.minimal.initialRotation / 2 / pi,
+            max: app.jumpDescription.bounds.maximal.initialRotation / 2 / pi,
             position: initialRotationSliderPosition,
             size: initialRotationSliderSize,
             textStyle: app.theme.textStyle
@@ -113,6 +117,8 @@ class PreJumpRotation extends StatelessWidget {
             onChange: (value) => _onInitialRotationChanged(context, value),
             color: app.theme.colorParametersPreJump,
             tooltip: app.texts.initialRotationTooltip,
+            helpTitle: app.texts.initialRotationHelpTitle,
+            helpText: app.texts.initialRotationHelp,
           ),
       ],
     );

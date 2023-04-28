@@ -22,7 +22,9 @@ class GroundReactionForce extends StatelessWidget {
 
   void _updateGrf(BuildContext context, double value) {
     final biomechanics = Biomechanics.of(context);
-    biomechanics.groundReactionForce = value;
+    biomechanics.groundReactionForce = value * 60 * 9.81;
+
+    /// app.jumpDescription.bounds.initial.bodyWeight;
   }
 
   @override
@@ -44,9 +46,11 @@ class GroundReactionForce extends StatelessWidget {
             color: app.theme.colorParametersGroundReactionForce,
           ),
           ValuePicker.vertical(
-            min: app.jumpDescription.bounds.minimal.groundReactionForce,
-            max: app.jumpDescription.bounds.maximal.groundReactionForce,
-            value: biomechanics.groundReactionForce,
+            min: app.jumpDescription.bounds.minimal.groundReactionForce /
+                biomechanics.bodyWeight,
+            max: app.jumpDescription.bounds.maximal.groundReactionForce /
+                biomechanics.bodyWeight,
+            value: biomechanics.groundReactionForce / biomechanics.bodyWeight,
             position: sliderPosition,
             height: sliderHeight,
             color: app.theme.colorParametersGroundReactionForce,
@@ -58,12 +62,14 @@ class GroundReactionForce extends StatelessWidget {
               textStyle: app.theme.textStyle.copyWith(
                   color: app.theme.colorParametersGroundReactionForce),
             ),
-            unit: Text('N',
+            unit: Text('BW',
                 style: app.theme.textStyle.copyWith(
                     color: app.theme.colorParametersGroundReactionForce)),
-            precision: 0,
+            precision: 2,
             onValueChanged: (value) => _updateGrf(context, value),
             tooltip: app.texts.fmaxTooltip,
+            helpTitle: app.texts.fmaxHelpTitle,
+            helpText: app.texts.fmaxHelp,
           ),
         ],
       ),

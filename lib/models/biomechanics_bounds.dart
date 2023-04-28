@@ -4,12 +4,14 @@ class BiomechanicsValue {
     required this.finalHeight,
     required this.initialInertia,
     required this.minimumInertia,
+    required this.finalInertia,
     required this.timeToMinimumInertia,
     required this.timeToFinalInertia,
     required this.initialRotation,
     required this.initialAngularVelocity,
     required this.groundReactionForce,
     required this.pushoffTime,
+    required this.bodyMass,
   });
 
   final double initialHeight; // m
@@ -17,6 +19,8 @@ class BiomechanicsValue {
 
   final double initialInertia; // kg.m^2
   final double minimumInertia; // kg.m^2
+  final double finalInertia; // kg.m^2
+
   final double timeToMinimumInertia; // s
   final double timeToFinalInertia; // s
   final double initialRotation; // rad
@@ -24,6 +28,8 @@ class BiomechanicsValue {
 
   final double groundReactionForce; // N
   final double pushoffTime; // s
+
+  final double bodyMass; // kg
 }
 
 class BiomechanicsBounds {
