@@ -1,4 +1,5 @@
 #!/bin/sh
+
 echo 'Running ci_post_clone.sh...'
 
 # The default execution directory of this script is the ci_scripts directory.
