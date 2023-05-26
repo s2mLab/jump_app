@@ -12,11 +12,11 @@ extension JumpDescriptionExtension on JumpDescription {
   String get path {
     switch (this) {
       case (JumpDescription.axel):
-        return 'assets/images/key_frames_axel.png';
+        return 'assets/images/key_frames_axel3.png';
       case (JumpDescription.lutz):
-        return 'assets/images/key_frames_lutz.png';
+        return 'assets/images/key_frames_lutz3.png';
       case (JumpDescription.somersault):
-        return 'assets/images/key_frames_back_somersault.png';
+        return 'assets/images/key_frames_back_somersault3.png';
     }
   }
 
