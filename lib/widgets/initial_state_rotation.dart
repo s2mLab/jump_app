@@ -54,6 +54,7 @@ class PreJumpRotation extends StatelessWidget {
           title: TextWithSubscript('I', '0',
               textStyle: app.theme.textStyle
                   .copyWith(color: app.theme.colorParametersPreJump)),
+          //textOffset: Offset(deviceSize.width * 0.02, deviceSize.width * 0.015),
           unit: TextWithSuperscript(
             'kgm',
             '2',

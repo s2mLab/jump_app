@@ -30,7 +30,7 @@ class AerialPhase extends StatelessWidget {
         Positioned(
           left: comStart.dx + deviceSize.width * 0.17,
           right: deviceSize.width - comFinal.dx + deviceSize.width * 0.17,
-          bottom: -arrowsBelow - deviceSize.width * 0.05,
+          bottom: -arrowsBelow - deviceSize.width * 0.035,
           child: Container(
             decoration:
                 BoxDecoration(color: app.theme.colorAnswer.withAlpha(30)),

@@ -33,7 +33,7 @@ class FlightApex extends StatelessWidget {
             children: [
               Positioned(
                 left: apex.dx + deviceSize.width * 0.01,
-                bottom: -apex.dy - deviceSize.width * 0.06,
+                bottom: -apex.dy - deviceSize.width * 0.17,
                 child: Container(
                   decoration:
                       BoxDecoration(color: app.theme.colorAnswer.withAlpha(30)),

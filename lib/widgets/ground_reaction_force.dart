@@ -55,7 +55,8 @@ class GroundReactionForce extends StatelessWidget {
             height: sliderHeight,
             color: app.theme.colorParametersGroundReactionForce,
             textStyle: app.theme.textStyle,
-            textOffset: Offset(-deviceSize.width * 0.03, 0),
+            textOffset:
+                Offset(deviceSize.width * 0.03, -deviceSize.height * .02),
             title: TextWithSubscript(
               'F',
               'max',

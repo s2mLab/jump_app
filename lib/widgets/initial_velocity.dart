@@ -33,7 +33,7 @@ class InitialVelocity extends StatelessWidget {
             children: [
               Positioned(
                 right: deviceSize.width - position.dx + deviceSize.width * 0.02,
-                bottom: -position.dy + deviceSize.width * 0.12,
+                bottom: -position.dy + deviceSize.width * 0.13,
                 child: Container(
                   decoration:
                       BoxDecoration(color: app.theme.colorAnswer.withAlpha(30)),

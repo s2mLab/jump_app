@@ -25,6 +25,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/key_frames_axel3.png
+    - assets/images/key_frames_axel5.png
     - assets/images/key_frames_lutz3.png
-    - assets/images/key_frames_back_somersault3.png
+    - assets/images/key_frames_back_somersault4.png

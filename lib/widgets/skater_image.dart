@@ -44,11 +44,11 @@ class _SkaterImageState extends State<SkaterImage> {
 
     final comStart = Offset(0.265 * w, -floor - 0.100 * w);
     final comSliderStartPosition =
-        Offset(comStart.dx - 0.09 * w, floor + 0.06 * w);
+        Offset(comStart.dx - 0.09 * w, floor + 0.045 * w);
     final comFinal = Offset(0.791 * w, -floor - 0.115 * w);
 
     final comSliderFinalPosition =
-        Offset(comFinal.dx + 0.05 * w, floor + 0.06 * w);
+        Offset(comFinal.dx + 0.03 * w, floor + 0.045 * w);
     final comSliderHeight = 0.15 * w;
     final comMid = Offset(
         (comStart.dx + comFinal.dx) / 2, (comStart.dy + comFinal.dy) / 2);
@@ -56,26 +56,26 @@ class _SkaterImageState extends State<SkaterImage> {
     final rotationPosition =
         Offset(comFinal.dx - 0.05 * w, comFinal.dy - 0.1 * w);
     final maximalRotationPosition =
-        Offset(comMid.dx - 0.07 * w, comFinal.dy - 0.15 * w);
+        Offset(comMid.dx - 0.07 * w, comFinal.dy - 0.02 * w);
 
-    final initialRotationSliderPosition = Offset(0.17 * w, 0.15 * w + floor);
+    final initialRotationSliderPosition = Offset(0.14 * w, 0.115 * w + floor);
     final initialRotationSliderSize = 0.20 * w;
-    final initialVelocitySliderPosition = Offset(0.17 * w, 0.2 * w + floor);
+    final initialVelocitySliderPosition = Offset(0.14 * w, 0.16 * w + floor);
     final initialVelocitySliderSize = 0.20 * w;
     final initialVelocityPosition = Offset(0.265 * w, -floor - 0.100 * w);
 
-    final inertiaSliderPosition = Offset(0.3 * w, 0.30 * w + floor);
+    final inertiaSliderPosition = Offset(0.15 * w, 0.25 * w + floor);
     final inertiaSliderSize = 0.10 * w;
 
-    final minInertiaSliderPosition = Offset(0.62 * w, 0.30 * w + floor);
+    final minInertiaSliderPosition = Offset(0.52 * w, 0.25 * w + floor);
     final timeToMinInertiaSliderPosition = Offset(0.31 * w, 0.04 * w + floor);
     final timeToInertiaSliderSize = 0.150 * w;
 
     final timeToFinalInertiaSliderPosition = Offset(0.63 * w, 0.04 * w + floor);
 
-    final grfArrow = Offset(0.280 * w, -floor - 0.270 * w);
-    final grfSliderPosition = Offset(0.29 * w, floor + 0.15 * w);
-    final grfSliderHeight = 0.175 * w;
+    final grfArrow = Offset(0.280 * w, -floor - 0.170 * w);
+    final grfSliderPosition = Offset(0.28 * w, floor - 0.025 * w);
+    final grfSliderHeight = 0.155 * w;
 
     final pushoff = 0.05 * w;
     final pushoffSliderPosition = Offset(0.017 * w, 0.02 * w);
@@ -100,7 +100,7 @@ class _SkaterImageState extends State<SkaterImage> {
               floor: floor,
             ),
           if (isTranslation)
-            InitialVelocity(position: initialVelocityPosition, norm: w * 0.1),
+            InitialVelocity(position: initialVelocityPosition, norm: w * 0.15),
           if (isTranslation)
             CenterOfMass(
               comStart,

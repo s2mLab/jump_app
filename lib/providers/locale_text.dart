@@ -317,12 +317,12 @@ class LocaleText with ChangeNotifier {
       }[language]!;
 
   String get easy => {
-        'En': 'Easy',
-        'Fr': 'Facile',
+        'En': 'Simple',
+        'Fr': 'Simple',
       }[language]!;
   String get medium => {
-        'En': 'Medium',
-        'Fr': 'Moyen',
+        'En': 'Detail',
+        'Fr': 'Détails',
       }[language]!;
   String get hard => {
         'En': 'Hard',
@@ -335,29 +335,33 @@ class LocaleText with ChangeNotifier {
       }[language]!;
 
   String get help => {
-        'En': 'Choose your jump on the left menu'
+        'En': 'Choose your jump on the left menu; '
             'Change the values using the sliders and see the new performance in terms of:\n'
-            '$_tab\u{2022} takeoff vertical velocity,\n$_tab\u{2022} maximum height,\n'
-            '$_tab\u{2022} flight time,\n$_tab\u{2022} vitesse maximale de rotation,\n'
-            '$_tab\u{2022} and  total rotation.\n'
-            'Switch between translation and rotation to have access to all parameters\n'
-            'Use tooltips and helps to learn more about each parameter',
+            '$_tab\u{2022} takeoff vertical velocity, maximum height, flight time,\n'
+            '$_tab\u{2022} maximum angular velocity, and total rotation.\n'
+            'Switch between translation and rotation to have access to all parameters.\n'
+            'Use tooltips and helps to learn more about each parameter.\n\n'
+            'Biomechanical model: \n'
+            '[Translation] Impulse = (weight + Force_max) / 2 * Pushoff time;'
+            ' V = Impulse/Mass; Flight time according to the airborne equation\n'
+            '[Rotation] ' //todo,
+            '\n\nCredits: '
+            'App developed by Benjamin Michaud and Mickael Begon '
+            '(S2M lab)\n $_tab$_tab in collaboration with Patinage Québec '
+            '(Synergic project 2022-2023)',
         'Fr': 'Choisir un saut dans le menu à gauche; '
             'changer les valeurs avec les curseurs et observer les performances :\n'
             '$_tab\u{2022} vitesse vertical de décollage, hauteur maximale, temps de vol,\n'
             '$_tab\u{2022} vitesse maximale de rotation et rotation totale.\n'
-            'Utiliser l\'interrupteur pour passer des paramètres en translation à ceux en rotation\n'
-            'Utiliser les info-bulles et les aides pour en apprendre plus sur chaque paramètre\n\n'
-            'Modèle bioméanique: '
-            '[Translation] Impulsion = (poids + Force_max)/ 2 * Temps de propulsion;'
+            'Utiliser l\'interrupteur pour passer des paramètres en translation à ceux en rotation.\n'
+            'Utiliser les info-bulles et les aides pour en apprendre plus sur chaque paramètre.\n\n'
+            'Modèle bioméanique: \n'
+            '[Translation] Impulsion = (poids + Force_max) / 2 * Temps de propulsion;'
             ' V = Impulsion/Masse; Temps de vol selon les équation parabolique\n'
-            '[Rotation]'
-            '\n\nCrédits : \n'
-            '$_tab\u{2022} App développée par Benjamin Michaud et Mickael Begon '
-            'du Laboratoire S2M\n $_tab$_tab en collaboration avec Patinage Québec '
-            '(projet Synergie 2022-2023)\n'
-            '$_tab\u{2022} Axel : xxxx YYY, champion Canadien ... \n'
-            '$_tab\u{2022} Toe Loop : xxxxx\n'
-            '$_tab\u{2022} Salto arrière : xxxxx\n',
+            '[Rotation]' //todo
+            '\n\nCrédits : '
+            'App développée par Benjamin Michaud et Mickael Begon '
+            '(Laboratoire S2M)\n $_tab$_tab en collaboration avec Patinage Québec '
+            '(projet Synergie 2022-2023)',
       }[language]!;
 }
