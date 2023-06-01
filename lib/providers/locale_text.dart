@@ -336,15 +336,20 @@ class LocaleText with ChangeNotifier {
 
   String get help => {
         'En': 'Choose your jump on the left menu; '
-            'Change the values using the sliders and see the new performance in terms of:\n'
+            'Play with the sliders and see the new performance:\n'
             '$_tab\u{2022} takeoff vertical velocity, maximum height, flight time,\n'
             '$_tab\u{2022} maximum angular velocity, and total rotation.\n'
-            'Switch between translation and rotation to have access to all parameters.\n'
+            'Switch between translation and rotation to change all parameters.\n'
             'Use tooltips and helps to learn more about each parameter.\n\n'
             'Biomechanical model: \n'
             '[Translation] Impulse = (weight + Force_max) / 2 * Pushoff time;'
             ' V = Impulse/Mass; Flight time according to the airborne equation\n'
-            '[Rotation] ' //todo,
+            '[Rotation] The angular momentum is conserved, such that '
+            '\u{03C9}\u{2098}\u{2090}\u{2093} = I\u{2080}\u{03C9}\u{2080}/I_min.'
+            ' The angular velociy increases linearly from I\u{2080} to I\u{2098}\u{1D62}\u{2099}. Total rotation is: '
+            '\u{03B8}=(\u{03C9}\u{2080} + \u{03C9}\u{2098}\u{2090}\u{2093})/2*T_min + '
+            '\u{03C9}\u{2098}\u{2090}\u{2093}*(T_flight-T_min-T_open) + '
+            '' //todo,
             '\n\nCredits: '
             'App developed by Benjamin Michaud and Mickael Begon '
             '(S2M lab)\n $_tab$_tab in collaboration with Patinage Québec '

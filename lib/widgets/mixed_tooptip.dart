@@ -25,6 +25,7 @@ class MixedTooltip extends StatelessWidget {
     helperCallback() => showHelp(context, title: helpTitle, content: helpText);
 
     return Tooltip(
+      triggerMode: TooltipTriggerMode.tap,
       message: message,
       child: helpTitle != null || helpText != null
           ? GestureDetector(

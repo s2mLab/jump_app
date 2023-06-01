@@ -14,7 +14,7 @@ extension JumpDescriptionExtension on JumpDescription {
       case (JumpDescription.axel):
         return 'assets/images/key_frames_axel5.png';
       case (JumpDescription.lutz):
-        return 'assets/images/key_frames_lutz3.png';
+        return 'assets/images/key_frames_lutz4.png';
       case (JumpDescription.somersault):
         return 'assets/images/key_frames_back_somersault4.png';
     }
