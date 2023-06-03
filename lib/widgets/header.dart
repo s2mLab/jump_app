@@ -20,11 +20,10 @@ class Header extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             horizontal: deviceSize.width * 0.03,
             vertical: deviceSize.width * 0.005),
-        child: Row(
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
+          children: [
             _Menu(),
-            _ChoseLevel(),
             _ChoseType(),
             _Help(),
           ],
@@ -55,6 +54,7 @@ class _Menu extends StatelessWidget {
   }
 }
 
+/*
 class _ChoseLevel extends StatelessWidget {
   const _ChoseLevel({
     Key? key,
@@ -90,6 +90,7 @@ class _ChoseLevel extends StatelessWidget {
     );
   }
 }
+*/
 
 class _ChoseType extends StatelessWidget {
   const _ChoseType({
@@ -144,6 +145,11 @@ class _Help extends StatelessWidget {
     app.texts.language = app.texts.language == 'Fr' ? 'En' : 'Fr';
   }
 
+  void _changeLevel(BuildContext context) {
+    final appParameters = AppParameters.of(context, listen: false);
+    appParameters.setLevel(context, appParameters.level.next);
+  }
+
   @override
   Widget build(BuildContext context) {
     final app = AppParameters.of(context);
@@ -151,6 +157,43 @@ class _Help extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
+        IconButton(
+          tooltip: app.texts.levelTooltip,
+          iconSize: app.theme.iconSizeHeader,
+          color: app.theme.colorHeaderPrimary,
+          icon: CircleAvatar(
+            backgroundColor: app.theme.colorHeaderPrimary,
+            foregroundColor: app.theme.colorHeaderSecondary,
+            radius: 3 / 4 * app.theme.iconSizeHeader,
+            child: Icon(
+              app.level == DetailLevel.easy
+                  ? Icons.add_circle
+                  : Icons.remove_circle,
+              size: 3 / 4 * app.theme.iconSizeHeader,
+            ),
+          ),
+          onPressed: () => _changeLevel(context),
+        ),
+        IconButton(
+          tooltip: app.texts.modelTooltip,
+          iconSize: app.theme.iconSizeHeader,
+          color: app.theme.colorHeaderPrimary,
+          icon: CircleAvatar(
+            backgroundColor: app.theme.colorHeaderPrimary,
+            foregroundColor: app.theme.colorHeaderSecondary,
+            radius: 3 / 4 * app.theme.iconSizeHeader,
+            child: Icon(
+              Icons.calculate,
+              size: 3 / 4 * app.theme.iconSizeHeader,
+            ),
+          ),
+          onPressed: () => showModel(context,
+              title: app.texts.modelTitle,
+              content: app.texts.model,
+              imageName: app.type == AppType.rotation
+                  ? '${app.texts.modelFilename}_rotation.png'
+                  : '${app.texts.modelFilename}_translation.png'),
+        ),
         IconButton(
           iconSize: app.theme.iconSizeHeader,
           color: app.theme.colorHeaderPrimary,
@@ -163,8 +206,11 @@ class _Help extends StatelessWidget {
               size: 3 / 4 * app.theme.iconSizeHeader,
             ),
           ),
-          onPressed: () => showHelp(context,
-              title: app.texts.helpTitle, content: app.texts.help),
+          onPressed: () => showHelp(
+            context,
+            title: app.texts.helpTitle,
+            content: app.texts.help,
+          ),
         ),
         SizedBox(
           width: 3 * app.theme.fontSizeLanguageSelection,

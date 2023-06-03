@@ -28,3 +28,7 @@ flutter:
     - assets/images/key_frames_axel5.png
     - assets/images/key_frames_lutz4.png
     - assets/images/key_frames_back_somersault4.png
+    - assets/images/biomech_model_translation.png   
+    - assets/images/modele_biomeca_translation.png    
+    - assets/images/biomech_model_rotation.png   
+    - assets/images/modele_biomeca_rotation.png

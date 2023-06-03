@@ -316,6 +316,16 @@ class LocaleText with ChangeNotifier {
         'Fr': 'Durée de la phase d\'atterissage',
       }[language]!;
 
+  String get levelTooltip => {
+        'En': 'Number of parameters',
+        'Fr': 'Nombre de paramètres',
+      }[language]!;
+
+  String get modelTooltip => {
+        'En': 'Biomechanical model',
+        'Fr': 'Modèle biomécanique',
+      }[language]!;
+
   String get easy => {
         'En': 'Simple',
         'Fr': 'Simple',
@@ -338,35 +348,41 @@ class LocaleText with ChangeNotifier {
         'En': 'Choose your jump on the left menu; '
             'Play with the sliders and see the new performance:\n'
             '$_tab\u{2022} takeoff vertical velocity, maximum height, flight time,\n'
-            '$_tab\u{2022} maximum angular velocity, and total rotation.\n'
+            '$_tab\u{2022} maximum angular velocity, and total rotation.\n\n'
             'Switch between translation and rotation to change all parameters.\n'
+            'Use + or - button to have acces to more or less parameters.\n'
             'Use tooltips and helps to learn more about each parameter.\n\n'
-            'Biomechanical model: \n'
-            '[Translation] Impulse = (weight + Force_max) / 2 * Pushoff time;'
-            ' V = Impulse/Mass; Flight time according to the airborne equation\n'
-            '[Rotation] The angular momentum is conserved, such that '
-            '\u{03C9}\u{2098}\u{2090}\u{2093} = I\u{2080}\u{03C9}\u{2080}/I_min.'
-            ' The angular velociy increases linearly from I\u{2080} to I\u{2098}\u{1D62}\u{2099}. Total rotation is: '
-            '\u{03B8}=(\u{03C9}\u{2080} + \u{03C9}\u{2098}\u{2090}\u{2093})/2*T_min + '
-            '\u{03C9}\u{2098}\u{2090}\u{2093}*(T_flight-T_min-T_open) + '
-            '' //todo,
-            '\n\nCredits: '
+            '\nCredits: '
             'App developed by Benjamin Michaud and Mickael Begon '
             '(S2M lab)\n $_tab$_tab in collaboration with Patinage Québec '
             '(Synergic project 2022-2023)',
         'Fr': 'Choisir un saut dans le menu à gauche; '
-            'changer les valeurs avec les curseurs et observer les performances :\n'
+            'Changer les valeurs avec les curseurs et observer les performances :\n'
             '$_tab\u{2022} vitesse vertical de décollage, hauteur maximale, temps de vol,\n'
-            '$_tab\u{2022} vitesse maximale de rotation et rotation totale.\n'
+            '$_tab\u{2022} vitesse maximale de rotation et rotation totale.\n\n'
             'Utiliser l\'interrupteur pour passer des paramètres en translation à ceux en rotation.\n'
+            'Utiliser le button + ou - pour avoir accès à plus ou moins de paramètres.\n'
             'Utiliser les info-bulles et les aides pour en apprendre plus sur chaque paramètre.\n\n'
-            'Modèle bioméanique: \n'
-            '[Translation] Impulsion = (poids + Force_max) / 2 * Temps de propulsion;'
-            ' V = Impulsion/Masse; Temps de vol selon les équation parabolique\n'
-            '[Rotation]' //todo
-            '\n\nCrédits : '
+            '\nCrédits : '
             'App développée par Benjamin Michaud et Mickael Begon '
             '(Laboratoire S2M)\n $_tab$_tab en collaboration avec Patinage Québec '
             '(projet Synergie 2022-2023)',
+      }[language]!;
+
+  String get model => {
+        'En':
+            '', //We used the following simple model to predict the performance: ',
+        'Fr':
+            '', //Nous avons utilisé le modèle simple suivant pour prédire la performance : ',
+      }[language]!;
+
+  String get modelTitle => {
+        'En': 'Biomechanical Model used to predict performance',
+        'Fr': 'Modèle Biomécanique pour prédire la performance',
+      }[language]!;
+
+  String get modelFilename => {
+        'En': 'assets/images/biomech_model',
+        'Fr': 'assets/images/modele_biomeca',
       }[language]!;
 }
