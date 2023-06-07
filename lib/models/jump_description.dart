@@ -38,11 +38,11 @@ extension JumpDescriptionExtension on JumpDescription {
           minimal: const BiomechanicsValue(
             initialHeight: 1,
             finalHeight: 1,
-            initialInertia: 1,
+            initialInertia: 1, //TODO: modif
             minimumInertia: 0.9,
-            finalInertia: 1,
-            timeToMinimumInertia: 150 / 1000,
-            timeToFinalInertia: 100 / 1000,
+            finalInertia: 1, // TODO: modif
+            timeToMinimumInertia: 180 / 1000,
+            timeToFinalInertia: 20 / 1000,
             initialRotation: 0.15 * 2 * pi,
             initialAngularVelocity: .3 * 2 * pi,
             groundReactionForce: 1000,
@@ -53,10 +53,10 @@ extension JumpDescriptionExtension on JumpDescription {
             initialHeight: 1.5,
             finalHeight: 1.5,
             initialInertia: 4,
-            minimumInertia: 4,
+            minimumInertia: 2,
             finalInertia: 4,
-            timeToMinimumInertia: 350 / 1000,
-            timeToFinalInertia: 300 / 1000,
+            timeToMinimumInertia: 400 / 1000,
+            timeToFinalInertia: 200 / 1000,
             initialRotation: 0.35 * 2 * pi,
             initialAngularVelocity: 3 * 3 * pi,
             groundReactionForce: 2500,
@@ -95,6 +95,20 @@ extension JumpDescriptionExtension on JumpDescription {
             pushoffTime: 150 / 1000,
             bodyMass: 40,
           ),
+
+          /*
+Impulsion
+Axel = 0.29-0.36s (0.44s)
+Toe loop = 0.2-0.33s
+
+Décollage —> position la plus fermé 
+Axel = 0.2-0.34s
+Toe loop = 0.2-0.3s
+
+Début d’ouverture —> atterissage (premier moment où le pied touche la glace)
+Axel = 0.04-0.08s
+Toe loop = 0.03-0.04s
+*/
           maximal: const BiomechanicsValue(
             initialHeight: 1.5,
             finalHeight: 1.5,
@@ -173,17 +187,3 @@ extension JumpDescriptionExtension on JumpDescription {
     }
   }
 }
-
-/*
-Impulsion
-Axel = 0.29-0.36s (0.44s)
-Toe loop = 0.2-0.33s
-
-Décollage —> position la plus fermé 
-Axel = 0.2-0.34s
-Toe loop = 0.2-0.3s
-
-Début d’ouverture —> atterissage (premier moment où le pied touche la glace)
-Axel = 0.04-0.08s
-Toe loop = 0.03-0.04s
-*/

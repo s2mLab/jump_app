@@ -58,16 +58,16 @@ class _SkaterImageState extends State<SkaterImage> {
     final maximalRotationPosition =
         Offset(comMid.dx - 0.07 * w, comFinal.dy - 0.02 * w);
 
-    final initialRotationSliderPosition = Offset(0.14 * w, 0.115 * w + floor);
+    final initialRotationSliderPosition = Offset(0.14 * w, 0.105 * w + floor);
     final initialRotationSliderSize = 0.20 * w;
-    final initialVelocitySliderPosition = Offset(0.14 * w, 0.16 * w + floor);
+    final initialVelocitySliderPosition = Offset(0.14 * w, 0.15 * w + floor);
     final initialVelocitySliderSize = 0.20 * w;
     final initialVelocityPosition = Offset(0.265 * w, -floor - 0.100 * w);
 
-    final inertiaSliderPosition = Offset(0.15 * w, 0.25 * w + floor);
+    final inertiaSliderPosition = Offset(0.15 * w, 0.24 * w + floor);
     final inertiaSliderSize = 0.10 * w;
 
-    final minInertiaSliderPosition = Offset(0.52 * w, 0.25 * w + floor);
+    final minInertiaSliderPosition = Offset(0.52 * w, 0.24 * w + floor);
     final timeToMinInertiaSliderPosition = Offset(0.31 * w, 0.04 * w + floor);
     final timeToInertiaSliderSize = 0.150 * w;
 
