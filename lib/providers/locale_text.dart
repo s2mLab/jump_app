@@ -140,12 +140,12 @@ class LocaleText with ChangeNotifier {
   String get computedFinalRotationHelp => {
         'En': 'To improve the total rotation of the jump, you need to:\n'
             '$_tab\u{2799} Increase the flight time\n'
-            '$_tab\u{2799} Increase the angular momentum at takeoff (I\u{2080} x \u{03B8}\u{2080})\n'
+            '$_tab\u{2799} Increase the angular momentum at takeoff (I\u{2080} x \u{03C9}\u{2080})\n'
             '$_tab\u{2799} Decrease the mimimum moment of inertia\n'
             '$_tab\u{2799} Decrease the time to reach this position',
         'Fr': 'Pour augmenter la rotation totale du saut, vous devez :\n'
             '$_tab\u{2799} Allonger la durée de la phase aérienne\n'
-            '$_tab\u{2799} Augmenter le moment cinétique au décollage (I\u{2080} x \u{03B8}\u{2080})\n'
+            '$_tab\u{2799} Augmenter le moment cinétique au décollage (I\u{2080} x \u{03C9}\u{2080})\n'
             '$_tab\u{2799} Réduire le moment d\'inertie minimal\n'
             '$_tab\u{2799} Réduire le temps pour atteindre cette position',
       }[language]!;
@@ -217,11 +217,11 @@ class LocaleText with ChangeNotifier {
       }[language]!;
   String get computedMaximalAngularVelocityHelp => {
         'En': 'To improve the maximal angular velocity, you can:\n'
-            '$_tab\u{2799} Increase initial angular momentum: I\u{2080} x \u{03B8}\u{2080}\n'
+            '$_tab\u{2799} Increase initial angular momentum: I\u{2080} x \u{03C9}\u{2080}\n'
             '$_tab\u{2799} Reduce minimum moment of inertia in aerial phase \n',
         //'$_tab$_tab and time to reach this position',
         'Fr': 'Pour augmenter la vitesse maximale de rotation du saut, vous pouvez :\n'
-            '$_tab\u{2799} Augmenter le moment cinétique initial : I\u{2080} x \u{03B8}\u{2080}\n'
+            '$_tab\u{2799} Augmenter le moment cinétique initial : I\u{2080} x \u{03C9}\u{2080}\n'
             '$_tab\u{2799} Réduire le moment d\'inertie mininal en phase aérienne et \n',
       }[language]!;
 
