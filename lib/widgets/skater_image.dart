@@ -19,9 +19,9 @@ import 'total_rotation.dart';
 
 class SkaterImage extends StatefulWidget {
   const SkaterImage({
-    Key? key,
+    super.key,
     this.width,
-  }) : super(key: key);
+  });
 
   final double? width;
 

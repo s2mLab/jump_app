@@ -8,11 +8,11 @@ import 'text_with_subscript.dart';
 
 class AerialPhase extends StatelessWidget {
   const AerialPhase({
-    Key? key,
+    super.key,
     required this.comStart,
     required this.arrowsBelow,
     required this.comFinal,
-  }) : super(key: key);
+  });
 
   final Offset comStart;
   final double arrowsBelow;

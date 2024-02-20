@@ -34,9 +34,7 @@ class Header extends StatelessWidget {
 }
 
 class _Menu extends StatelessWidget {
-  const _Menu({
-    Key? key,
-  }) : super(key: key);
+  const _Menu();
 
   @override
   Widget build(BuildContext context) {
@@ -93,9 +91,7 @@ class _ChoseLevel extends StatelessWidget {
 */
 
 class _ChoseType extends StatelessWidget {
-  const _ChoseType({
-    Key? key,
-  }) : super(key: key);
+  const _ChoseType();
 
   void _changeType(BuildContext context) {
     final appParameters = AppParameters.of(context, listen: false);

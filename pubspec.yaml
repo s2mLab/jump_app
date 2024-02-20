@@ -12,15 +12,15 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   path_drawing: ^1.0.1
-  syncfusion_flutter_core: ^20.4.42
-  syncfusion_flutter_sliders: ^20.4.42
-  syncfusion_flutter_gauges: ^20.4.43
+  syncfusion_flutter_core: ^24.2.6
+  syncfusion_flutter_sliders: ^24.2.6
+  syncfusion_flutter_gauges: ^24.2.6
   provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true

@@ -6,13 +6,13 @@ import 'pushoff_slider.dart';
 
 class PushoffPhase extends StatelessWidget {
   const PushoffPhase({
-    Key? key,
+    super.key,
     required this.pushoff,
     required this.arrowsBelow,
     required this.comStart,
     required this.pushoffSliderPosition,
     required this.pushoffSliderWidth,
-  }) : super(key: key);
+  });
 
   final double pushoff;
   final double arrowsBelow;

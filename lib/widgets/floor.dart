@@ -4,9 +4,9 @@ import 'line.dart';
 
 class Floor extends StatelessWidget {
   const Floor({
-    Key? key,
+    super.key,
     required this.floor,
-  }) : super(key: key);
+  });
 
   final double floor;
 

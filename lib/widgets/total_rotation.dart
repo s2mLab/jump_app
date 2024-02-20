@@ -8,7 +8,7 @@ import 'mixed_tooptip.dart';
 import 'text_with_subscript.dart';
 
 class TotalRotation extends StatelessWidget {
-  const TotalRotation({Key? key, required this.position}) : super(key: key);
+  const TotalRotation({super.key, required this.position});
 
   final Offset position;
 

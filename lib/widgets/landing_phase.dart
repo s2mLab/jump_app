@@ -5,11 +5,11 @@ import 'double_heads_arrow.dart';
 
 class LandingPhase extends StatelessWidget {
   const LandingPhase({
-    Key? key,
+    super.key,
     required this.comFinal,
     required this.arrowsBelow,
     required this.land,
-  }) : super(key: key);
+  });
 
   final Offset comFinal;
   final double arrowsBelow;

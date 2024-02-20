@@ -8,8 +8,7 @@ import 'mixed_tooptip.dart';
 import 'text_with_subscript.dart';
 
 class MaximalRotationVelocity extends StatelessWidget {
-  const MaximalRotationVelocity({Key? key, required this.position})
-      : super(key: key);
+  const MaximalRotationVelocity({super.key, required this.position});
 
   final Offset position;
 
