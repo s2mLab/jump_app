@@ -46,10 +46,16 @@ class LocaleText with ChangeNotifier {
   String get inertiaHelp => {
         'En': 'To increase the moment of inertia at takeoff, \n'
             'the body segments (arms and free leg) must be moved away '
-            'from the axis of rotation',
+            'from the axis of rotation'
+            '\nExamples of Values:'
+            '\n$_tab\u{2799}Twist: 0.9 (backspin), 1.1 (anatomical posture), 2.9 (T pose), 5.4 kgm\u{00B2}(Axel take-off)'
+            '\n$_tab\u{2799}Somersault: 4 (tuck), 6 (pike), 12 (layout), 15 kgm\u{00B2} (arms overhead).',
         'Fr': 'Pour augmenter le moment d\'inertie,\n'
             'il faut éloigner les segments (bras et jambe libre) '
-            'de l\'axe de rotation',
+            'de l\'axe de rotation'
+            '\nExemples de Valeurs:'
+            '\n$_tab\u{2799}Vrille: 0.9 (pirouette), 1.1 (position anatomique), 2.9 (pose en T), 5.4 kgm\u{00B2}(décollage en Axel)'
+            '\n$_tab\u{2799}Salto: 4 (groupé), 6 (carpé), 12 (tendu), 15 kgm\u{00B2} (avec bras en haut).',
       }[language]!;
 
   String get angularVelocityTooltip => {
@@ -102,14 +108,14 @@ class LocaleText with ChangeNotifier {
         'En': 'To reduce time to reach the minimum moment of inertia,\n'
             'work on your movement speed. \n'
             'Due to centrifugal effects, the athlete must force to keep this position closed',
-        'Fr': 'Pour réduire le temps pour atteindre le moment d\'inertie minimal,\n'
-            'il faut travailler sur la vitesse de mouvement\n'
-            'À cause des efforts centrifuges, l\'athlète doit continuer de force pour garder la position fermée',
+        'Fr': 'Pour réduire le temps pour atteindre le moment d\'inertie minimal, \n'
+            'il faut travailler sur la vitesse de mouvement.\n\n'
+            'À cause des efforts centrifuges, l\'athlète doit continuer de forcer pour garder la position fermée',
       }[language]!;
 
   String get open => {
         'En': 'open',
-        'Fr': 'ouvert', // TODO: Find a better word
+        'Fr': 'ouvre', // TODO: Find a better word
       }[language]!;
   String get timeToFinalInertiaTooltip => {
         'En': 'Time to reach the landing moment of inertia',
@@ -122,10 +128,11 @@ class LocaleText with ChangeNotifier {
       }[language]!;
   String get timeToFinalInertiaHelp => {
         'En': 'To reduce time to reach the landing moment of inertia,\n'
-            'TODO.',
-        'Fr':
-            'Pour réduire le temps pour atteindre le moment d\'inertie d\'atterrissage,\n'
-                'il faut TODO.',
+            'better anticipate the landing instant, therefore several repetitions are needed.\n\n'
+            'In backward somersault, vision is key in the opening phase',
+        'Fr': 'Pour réduire le temps pour atteindre le moment d\'inertie d\'atterrissage,\n'
+            'il faut mieux anticiper l\'instant de réception donc faire beaucoup de répétitions.\n\n'
+            'En salto arrière, la vision permet de réguler cette phase d\'ouverture.',
       }[language]!;
   //TODO: text final inertia: how to improve??
 
@@ -161,11 +168,11 @@ class LocaleText with ChangeNotifier {
   String get pushoffPhaseLengthHelp => {
         'En': 'To increase the duration of the pushoff phase, \n'
             'you can start in a deeper squat position:\n'
-            '$_tab\u{2799} more hip and knee flexion\n$_tab\u{2799} arms down',
+            '$_tab\u{2799} more hip and knee flexion\n$_tab\u{2799} arms down when starting  pushoff',
         'Fr': 'Pour augmenter la durée de la phase de propulsion, \n'
             'il faut partir dans une position plus basse :\n'
             '$_tab\u{2799} plus de flexion aux hanches et genoux\n'
-            '$_tab\u{2799} et bras en bas',
+            '$_tab\u{2799} commencer l\'impulsion les bras en bas',
       }[language]!;
 
   String get minimumInertiaTooltip => {
@@ -177,14 +184,27 @@ class LocaleText with ChangeNotifier {
         'Fr': 'Réduire le moment d\'inertie en phase aérienne',
       }[language]!;
   String get minimumInertiaHelp => {
-        'En': 'To reduce the moment of inertia in aerial phase: \n'
+        'En': 'To reduce the moment of inertia in aerial phase in twist: \n'
             '$_tab\u{2799} Extend the body and cross the legs, \n'
-            '$_tab\u{2799} Put the arms on your chest or extended overhead',
-        'Fr': 'Pour réduire le moment d\'inertie en phase aérienne : \n'
+            '$_tab\u{2799} Put the arms on your chest or extended overhead \n\n'
+            'To reduce the moment of inertia in aerial phase in somersault: \n'
+            '$_tab\u{2799} Compact tuck position \n'
+            '\nExamples of Values:'
+            '\n$_tab\u{2799}Twist: 0.9 (backspin), 1.1 (anatomical posture), 2.9 (T pose), 5.4 kgm\u{00B2}(Axel take-off)'
+            '\n$_tab\u{2799}Somersault: 4 (tuck), 6 (pike), 12 (layout), 15 kgm\u{00B2} (arms overhead).',
+        'Fr': 'Pour réduire le moment d\'inertie en phase aérienne en vrille: \n'
             '$_tab\u{2799} Étendre le corps et croiser les jambes, \n'
             '$_tab\u{2799} Placer les bras contre la poitrine '
-            'ou les mettre tendus au-dessus de la tête',
+            'ou les mettre tendus au-dessus de la tête \n\n'
+            'Pour réduire le moment d\'inertie en phase aérienne en salto: \n'
+            '$_tab\u{2799} Position groupée compacte, \n'
+            '\nExemples de Valeurs:'
+            '\n$_tab\u{2799}Vrille: 0.9 (pirouette), 1.1 (position anatomique), 2.9 (pose en T), 5.4 kgm\u{00B2}(décollage en Axel)'
+            '\n$_tab\u{2799}Salto: 4 (groupé), 6 (carpé), 12 (tendu), 15 kgm\u{00B2} (avec bras en haut).',
       }[language]!;
+//TODO: add examples -- dissociate somersault en figure skating in Help
+//Back somersault : XX unit -> tuck; XX -> pike; XX -> layout
+//Figure skating: XX -> xxx
 
   String get computedInitialVelocity => {
         'En': 'Computed initial velocity',
@@ -272,11 +292,11 @@ class LocaleText with ChangeNotifier {
       }[language]!;
   String get h0Help => {
         'En': 'To increase height of the center of mass at takeoff:\n'
-            '$_tab\u{2799} Fully extend the support leg,\n'
-            '$_tab\u{2799} Rise your arms and free leg',
+            '$_tab\u{2799} Fully extend the support leg(s),\n'
+            '$_tab\u{2799} Rise your arms and free leg (in figure skating)',
         'Fr': 'Pour augmenter la hauteur du centre de masse au décollage :\n'
-            '$_tab\u{2799} Extension complète de la jambe d\'appui\n'
-            '$_tab\u{2799} Lever les bras et la jambe libre',
+            '$_tab\u{2799} Extension complète de la ou des jambe(s) d\'appui\n'
+            '$_tab\u{2799} Lever les bras et la jambe libre (patinage artistique)',
       }[language]!;
 
   String get initialRotationTooltip => {

@@ -71,7 +71,7 @@ class _SkaterImageState extends State<SkaterImage> {
     final timeToMinInertiaSliderPosition = Offset(0.31 * w, 0.04 * w + floor);
     final timeToInertiaSliderSize = 0.150 * w;
 
-    final timeToFinalInertiaSliderPosition = Offset(0.63 * w, 0.04 * w + floor);
+    final timeToFinalInertiaSliderPosition = Offset(0.64 * w, 0.04 * w + floor);
 
     final grfArrow = Offset(0.280 * w, -floor - 0.170 * w);
     final grfSliderPosition = Offset(0.28 * w, floor - 0.025 * w);

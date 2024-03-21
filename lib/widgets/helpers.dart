@@ -16,6 +16,20 @@ Path arrowHeadPath(Offset p1, Offset p2, double headSize) {
   return path;
 }
 
+// void showHelp(BuildContext context,
+//     {String? title, String? content, String? imageName}) async {
+//   await showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         title: title != null ? Text(title) : null,
+//         content: content != null ? Text(content) : null,
+//         //imageName: imageName != null ? Text(imageName) : null,
+//       );
+//     },
+//   );
+// }
+
 void showHelp(BuildContext context,
     {String? title, String? content, String? imageName}) async {
   await showDialog(
@@ -23,8 +37,19 @@ void showHelp(BuildContext context,
     builder: (BuildContext context) {
       return AlertDialog(
         title: title != null ? Text(title) : null,
-        content: content != null ? Text(content) : null,
-        //imageName: imageName != null ? Text(imageName) : null,
+        content: SingleChildScrollView(
+          // Use SingleChildScrollView to avoid overflow if the content is too long
+          child: ListBody(
+            // Use ListBody for a column-like layout of widgets
+            children: <Widget>[
+              if (content != null)
+                Text(content), // Show text content if available
+              if (imageName != null)
+                Image.asset(
+                    imageName), // Load and show the image from assets if imageName is provided
+            ],
+          ),
+        ),
       );
     },
   );
