@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
@@ -204,8 +205,9 @@ class _Help extends StatelessWidget {
           ),
           onPressed: () => showHelp(
             context,
-            title: app.texts.helpTitle,
-            content: app.texts.help,
+            title: app.texts.help_Title,
+            content: app.texts.help_Text,
+            imageName: 'assets/images/Logo_S2M_Patinage.png',
           ),
         ),
         SizedBox(

@@ -12,10 +12,11 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   path_drawing: ^1.0.1
-  syncfusion_flutter_core: ^24.2.6
-  syncfusion_flutter_sliders: ^24.2.6
-  syncfusion_flutter_gauges: ^24.2.6
+  syncfusion_flutter_core: ^25.1.35
+  syncfusion_flutter_sliders: ^25.1.35
+  syncfusion_flutter_gauges: ^25.1.35
   provider: ^6.0.5
+  flutter_svg: ^2.0.10+1
 
 
 dev_dependencies:
@@ -47,3 +48,4 @@ flutter:
     - assets/images/modele_biomeca_translation.png    
     - assets/images/biomech_model_rotation.png   
     - assets/images/modele_biomeca_rotation.png
+    - assets/images/Logo_S2M_Patinage.png

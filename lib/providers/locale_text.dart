@@ -359,12 +359,12 @@ class LocaleText with ChangeNotifier {
         'Fr': 'Difficile',
       }[language]!;
 
-  String get helpTitle => {
+  String get help_Title => {
         'En': 'Help',
         'Fr': 'Aide',
       }[language]!;
 
-  String get help => {
+  String get help_Text => {
         'En': 'Choose your jump on the left menu; '
             'Play with the sliders and see the new performance:\n'
             '$_tab\u{2022} takeoff vertical velocity, maximum height, flight time,\n'
