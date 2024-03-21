@@ -205,8 +205,8 @@ class _Help extends StatelessWidget {
           ),
           onPressed: () => showHelp(
             context,
-            title: app.texts.help_Title,
-            content: app.texts.help_Text,
+            title: app.texts.helpTitle,
+            content: app.texts.helpText,
             imageName: 'assets/images/Logo_S2M_Patinage.png',
           ),
         ),
