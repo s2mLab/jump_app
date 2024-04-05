@@ -207,7 +207,7 @@ class _Help extends StatelessWidget {
             context,
             title: app.texts.helpTitle,
             content: app.texts.helpText,
-            imageName: 'assets/images/Logo_S2M_Patinage.png',
+            imageName: 'assets/images/Logo_S2M_Patinage2.png',
           ),
         ),
         SizedBox(
