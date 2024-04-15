@@ -6,6 +6,8 @@ import '/widgets/skater_image.dart';
 class JumpScreen extends StatelessWidget {
   const JumpScreen({super.key});
 
+  static const route = '/jump-screen';
+
   void _chooseBackground(BuildContext context, choice) {
     AppParameters.of(context, listen: false)
         .setJumpDescription(context, choice);

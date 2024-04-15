@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jump_app/screens/terms_and_services_screen.dart';
 import 'package:provider/provider.dart';
 
 import '/providers/app_parameters.dart';
@@ -23,11 +24,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final app = AppParameters();
-    return MultiProvider(providers: [
-      ChangeNotifierProvider(create: (ctx) => LocaleText(language: 'Fr')),
-      ChangeNotifierProvider(
-          create: (ctx) => Biomechanics(app.jumpDescription.bounds.initial)),
-      ChangeNotifierProvider(create: (ctx) => app),
-    ], child: const MaterialApp(title: 'Jump app', home: JumpScreen()));
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (ctx) => LocaleText(language: 'Fr')),
+          ChangeNotifierProvider(
+              create: (ctx) =>
+                  Biomechanics(app.jumpDescription.bounds.initial)),
+          ChangeNotifierProvider(create: (ctx) => app),
+        ],
+        child: MaterialApp(
+          title: 'Jump app',
+          routes: {
+            TermsAndServicesScreen.route: (context) =>
+                const TermsAndServicesScreen(),
+            JumpScreen.route: (context) => const JumpScreen()
+          },
+          initialRoute: TermsAndServicesScreen.route,
+        ));
   }
 }

@@ -405,4 +405,22 @@ class LocaleText with ChangeNotifier {
         'En': 'assets/images/biomech_model',
         'Fr': 'assets/images/modele_biomeca',
       }[language]!;
+
+  String get termsAndServicesTitle => {
+        'En': 'Terms and services',
+        'Fr': 'Conditions d\'utilisation',
+      }[language]!;
+
+  String get termsAndServices => {
+        'En': 'Welcome to our app! We respect your privacy and do not collect '
+            'any information about you. By clicking "Accept," you agree to use '
+            'the "S2M Jump App" as delivered, without any other warranties.',
+        'Fr': 'Bienvenue dans notre application ! Nous respectons votre vie privée et '
+            'ne collectons aucune information vous concernant. En cliquant sur '
+            '« Accepter », vous acceptez d\'utiliser l\'application « S2M Jump App » '
+            'telle que livrée, sans autres garanties.',
+      }[language]!;
+
+  String get termsAndServicesButton =>
+      {'En': 'Accept the terms', 'Fr': 'Accepter les conditions'}[language]!;
 }
