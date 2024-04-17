@@ -1,4 +1,4 @@
-package com.example.jump_app
+package org.s2mlab.jump_app
 
 import io.flutter.embedding.android.FlutterActivity
 

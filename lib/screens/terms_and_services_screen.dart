@@ -12,9 +12,15 @@ class TermsAndServicesScreen extends StatelessWidget {
 
   Future<bool> _haveAlreadyAcceptedTermsAndServices(context) async {
     final prefs = await SharedPreferences.getInstance();
-    WidgetsBinding.instance
-        .addPostFrameCallback((timeStamp) => _continueToApp(context));
-    return prefs.getBool(sharedPrefName) ?? false;
+
+    final hasAccepted = prefs.getBool(sharedPrefName) ?? false;
+
+    if (hasAccepted) {
+      WidgetsBinding.instance
+          .addPostFrameCallback((timeStamp) => _continueToApp(context));
+    }
+
+    return hasAccepted;
   }
 
   Future<void> _acceptTermsAndServices(context) async {

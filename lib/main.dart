@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           title: 'Jump app',
+          debugShowCheckedModeBanner: false,
           routes: {
             TermsAndServicesScreen.route: (context) =>
                 const TermsAndServicesScreen(),

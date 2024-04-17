@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.jump_app">
+    package="org.s2mlab.jump_app">
    <application
         android:label="jump_app"
         android:name="${applicationName}"
