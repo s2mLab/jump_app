@@ -22,9 +22,7 @@ class GroundReactionForce extends StatelessWidget {
 
   void _updateGrf(BuildContext context, double value) {
     final biomechanics = Biomechanics.of(context);
-    biomechanics.groundReactionForce = value * 60 * 9.81;
-
-    /// app.jumpDescription.bounds.initial.bodyWeight;
+    biomechanics.groundReactionForce = value * biomechanics.bodyWeight;
   }
 
   @override

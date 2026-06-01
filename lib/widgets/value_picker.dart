@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
-import '/providers/app_parameters.dart';
+import '../providers/app_parameters.dart';
+import '../helpers/math_helper.dart';
 import 'mixed_tooptip.dart';
+import 'numeric_value_editor.dart';
 
 enum _Direction { horizontal, vertical, diagonal }
 
@@ -87,10 +89,33 @@ class ValuePicker extends StatelessWidget {
   final String? helpTitle;
   final String? helpText;
 
-  final Function(double)? onValueChanged;
+  final ValueChanged<double>? onValueChanged;
 
-  void _onChanged(value) {
-    if (onValueChanged != null) onValueChanged!(value);
+  double get _displayedMin => MathHelper.minimum(min, precision);
+  double get _displayedMax => MathHelper.maximum(max, precision);
+  double get _displayedValue =>
+      MathHelper.canonical(value, min: min, max: max, precision: precision);
+
+  void _onChanged(dynamic value) {
+    onValueChanged?.call(
+      MathHelper.canonical(
+        (value as num).toDouble(),
+        min: min,
+        max: max,
+        precision: precision,
+      ),
+    );
+  }
+
+  Future<void> _editValue(BuildContext context) async {
+    final edited = await showNumericValueEditor(
+      context,
+      value: value,
+      min: min,
+      max: max,
+      precision: precision,
+    );
+    if (edited != null) onValueChanged?.call(edited);
   }
 
   @override
@@ -118,16 +143,14 @@ class ValuePicker extends StatelessWidget {
     }
 
     return Positioned(
-        left: 0,
-        bottom: 0,
-        child: SizedBox(
-          height: deviceSize.height,
-          width: deviceSize.width,
-          child: Stack(
-            alignment: Alignment.bottomLeft,
-            children: children,
-          ),
-        ));
+      left: 0,
+      bottom: 0,
+      child: SizedBox(
+        height: deviceSize.height,
+        width: deviceSize.width,
+        child: Stack(alignment: Alignment.bottomLeft, children: children),
+      ),
+    );
   }
 
   List<Widget> _buildHorizontal(BuildContext context, Size deviceSize) {
@@ -135,17 +158,19 @@ class ValuePicker extends StatelessWidget {
 
     return [
       Positioned(
-          left: position.dx + textOffset.dx,
-          right: deviceSize.width - width! - position.dx - textOffset.dx,
-          bottom: position.dy + textOffset.dy,
-          top: deviceSize.height - position.dy - fontSize * 2.3 - textOffset.dy,
-          child: _buildText(context)),
+        left: position.dx + textOffset.dx,
+        right: deviceSize.width - width! - position.dx - textOffset.dx,
+        bottom: position.dy + textOffset.dy,
+        top: deviceSize.height - position.dy - fontSize * 2.3 - textOffset.dy,
+        child: _buildText(context),
+      ),
       Positioned(
-          left: position.dx,
-          right: deviceSize.width - width! - position.dx,
-          bottom: position.dy,
-          top: deviceSize.height - position.dy - deviceSize.width * 0.010,
-          child: _buildSlider(context)),
+        left: position.dx,
+        right: deviceSize.width - width! - position.dx,
+        bottom: position.dy,
+        top: deviceSize.height - position.dy - deviceSize.width * 0.010,
+        child: _buildSlider(context),
+      ),
     ];
   }
 
@@ -204,19 +229,21 @@ class ValuePicker extends StatelessWidget {
         ),
         child: height != null
             ? SfSlider.vertical(
-                min: min,
-                max: max,
+                min: _displayedMin,
+                max: _displayedMax,
+                stepSize: MathHelper.step(precision),
                 activeColor: color,
                 inactiveColor: color.withAlpha(50),
-                value: value,
+                value: _displayedValue,
                 onChanged: _onChanged,
               )
             : SfSlider(
-                min: min,
-                max: max,
+                min: _displayedMin,
+                max: _displayedMax,
+                stepSize: MathHelper.step(precision),
                 activeColor: color,
                 inactiveColor: color.withAlpha(50),
-                value: value,
+                value: _displayedValue,
                 onChanged: _onChanged,
               ),
       ),
@@ -229,16 +256,17 @@ class ValuePicker extends StatelessWidget {
       message: tooltip ?? '',
       helpTitle: helpTitle,
       helpText: helpText,
+      onEditTap: onValueChanged == null ? null : () => _editValue(context),
       child: Row(
         children: [
-          if (title != null) title!,
+          ?title,
           Text(
             '${title != null ? '${app.texts.colon} ' : ''}'
-            '${value.toStringAsFixed(precision)} ',
+            '${_displayedValue.toStringAsFixed(precision)} ',
             textAlign: TextAlign.center,
             style: textStyle.copyWith(color: color),
           ),
-          if (unit != null) unit!,
+          ?unit,
         ],
       ),
     );

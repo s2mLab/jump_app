@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'helpers.dart';
@@ -11,6 +12,7 @@ class MixedTooltip extends StatelessWidget {
     required this.message,
     this.helpTitle,
     this.helpText,
+    this.onEditTap,
   });
 
   final Widget child;
@@ -18,20 +20,30 @@ class MixedTooltip extends StatelessWidget {
 
   final String? helpTitle;
   final String? helpText;
+  final VoidCallback? onEditTap;
 
   @override
   Widget build(BuildContext context) {
-    final isPhone = Platform.isAndroid || Platform.isIOS;
+    final isPhone = !kIsWeb && (Platform.isAndroid || Platform.isIOS);
+    final hasHelp = helpTitle != null || helpText != null;
     helperCallback() => showHelp(context, title: helpTitle, content: helpText);
 
     return Tooltip(
-      triggerMode: TooltipTriggerMode.tap,
+      triggerMode: onEditTap != null
+          ? TooltipTriggerMode.manual
+          : TooltipTriggerMode.tap,
       message: message,
-      child: helpTitle != null || helpText != null
-          ? GestureDetector(
-              onTap: isPhone ? null : helperCallback,
-              onLongPress: isPhone ? helperCallback : null,
-              child: child,
+      child: hasHelp || onEditTap != null
+          ? MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap:
+                    onEditTap ?? (!isPhone && hasHelp ? helperCallback : null),
+                onLongPress: hasHelp && (onEditTap != null || isPhone)
+                    ? helperCallback
+                    : null,
+                child: child,
+              ),
             )
           : child,
     );

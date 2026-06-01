@@ -4,10 +4,10 @@ import 'package:provider/provider.dart';
 String get _tab => '\t\t\t\t';
 
 class LocaleText with ChangeNotifier {
-  LocaleText({required language}) : _language = language;
+  LocaleText({required String language}) : _language = language;
 
   String _language;
-  set language(value) {
+  set language(String value) {
     _language = value;
     notifyListeners();
   }
@@ -19,6 +19,22 @@ class LocaleText with ChangeNotifier {
   }
 
   String get colon => {'En': ':', 'Fr': ' :'}[language]!;
+  String get numericValueTitle =>
+      {'En': 'Enter a value', 'Fr': 'Entrer une valeur'}[language]!;
+  String get numericValueLabel =>
+      {'En': 'Value', 'Fr': 'Valeur'}[language]!;
+  String get numericValueRange =>
+      {'En': 'Allowed range:', 'Fr': 'Intervalle permis :'}[language]!;
+  String get numericValueInvalid => {
+        'En': 'Enter a valid number.',
+        'Fr': 'Entrer un nombre valide.',
+      }[language]!;
+  String get numericValueOutOfRange => {
+        'En': 'The value is outside the allowed range.',
+        'Fr': 'La valeur est hors de l\'intervalle permis.',
+      }[language]!;
+  String get cancel => {'En': 'Cancel', 'Fr': 'Annuler'}[language]!;
+  String get apply => {'En': 'Apply', 'Fr': 'Appliquer'}[language]!;
 
   String get drawerTitle =>
       {'En': 'Choice of the jump', 'Fr': 'Choix du saut'}[language]!;
@@ -369,6 +385,8 @@ class LocaleText with ChangeNotifier {
             'Play with the sliders and see the new performance:\n'
             '$_tab\u{2022} takeoff vertical velocity, maximum height, flight time,\n'
             '$_tab\u{2022} maximum angular velocity, and total rotation.\n\n'
+            'Tap a displayed value to enter it numerically; '
+            'long-press it for explanations.\n\n'
             'Switch between translation and rotation to change all parameters.\n'
             'Use + or - button to have acces to more or less parameters.\n'
             'Use tooltips and helps to learn more about each parameter.\n\n'
@@ -380,6 +398,8 @@ class LocaleText with ChangeNotifier {
             'Changer les valeurs avec les curseurs et observer les performances :\n'
             '$_tab\u{2022} vitesse verticale de décollage, hauteur maximale, temps de vol,\n'
             '$_tab\u{2022} vitesse maximale de rotation et rotation totale.\n\n'
+            'Appuyer sur une valeur affichée pour la saisir numériquement; '
+            'maintenir l\'appui pour les explications.\n\n'
             'Utiliser l\'interrupteur pour passer des paramètres en translation à ceux en rotation.\n'
             'Utiliser le button + ou - pour avoir accès à plus ou moins de paramètres.\n'
             'Utiliser les info-bulles et les aides pour en apprendre plus sur chaque paramètre.\n\n'

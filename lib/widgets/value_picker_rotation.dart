@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
-import '/providers/app_parameters.dart';
+import '../helpers/math_helper.dart';
+import '../providers/app_parameters.dart';
 import 'mixed_tooptip.dart';
+import 'numeric_value_editor.dart';
 
 class ValuePickerRotation extends StatelessWidget {
   const ValuePickerRotation({
@@ -38,10 +40,33 @@ class ValuePickerRotation extends StatelessWidget {
   final double size;
   final Offset textOffset;
   final TextStyle textStyle;
-  final Function(double)? onChange;
+  final ValueChanged<double>? onChange;
 
-  void _changeValue(valueChanging) {
-    if (onChange != null) onChange!(valueChanging.value);
+  double get _displayedMin => MathHelper.minimum(min, precision);
+  double get _displayedMax => MathHelper.maximum(max, precision);
+  double get _displayedValue =>
+      MathHelper.canonical(value, min: min, max: max, precision: precision);
+
+  void _changeValue(ValueChangingArgs valueChanging) {
+    onChange?.call(
+      MathHelper.canonical(
+        valueChanging.value.toDouble(),
+        min: min,
+        max: max,
+        precision: precision,
+      ),
+    );
+  }
+
+  Future<void> _editValue(BuildContext context) async {
+    final edited = await showNumericValueEditor(
+      context,
+      value: value,
+      min: min,
+      max: max,
+      precision: precision,
+    );
+    if (edited != null) onChange?.call(edited);
   }
 
   @override
@@ -58,7 +83,8 @@ class ValuePickerRotation extends StatelessWidget {
         alignment: Alignment.bottomLeft,
         children: [
           Positioned(
-            right: deviceSize.width -
+            right:
+                deviceSize.width -
                 position.dx -
                 deviceSize.width * 0.04 -
                 textOffset.dx,
@@ -67,16 +93,17 @@ class ValuePickerRotation extends StatelessWidget {
               message: tooltip ?? '',
               helpTitle: helpTitle,
               helpText: helpText,
+              onEditTap: onChange == null ? null : () => _editValue(context),
               child: Row(
                 children: [
-                  if (title != null) title!,
+                  ?title,
                   Text(
                     '${title != null ? '${app.texts.colon} ' : ''}'
-                    '${value.toStringAsFixed(precision)}',
+                    '${_displayedValue.toStringAsFixed(precision)}',
                     textAlign: TextAlign.right,
                     style: textStyle,
                   ),
-                  if (units != null) units!,
+                  ?units,
                 ],
               ),
             ),
@@ -96,24 +123,26 @@ class ValuePickerRotation extends StatelessWidget {
                     showTicks: false,
                     radiusFactor: 1,
                     axisLineStyle: AxisLineStyle(
-                        thickness: trackWidth, color: color.withAlpha(50)),
-                    minimum: min,
-                    maximum: max,
+                      thickness: trackWidth,
+                      color: color.withAlpha(50),
+                    ),
+                    minimum: _displayedMin,
+                    maximum: _displayedMax,
                     pointers: [
                       MarkerPointer(
                         markerHeight: markerSize,
                         markerWidth: markerSize,
                         color: color,
                         markerType: MarkerType.circle,
-                        value: value,
+                        value: _displayedValue,
                         onValueChanging: _changeValue,
                         enableDragging: true,
-                      )
+                      ),
                     ],
                     ranges: [
                       GaugeRange(
                         startValue: 0,
-                        endValue: value,
+                        endValue: _displayedValue,
                         color: color,
                         startWidth: trackWidth,
                         endWidth: trackWidth,

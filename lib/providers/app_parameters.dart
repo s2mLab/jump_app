@@ -43,7 +43,7 @@ class AppParameters with ChangeNotifier {
 
   AppType _appType = AppType.translation;
   AppType get type => _appType;
-  set type(value) {
+  set type(AppType value) {
     _appType = value;
     notifyListeners();
   }

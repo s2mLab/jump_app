@@ -3,132 +3,124 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/models/biomechanics_bounds.dart';
+import '../helpers/math_helper.dart';
+import '../models/biomechanics_bounds.dart';
 import 'app_parameters.dart';
 
 class Biomechanics with ChangeNotifier {
   static Biomechanics of(BuildContext context, {bool listen = false}) =>
       Provider.of<Biomechanics>(context, listen: listen);
 
-  Biomechanics(BiomechanicsValue initialValues)
-      : _initialHeight = initialValues.initialHeight,
-        _finalHeight = initialValues.finalHeight,
-        _initialInertia = initialValues.initialInertia,
-        _minimumInertia = initialValues.minimumInertia,
-        _finalInertia = initialValues.finalInertia,
-        _timeToMinimumInertia = initialValues.timeToMinimumInertia,
-        _timeToFinalInertia = initialValues.timeToFinalInertia,
-        _initialRotation = initialValues.initialRotation,
-        _initialAngularVelocity = initialValues.initialAngularVelocity,
-        _groundReactionForce = initialValues.groundReactionForce,
-        _pushoffTime = initialValues.pushoffTime,
-        _bodyMass = initialValues.bodyMass;
+  Biomechanics(BiomechanicsValue initialValues) {
+    setValues(initialValues);
+  }
 
-  void setValues(BiomechanicsValue initialValues, {notify = true}) {
-    _initialHeight = initialValues.initialHeight;
-    _finalHeight = initialValues.finalHeight;
-    _initialInertia = initialValues.initialInertia;
-    _minimumInertia = initialValues.minimumInertia;
-    _finalInertia = initialValues.finalInertia;
-    _timeToMinimumInertia = initialValues.timeToMinimumInertia;
-    _timeToFinalInertia = initialValues.timeToFinalInertia;
-    _initialRotation = initialValues.initialRotation;
-    _initialAngularVelocity = initialValues.initialAngularVelocity;
-    _groundReactionForce = initialValues.groundReactionForce;
-    _pushoffTime = initialValues.pushoffTime;
-    _bodyMass = initialValues.bodyMass;
-    if (notify) notifyListeners();
+  void setValues(BiomechanicsValue initialValues) {
+    bodyMass = initialValues.bodyMass;
+    initialHeight = initialValues.initialHeight;
+    finalHeight = initialValues.finalHeight;
+    initialInertia = initialValues.initialInertia;
+    minimumInertia = initialValues.minimumInertia;
+    finalInertia = initialValues.finalInertia;
+    timeToMinimumInertia = initialValues.timeToMinimumInertia;
+    timeToFinalInertia = initialValues.timeToFinalInertia;
+    initialRotation = initialValues.initialRotation;
+    initialAngularVelocity = initialValues.initialAngularVelocity;
+    groundReactionForce = initialValues.groundReactionForce;
+    pushoffTime = initialValues.pushoffTime;
   }
 
   DetailLevel _level = DetailLevel.medium;
-  set level(value) => _level = value;
+  set level(DetailLevel value) => _level = value;
 
   double get g => 9.81;
 
-  double _bodyMass; // kg
+  late double _bodyMass; // kg
   double get bodyMass => _bodyMass;
-  set bodyWeight(value) {
-    _bodyMass = value;
+  set bodyMass(double value) {
+    _bodyMass = MathHelper.roundToPrecision(value, 2);
     notifyListeners();
   }
 
   double get bodyWeight => bodyMass * g; // N
 
-  double _initialHeight; // m
+  late double _initialHeight; // m
   double get initialHeight => _initialHeight;
-  set initialHeigh(value) {
-    _initialHeight = value;
+  set initialHeight(double value) {
+    _initialHeight = MathHelper.roundToPrecision(value, 2);
     notifyListeners();
   }
 
-  double _finalHeight; // m
+  late double _finalHeight; // m
   double get finalHeight =>
       _level == DetailLevel.easy ? initialHeight : _finalHeight;
-  set finalHeight(value) {
-    _finalHeight = value;
+  set finalHeight(double value) {
+    _finalHeight = MathHelper.roundToPrecision(value, 2);
     notifyListeners();
   }
 
-  double _initialInertia; // kg.m^2
+  late double _initialInertia; // kg.m^2
   double get initialInertia => _initialInertia;
-  set initialInertia(value) {
-    _initialInertia = value;
+  set initialInertia(double value) {
+    _initialInertia = MathHelper.roundToPrecision(value, 2);
     notifyListeners();
   }
 
-  double _minimumInertia; // kg.m^2
+  late double _minimumInertia; // kg.m^2
   double get minimumInertia => _minimumInertia;
-  set minimumInertia(value) {
-    _minimumInertia = value;
+  set minimumInertia(double value) {
+    _minimumInertia = MathHelper.roundToPrecision(value, 2);
     notifyListeners();
   }
 
-  double _finalInertia; // kg.m^2
+  late final double _finalInertia; // kg.m^2
   double get finalInertia => _finalInertia;
-  set finalInertia(value) {
-    _finalInertia = value;
+  set finalInertia(double value) {
+    _finalInertia = MathHelper.roundToPrecision(value, 2);
     notifyListeners();
   }
 
-  double _timeToMinimumInertia; // s
+  late double _timeToMinimumInertia; // s
   double get timeToMinimumInertia => _timeToMinimumInertia;
-  set timeToMinimumInertia(value) {
-    _timeToMinimumInertia = value;
+  set timeToMinimumInertia(double value) {
+    _timeToMinimumInertia = MathHelper.roundToPrecision(value * 1000, 0) / 1000;
     notifyListeners();
   }
 
-  double _timeToFinalInertia; // s
+  late double _timeToFinalInertia; // s
   double get timeToFinalInertia => _timeToFinalInertia;
-  set timeToFinalInertia(value) {
-    _timeToFinalInertia = value;
+  set timeToFinalInertia(double value) {
+    _timeToFinalInertia = MathHelper.roundToPrecision(value * 1000, 0) / 1000;
     notifyListeners();
   }
 
-  double _initialRotation; // rad
+  late double _initialRotation; // rad
   double get initialRotation => _initialRotation;
-  set initialRotation(value) {
-    _initialRotation = value;
+  set initialRotation(double value) {
+    _initialRotation = MathHelper.roundToPrecision(value / 2 / pi, 2) * 2 * pi;
     notifyListeners();
   }
 
-  double _initialAngularVelocity; // rad/s
+  late double _initialAngularVelocity; // rad/s
   double get initialAngularVelocity => _initialAngularVelocity;
-  set initialAngularVelocity(value) {
-    _initialAngularVelocity = value;
+  set initialAngularVelocity(double value) {
+    _initialAngularVelocity =
+        MathHelper.roundToPrecision(value / 2 / pi, 2) * 2 * pi;
     notifyListeners();
   }
 
-  double _groundReactionForce; // N
+  late double _groundReactionForce; // N
   double get groundReactionForce => _groundReactionForce;
-  set groundReactionForce(value) {
-    _groundReactionForce = value;
+  set groundReactionForce(double value) {
+    _groundReactionForce =
+        MathHelper.roundToPrecision(value / bodyWeight, 2) * bodyWeight;
     notifyListeners();
   }
 
-  double _pushoffTime; // s
+  late double _pushoffTime; // s
   double get pushoffTime => _pushoffTime;
-  set pushoffTime(value) {
-    _pushoffTime = value;
+  set pushoffTime(double value) {
+    _pushoffTime = MathHelper.roundToPrecision(value * 1000, 0) / 1000;
     notifyListeners();
   }
 

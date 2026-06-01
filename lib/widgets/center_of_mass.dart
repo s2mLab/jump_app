@@ -6,11 +6,7 @@ import 'mixed_tooptip.dart';
 import 'text_with_subscript.dart';
 import 'value_picker.dart';
 
-enum CenterOfMassType {
-  any,
-  start,
-  end,
-}
+enum CenterOfMassType { any, start, end }
 
 class CenterOfMass extends StatelessWidget {
   const CenterOfMass(
@@ -35,7 +31,7 @@ class CenterOfMass extends StatelessWidget {
   void _updateHeight(BuildContext context, double value) {
     final biomechanics = Biomechanics.of(context);
     if (type == CenterOfMassType.start) {
-      biomechanics.initialHeigh = value;
+      biomechanics.initialHeight = value;
     } else if (type == CenterOfMassType.end) {
       biomechanics.finalHeight = value;
     } else {
@@ -71,8 +67,9 @@ class CenterOfMass extends StatelessWidget {
     final helpTitle = type == CenterOfMassType.start
         ? app.texts.h0HelpTitle
         : app.texts.hfHelpTitle;
-    final helpText =
-        type == CenterOfMassType.start ? app.texts.h0Help : app.texts.hfHelp;
+    final helpText = type == CenterOfMassType.start
+        ? app.texts.h0Help
+        : app.texts.hfHelp;
 
     return SizedBox(
       width: deviceSize.width,
@@ -92,10 +89,11 @@ class CenterOfMass extends StatelessWidget {
               color: app.theme.colorParametersCenterOfMass,
               textStyle: app.theme.textStyle,
               textOffset: Offset(
-                  type == CenterOfMassType.start
-                      ? -deviceSize.width * 0.065
-                      : deviceSize.width * 0.02,
-                  0),
+                type == CenterOfMassType.start
+                    ? -deviceSize.width * 0.065
+                    : deviceSize.width * 0.02,
+                0,
+              ),
               title: type == CenterOfMassType.any
                   ? null
                   : TextWithSubscript(
@@ -103,11 +101,15 @@ class CenterOfMass extends StatelessWidget {
                       type == CenterOfMassType.start ? '0' : 'F',
                       textAlign: TextAlign.end,
                       textStyle: app.theme.textStyle.copyWith(
-                          color: app.theme.colorParametersCenterOfMass),
+                        color: app.theme.colorParametersCenterOfMass,
+                      ),
                     ),
-              unit: Text('m',
-                  style: app.theme.textStyle
-                      .copyWith(color: app.theme.colorParametersCenterOfMass)),
+              unit: Text(
+                'm',
+                style: app.theme.textStyle.copyWith(
+                  color: app.theme.colorParametersCenterOfMass,
+                ),
+              ),
               precision: 2,
               onValueChanged: type != CenterOfMassType.any
                   ? (value) => _updateHeight(context, value)
@@ -121,8 +123,9 @@ class CenterOfMass extends StatelessWidget {
               left: position.dx + deviceSize.width * 0.02,
               bottom: -position.dy,
               child: Container(
-                decoration:
-                    BoxDecoration(color: app.theme.colorAnswer.withAlpha(30)),
+                decoration: BoxDecoration(
+                  color: app.theme.colorAnswer.withAlpha(30),
+                ),
                 padding: const EdgeInsets.all(2),
                 child: MixedTooltip(
                   message: tooltip,
@@ -136,8 +139,9 @@ class CenterOfMass extends StatelessWidget {
                         textStyle: app.theme.textStyleAnswer,
                       ),
                       Text(
-                          ' = ${biomechanics.finalHeight.toStringAsFixed(2)} m',
-                          style: app.theme.textStyleAnswer),
+                        ' = ${biomechanics.finalHeight.toStringAsFixed(2)} m',
+                        style: app.theme.textStyleAnswer,
+                      ),
                     ],
                   ),
                 ),

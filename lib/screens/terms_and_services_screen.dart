@@ -10,7 +10,7 @@ class TermsAndServicesScreen extends StatelessWidget {
 
   final sharedPrefName = 'hasAlreadyAcceptedTermsAndServices';
 
-  Future<bool> _haveAlreadyAcceptedTermsAndServices(context) async {
+  Future<bool> _haveAlreadyAcceptedTermsAndServices(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
 
     final hasAccepted = prefs.getBool(sharedPrefName) ?? false;
@@ -23,9 +23,10 @@ class TermsAndServicesScreen extends StatelessWidget {
     return hasAccepted;
   }
 
-  Future<void> _acceptTermsAndServices(context) async {
+  Future<void> _acceptTermsAndServices(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setBool(sharedPrefName, true);
+    await prefs.setBool(sharedPrefName, true);
+    if (!context.mounted) return;
     _continueToApp(context);
   }
 
