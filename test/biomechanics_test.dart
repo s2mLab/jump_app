@@ -31,6 +31,7 @@ void main() {
       biomechanics.finalHeight = 1.244;
       biomechanics.initialInertia = 2.126;
       biomechanics.minimumInertia = 0.756;
+      biomechanics.finalInertia = 2.126;
       biomechanics.timeToMinimumInertia = 0.1806;
       biomechanics.timeToFinalInertia = 0.0204;
       biomechanics.initialRotation = 0.256 * 2 * pi;
@@ -42,6 +43,7 @@ void main() {
       expect(biomechanics.finalHeight, 1.24);
       expect(biomechanics.initialInertia, 2.13);
       expect(biomechanics.minimumInertia, 0.76);
+      expect(biomechanics.finalInertia, 2.13);
       expect(biomechanics.timeToMinimumInertia * 1000, 181);
       expect(biomechanics.timeToFinalInertia * 1000, 20);
       expect(biomechanics.initialRotation / 2 / pi, closeTo(0.26, 1e-12));
@@ -55,6 +57,16 @@ void main() {
   });
 
   group('Biomechanics calculations', () {
+    test('can reset values when the selected jump changes', () {
+      final biomechanics = Biomechanics(JumpDescription.axel.bounds.initial);
+
+      expect(
+        () => biomechanics.setValues(JumpDescription.somersault.bounds.initial),
+        returnsNormally,
+      );
+      expect(biomechanics.finalInertia, 10);
+    });
+
     test('force in bodyweights uses the selected athlete mass', () {
       final biomechanics = Biomechanics(JumpDescription.lutz.bounds.initial);
 
