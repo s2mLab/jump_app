@@ -86,6 +86,18 @@ keyPassword=...
 Le fichier référencé par `storeFile` doit être obtenu auprès d'un membre de
 l'équipe.
 
+### Binaires desktop (GitHub Release)
+
+Un workflow GitHub Actions génère automatiquement les binaires desktop lors de
+la publication d'une release GitHub, puis les ajoute comme assets de la release :
+
+- Linux : archive `.tar.gz` du bundle;
+- Windows : archive `.zip` du dossier `Release`;
+- macOS : archive `.zip` du fichier `.app`.
+
+Le workflow est défini dans
+`.github/workflows/release-desktop-binaries.yml`.
+
 ### iOS
 
 Pour préparer un fichier IPA :
