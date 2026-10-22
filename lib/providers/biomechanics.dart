@@ -73,7 +73,7 @@ class Biomechanics with ChangeNotifier {
     notifyListeners();
   }
 
-  late final double _finalInertia; // kg.m^2
+  late double _finalInertia; // kg.m^2
   double get finalInertia => _finalInertia;
   set finalInertia(double value) {
     _finalInertia = MathHelper.roundToPrecision(value, 2);

@@ -18,10 +18,7 @@ import 'pushoff_phase.dart';
 import 'total_rotation.dart';
 
 class SkaterImage extends StatefulWidget {
-  const SkaterImage({
-    super.key,
-    this.width,
-  });
+  const SkaterImage({super.key, this.width});
 
   final double? width;
 
@@ -43,20 +40,30 @@ class _SkaterImageState extends State<SkaterImage> {
     final jumpHeigh = 0.100 * w;
 
     final comStart = Offset(0.265 * w, -floor - 0.100 * w);
-    final comSliderStartPosition =
-        Offset(comStart.dx - 0.09 * w, floor + 0.045 * w);
+    final comSliderStartPosition = Offset(
+      comStart.dx - 0.09 * w,
+      floor + 0.045 * w,
+    );
     final comFinal = Offset(0.791 * w, -floor - 0.115 * w);
 
-    final comSliderFinalPosition =
-        Offset(comFinal.dx + 0.03 * w, floor + 0.045 * w);
+    final comSliderFinalPosition = Offset(
+      comFinal.dx + 0.03 * w,
+      floor + 0.045 * w,
+    );
     final comSliderHeight = 0.15 * w;
     final comMid = Offset(
-        (comStart.dx + comFinal.dx) / 2, (comStart.dy + comFinal.dy) / 2);
+      (comStart.dx + comFinal.dx) / 2,
+      (comStart.dy + comFinal.dy) / 2,
+    );
     final comSize = 0.011 * w;
-    final rotationPosition =
-        Offset(comFinal.dx - 0.05 * w, comFinal.dy - 0.1 * w);
-    final maximalRotationPosition =
-        Offset(comMid.dx - 0.07 * w, comFinal.dy - 0.02 * w);
+    final rotationPosition = Offset(
+      comFinal.dx - 0.05 * w,
+      comFinal.dy - 0.1 * w,
+    );
+    final maximalRotationPosition = Offset(
+      comMid.dx - 0.07 * w,
+      comFinal.dy - 0.02 * w,
+    );
 
     final initialRotationSliderPosition = Offset(0.14 * w, 0.105 * w + floor);
     final initialRotationSliderSize = 0.20 * w;
@@ -91,7 +98,11 @@ class _SkaterImageState extends State<SkaterImage> {
         alignment: Alignment.bottomLeft,
         children: [
           const Header(),
-          BackgoundImage(floor: floor, imagePath: app.jumpDescription.path),
+          BackgoundImage(
+            key: ValueKey(app.jumpDescription.path),
+            floor: floor,
+            imagePath: app.jumpDescription.path,
+          ),
           if (isTranslation)
             GroundReactionForce(
               arrowHead: grfArrow,
@@ -126,7 +137,9 @@ class _SkaterImageState extends State<SkaterImage> {
             MaximalRotationVelocity(position: maximalRotationPosition),
           if (isTranslation)
             FlightApex(
-                apex: Offset(comMid.dx, comMid.dy - jumpHeigh), floor: floor),
+              apex: Offset(comMid.dx, comMid.dy - jumpHeigh),
+              floor: floor,
+            ),
           TotalRotation(position: rotationPosition),
           if (isRotation)
             FlightInertia(
@@ -153,7 +166,10 @@ class _SkaterImageState extends State<SkaterImage> {
           ),
           if (!isTranslation && !isRotation)
             LandingPhase(
-                comFinal: comFinal, arrowsBelow: arrowsBelow, land: land),
+              comFinal: comFinal,
+              arrowsBelow: arrowsBelow,
+              land: land,
+            ),
           if (isRotation)
             PreJumpRotation(
               initialRotationSliderPosition: initialRotationSliderPosition,
